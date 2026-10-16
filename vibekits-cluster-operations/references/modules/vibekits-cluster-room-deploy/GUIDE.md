@@ -5,7 +5,7 @@ description: 通过VibeKits工具部署hbbv服务器，按获授权仿真ID配�
 
 # 集群房间部署全链路
 
-用户给出服务器、设备仿真ID、服务地址和目标房间并授权接入后，沿现有工具完成部署和逐台验收。先读项目AGENTS、本机环境规则及最新交接；部署细节读[hbbv服务器技能](../hbbv-server-build-deploy/SKILL.md)，能力编辑读[能力技能](../vibekits-cluster-capabilities/SKILL.md)，房间协作读[任务技能](../vibekits-cluster-agent/SKILL.md)。技能可供同事复用，不携带账号、令牌、密码或私钥，也不授权给其他会话派任务。
+用户给出服务器、设备仿真ID、服务地址和目标房间并授权接入后，沿现有工具完成部署和逐台验收。先读项目AGENTS、本机环境规则及最新交接；部署细节读[hbbv服务器技能](../hbbv-server-build-deploy/GUIDE.md)，能力编辑读[能力技能](../vibekits-cluster-capabilities/GUIDE.md)，房间协作读[任务技能](../vibekits-cluster-agent/GUIDE.md)。技能可供同事复用，不携带账号、令牌、密码或私钥，也不授权给其他会话派任务。
 
 ## 一、连接与部署服务器
 
