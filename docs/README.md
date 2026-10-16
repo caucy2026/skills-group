@@ -34,3 +34,7 @@ Website: https://kemi-chat.newlinksz.com:21122/vibekits/
 - [借房间里的 Windows 编译](windows-build.md): 在本机写代码，选择已有 Windows 工具链，冻结源码并取回可验证产物。
 - [寻找 Linux ARM64 仿真设备](linux-arm64.md): 核对 Linux 与 aarch64 的真实环境，区分物理、虚拟和CPU仿真。
 - [从找设备到交付任务](collaboration-tasks.md): 一条可追溯流程覆盖能力、排队、唯一分配、执行、沟通与验收。
+
+## 产品机制
+
+- [VibeKits的机制与创新](product-innovation.md)。
