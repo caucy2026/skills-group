@@ -7,6 +7,9 @@ description: 操作和管理 VibeKits 集群：远程仿真、管理后台、客
 
 本技能是完整接手入口。先读取当前环境 AGENTS.md 和 LOCAL-ENVIRONMENT-RULES.md，核验用户授权、当前设备/服务和在途事务。技能内容不授予新账号、新设备或发布权限；已有同范围授权直接执行，不重复确认。不要把旧快照当实时状态。
 
+
+首次安装、同站后台地址、四端商城入口和完整从零接入流程，先读 [从零到集群协作](references/getting-started.md)。公开网站：https://kemi-chat.newlinksz.com:21122/vibekits/ 。Linux未有公开正式包时明确待上架，不混用平台。
+
 ## 选择操作
 
 - 首次接手、环境和连接：读 [连接与身份](references/connect.md)。外部 Mac 控制端附有可用桥接脚本；Harness 内优先原生 MCP。
