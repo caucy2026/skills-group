@@ -33,3 +33,5 @@ When a device ID returns `Remote desktop is offline`, follow [the channel recove
 When online IDs cannot be called after a network or local App change, read [the network-switch incident recovery](references/network-switch-incident-20260930.md). Verify the current controller bridge before judging the remote device offline; a cluster heartbeat and a simulator connection are separate observations.
 
 For uploading or deploying another application, including an SSH server without VibeKits, read [server file deployment](references/server-file-deployment.md). Use saved SSH/SFTP profile tools for that server; do not require a simulator ID or install VibeKits.
+
+完整中文接手步骤、云端技能来源、连接判定与故障分流见 [references/simulation-workflow.md](references/simulation-workflow.md)。

@@ -6,8 +6,8 @@
 
 ## 0. 必须真实满足的前提
 
-1. PAD 的 VibeKits 已安装、联网；设备主人已在 PAD 上开启“允许作为仿真机”并完成首次授权。PAD 从关闭状态手动开启时有本地密码确认，远程控制端不接收或代填这个密码。原来已启用的状态可在开机后恢复。**ID 不能绕过关闭的仿真开关、首次同意或 Android 权限。**
-2. Mac 上运行的是支持 VibeKits 仿真工具桥的 VibeKits，且本地 Android `adb` 可执行。正常启动已安装的 App 可用 `open -a Vibekits`；不要启动另一个同名旧候选或官方 Harness 来代替。Mac 桥配置位于当前用户的 `~/Library/Application Support/com.caucy.vibekits/Vibekits/mcp/tool-bridge.json`，只检查文件是否存在，**不要显示/复制其中的 token**。
+1. PAD 的 VibeKits 已安装、联网；设备主人已在 PAD 上开启“允许作为仿真机”并完成首次授权。当前产品要求手动开启仿真不额外设置仿真密码；旧版本行为按实际版本核实，不能将旧版密码步骤当作统一前提。首次访问同意和 Android 系统认证仍须真实完成。原来已启用的状态可在开机后恢复。**ID 不能绕过关闭的仿真开关、首次同意或 Android 权限。**
+2. Mac 上运行的是支持 VibeKits 仿真工具桥的 VibeKits，且本地 Android `adb` 可执行。正常启动已安装的 App 可用 `open -a Vibekits`；不要启动另一个同名旧候选或官方 Harness 来代替。Mac 桥配置位于当前用户的 `~/Library/Application Support/com.caucy.vibekits/Vibekits/mcp/tool-bridge.json`，该路径仅为历史提示；随包 simulator_bridge_locator.rb 会定位当前可信桥（含目录大小写差异），不要用固定路径存在性代替实际连接；**不要显示/复制其中的 token**。
 3. `scripts/invoke.rb` 已随本技能安装。它只向上面的本机 loopback 桥发请求，并验证 endpoint 是 loopback；不要把桥 token、认证头或配置文件贴到聊天和日志。若同事的 Mac 没有本技能，先从项目 `native/harness/builtin-skills/vibekits-remote-simulator/` 安装同一版本到该 Mac 的 Codex skills 目录。
 
 ## 1. 只输入设备 ID：连接并取得动态 ADB 串口
@@ -21,7 +21,6 @@ test ${#PAD_ID} -ge 6 && test ${#PAD_ID} -le 16 || { echo '设备 ID 必须为 6
 SKILL_ROOT="${CODEX_HOME:-$HOME/.codex}/skills/vibekits-remote-simulator"
 INVOKE="$SKILL_ROOT/scripts/invoke.rb"
 test -f "$INVOKE" || { echo '缺少 vibekits-remote-simulator 技能脚本'; exit 1; }
-test -f "$HOME/Library/Application Support/com.caucy.vibekits/Vibekits/mcp/tool-bridge.json" || { echo 'VibeKits Mac 工具桥未运行'; exit 1; }
 CONNECT_JSON="$(ruby "$INVOKE" vibekits.simulator.connect "{\"routingId\":\"$PAD_ID\"}")" || exit 1
 printf '%s\n' "$CONNECT_JSON"
 ```
@@ -69,28 +68,35 @@ ADB_SERVER_PORT=5039
 
 KEMI 双屏 PAD 上，VibeKits 主界面曾位于 `display 0`，另一屏曾为 `display 2`；不同设备必须先核对，不能把这两个数字当通用常量。先读 `dumpsys display`、`dumpsys activity activities`，必要时取一张指定显示屏的诊断帧；优先使用 catalog 中的 `vibekits.device.ui_inspect` / `ui_action`，不要持续截图轮询。Android `uiautomator dump` 可能只返回默认/另一屏，不能据此断言指定屏无界面。
 
+先设置自己的证据目录 `EVIDENCE_DIR`；应用组件名须从已安装包的实际清单确认。下面 display 0 与 SingleScreenActivity 仅为已验证机型示例，按当前设备替换。
+
 ```sh
 "$ADB_BIN" -P "$ADB_SERVER_PORT" -s "$ADB_SERIAL" shell dumpsys display
 "$ADB_BIN" -P "$ADB_SERVER_PORT" -s "$ADB_SERIAL" shell dumpsys activity activities
 "$ADB_BIN" -P "$ADB_SERVER_PORT" -s "$ADB_SERIAL" shell am start --display 0 -n com.vibekits.vibekits/.SingleScreenActivity
 "$ADB_BIN" -P "$ADB_SERVER_PORT" -s "$ADB_SERIAL" shell input -d 0 tap <核实过的X> <核实过的Y>
-"$ADB_BIN" -P "$ADB_SERVER_PORT" -s "$ADB_SERIAL" exec-out screencap -d 0 -p > /tmp/pad-display0.png
+"$ADB_BIN" -P "$ADB_SERVER_PORT" -s "$ADB_SERIAL" exec-out screencap -d 0 -p > "$EVIDENCE_DIR/pad-display0.png"
 ```
 
 `input -d 0` 与 `screencap -d 0` 必须对应实际目标显示屏；先检查屏幕尺寸和控件位置，再点击。截图只作必要证据，不要用密集截图代替状态接口。对话框、安装器、系统权限提示要按实际画面与用户授权处理；不能自动同意未授权的系统确认。
 
 ## 4. 远程安装/升级 APK 的闭环
 
-只有用户授权安装时执行。先在 Mac 核对候选 APK 的包名、版本、SHA-256 和 Android 签名；若是 VibeKits 自身，使用已批准的签名产物，避免覆盖成另一证书/版本。普通覆盖用 `install -r` 保留用户数据，不加 `-d`、不清除数据、不卸载。
+只有用户授权安装时执行。先在 Mac 核对候选 APK 的包名、版本、SHA-256 和 Android 签名；若是 VibeKits 自身，使用已批准的签名产物，避免覆盖成另一证书/版本。普通覆盖保留用户数据，不加 `-d`、不清除数据、不卸载。PAD 已出现 DataLoader/eventfd 内核故障，禁止裸 adb install；先传 APK 并核验设备端哈希，再通过包管理器非增量安装。
 
 **PAD 宿主自更新硬门槛：**若本次远程 ADB/MCP/仿真通道由待覆盖的 VibeKits 主 APK 承载，安装它之前必须先实测一条与主 APK 进程独立的、已授权的设备端救援通道：停止主 APK 后仍能联系同一台 PAD、读取原 ID 和公钥指纹、启动或恢复仿真，并可用设备本地已暂存且同签名的旧 APK 回退。仅安装系统 UID ADB 辅助组件、保留旧动态 ADB 串口、缓存旧 APK 或看到集群心跳都不算独立救援通道。还需记录原 ID/指纹/版本、候选签名和回退包哈希，并在受控测试中验证主 APK 停止后的救援与回退。任一条件未通过，**停止远程覆盖主 APK**；不要把安装后的重连当作救援方案。普通第三方 APK 更新不受这条宿主自更新门槛限制。
 
 ```sh
 shasum -a 256 /absolute/path/to/candidate.apk
-"$ADB_BIN" -P "$ADB_SERVER_PORT" -s "$ADB_SERIAL" install -r /absolute/path/to/candidate.apk
+# REMOTE_APK 是本任务独占且预先确认不存在的设备路径，勿覆盖他人文件。
+REMOTE_APK='/data/local/tmp/vibekits-authorized-task-candidate.apk'
+"$ADB_BIN" -P "$ADB_SERVER_PORT" -s "$ADB_SERIAL" push /absolute/path/to/candidate.apk "$REMOTE_APK"
+"$ADB_BIN" -P "$ADB_SERVER_PORT" -s "$ADB_SERIAL" shell sha256sum "$REMOTE_APK"
+# 人工/脚本核对与本机 SHA-256 完全相同后，才执行：
+"$ADB_BIN" -P "$ADB_SERVER_PORT" -s "$ADB_SERIAL" shell pm install -r "$REMOTE_APK"
 ```
 
-**重要：升级承载隧道的 VibeKits 主 APK 会杀掉旧进程/旧 ADB 流。** 以下重连步骤只适用于上述独立救援通道已验证的宿主升级，或不承载该通道的普通 APK。`adb install -r` 可能显示空的安装失败或超时，但设备已装成功。不要凭命令退出码立刻重复安装。先调用：
+**重要：升级承载隧道的 VibeKits 主 APK 会杀掉旧进程/旧 ADB 流。** 以下重连步骤只适用于上述独立救援通道已验证的宿主升级，或不承载该通道的普通 APK。安装事务可能显示空的安装失败或超时，但设备已装成功。不要凭命令退出码立刻重复安装。先调用：
 
 ```sh
 ruby "$INVOKE" vibekits.simulator.connection_status "{\"routingId\":\"$PAD_ID\"}"

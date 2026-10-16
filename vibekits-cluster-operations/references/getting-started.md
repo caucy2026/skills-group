@@ -147,3 +147,5 @@ Mac远程登录已通但受保护文件不可读时：**系统设置 → 通用 
 - [ ] 升级保留原ID/Key/会话/权限，回滚可用。
 
 未执行的项目标待验。网站是接手指南，不是对所有平台和功能已经通过的证明。
+
+详细仿真：[simulation-workflow.md](modules/vibekits-remote-simulator/references/simulation-workflow.md)。PAD远程ADB：[mac-pad-remote-adb.md](modules/vibekits-remote-simulator/references/mac-pad-remote-adb.md)。独立云端技能：https://github.com/caucy2026/skills-group/tree/main/vibekits-remote-simulator 。
