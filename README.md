@@ -4,6 +4,8 @@
 
 ## 从任务进入
 
+- 维护四端下载网站、商城版本同步和云端共用端口部署：[vibekits-distribution/SKILL.md](vibekits-distribution/SKILL.md)。
+
 - 完整接手房间与集群：[vibekits-cluster-operations/SKILL.md](vibekits-cluster-operations/SKILL.md)。
 - 按设备ID仿真与PAD远程ADB：[vibekits-remote-simulator/SKILL.md](vibekits-remote-simulator/SKILL.md)。
 - 使用房间现有Windows/Mac签名资源：[vibekits-room-signing/SKILL.md](vibekits-room-signing/SKILL.md)。
