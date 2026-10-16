@@ -1,0 +1,429 @@
+{
+  "date": "2026-10-16",
+  "files": [
+    {
+      "source": "vibekits-remote-simulator/SKILL.md",
+      "sha256": "9426822aa5fb897ade9fa0f4392161b41e684eff3bad6c9b869e48ac056599f2"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/windows-independent-recovery-20261002.md",
+      "sha256": "cb066f35692d1c418032c366ba0c6c67fba6f9b76738222c3b65dda7ccde025e"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/channel-recovery-playbook-20261006.md",
+      "sha256": "6da177218c74f357ce8b8fcb110223c61fb96138c5ac6ca132e0eac7a129dce5"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/new-mac-pad-first-run.md",
+      "sha256": "b9922262d3bf774c112678a5b9686ff857f3dde2c1fa36a0e8cfd85a4c2cc5c3"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/three-source-app-update.md",
+      "sha256": "a0610e44176dae029a4c6ae754bbaa860dbc5b01da95c238a515485c63936544"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/windows-sshd-compatibility-20261001.md",
+      "sha256": "6c5e3293ee25c5869f9a0c551001cb629df9e42d1b8742e4bf8da5bf2a1c027f"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/server-file-deployment.md",
+      "sha256": "cfae410b7bc37d703da81b2cad07bb4cee0a82c0ec4f12702e3c10f5bd882d3b"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/id-first-simulation.md",
+      "sha256": "77999b1aea30600ac8a4a3eb61af1a9d5223c6ca7d3c746fda13f89a13cbae37"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/frozen-candidate-diagnostics-20261002.md",
+      "sha256": "40a5a4b93b90ffed661c46de14f7cb09bb7beb44fbcb7809962f4364d13321a5"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/tool-contract.md",
+      "sha256": "9c95682f848c395779ac99a07b607e372da7ecfb9945332e64400699cc16e3d0"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/market-app-update.md",
+      "sha256": "5e0049322133e464338db63be70c751a5170e35d6b7cf37ba3c9f67eecd2dfe6"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/network-switch-incident-20260930.md",
+      "sha256": "888c786c89fca5b0f39774f85e2024bc611a14abc24a6e0f19022d41ecaa1793"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/mac-pad-remote-adb.md",
+      "sha256": "a459ad25703a29844140e54d95e81945df5e3e22ab8c2e560ffcdbf53eeb2d10"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/dynamic-adb-port-incident-20261003.md",
+      "sha256": "ce7aa80813b31f9be93d7f835740c68e528bd8c5bb44efb3800d3c956807ce1f"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/windows-resource-exhaustion-58-20261006.md",
+      "sha256": "e25f4fdd8c214b2f4d8832549bfad198e5344ae319cc65a3976a1ed886656481"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/windows-build-transfer-lessons.md",
+      "sha256": "6789dc87dbc99216a03e622ce95519ad1ae6e622a296954acd4e6cd96114c794"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/channel-recovery.md",
+      "sha256": "412219f626878a67da84367b7ed2a0828fa47c4b0534028d37fa0d726f94c65c"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/mac-atomic-update-lessons-20261001.md",
+      "sha256": "5d5de76531f17718b887d6d449b6743dadccaddaa7fbf1e17fc6d0361736f81b"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/windows-desktop-assisted-recovery.md",
+      "sha256": "26e5fbc84de4d985a492eb098a2a2a012bcb28ba6f86624a5fa3e3fa854c76f8"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/windows-self-update.md",
+      "sha256": "79c41fad36ada90c1666f99a88769218dbee29c702dbb15eb5c044146add795e"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/swdol-pad-acceptance-2315316040.md",
+      "sha256": "5fea484b7e8a64adc4bc79f458810ee34b108cc172022ac89f82b8653777931b"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/remote-macos-overwrite.md",
+      "sha256": "b8bda37c8ffde544cf0a60f996d94cc6d611a504b32ace3cd0bb87b8b1abea08"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/windows-update-incidents-20261001.md",
+      "sha256": "4a624eadc4057e898b88ad75f2df7c0211da05ea6a43fa1b9e1ddca0a8b0b14f"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/mac-file-access.md",
+      "sha256": "5b6c29b4ab83a1e59c1a6327b081d0cb0d94f3b02e2f6ad2c3d9f8f303b4ddda"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/windows-kemi-remote-office-upgrade.md",
+      "sha256": "28f3eee2ee499a4d71baeb164579cd8a38b21b0bba7503c96a38dfbbd8595a26"
+    },
+    {
+      "source": "vibekits-remote-simulator/references/autonomous-install-recovery-20260930.md",
+      "sha256": "4b420e5c975e7701ea3080683dfdf7cd6ae13c52b3443a734fa16e2ae6e39802"
+    },
+    {
+      "source": "vibekits-remote-simulator/agents/openai.yaml",
+      "sha256": "569fd9483dc8ee0b27ef4d0ce399b9263cb0a1ddb67a10a2a274992ffcda63a3"
+    },
+    {
+      "source": "vibekits-remote-simulator/scripts/invoke.rb",
+      "sha256": "3bdc3fcf28d04d134c667a9caeae12f61c254b1b2e89d6b739d46e59c6fb2308"
+    },
+    {
+      "source": "vibekits-remote-simulator/scripts/simulator_bridge_locator.rb",
+      "sha256": "5ae59e3a26c723c39c151885b993abebc5f0880e6001cc792d6f420ef19ce2d3"
+    },
+    {
+      "source": "vibekits-remote-simulator/scripts/simulator_windows_read_file.py",
+      "sha256": "6bf81d6ec028352dbee23782b2e8b91c23dc1c8847b774e10c98cee409c5a3d5"
+    },
+    {
+      "source": "vibekits-remote-simulator/scripts/simulator_windows_ui_inspect.ps1",
+      "sha256": "e4f59d4aa2b9b1cf101b32106d1e2bc9693d036f28cb91036e2271b94aaa9ca8"
+    },
+    {
+      "source": "vibekits-cluster-agent/SKILL.md",
+      "sha256": "8dd6b1ebd968f1c2ef71988ef2a6bc2e0c338f948044737b70c5de9b4fef539d"
+    },
+    {
+      "source": "vibekits-cluster-agent/references/resource-cleanup.md",
+      "sha256": "2645f289013fdabd0ea9dc8fa5ad15ecc8e4788dbea4b7b56d2e56f8e81824c0"
+    },
+    {
+      "source": "vibekits-cluster-agent/references/fleet-upgrade-observation.md",
+      "sha256": "9e63c06f0a1b7d81155269e4e1c9cba48e7cefb37ec34a7a7de300c61f9eab1b"
+    },
+    {
+      "source": "vibekits-cluster-agent/references/analyst-output-recovery.md",
+      "sha256": "12d0f2ca09aff625f555474862c7332af8b5e223f89d54ee65b7cdef8c1ecbf2"
+    },
+    {
+      "source": "vibekits-cluster-agent/agents/openai.yaml",
+      "sha256": "e1b7a913f2c047dddd0d6f73cde2cfd39c53b9b12718e0a1bbad554bf86c1125"
+    },
+    {
+      "source": "vibekits-cluster-capabilities/SKILL.md",
+      "sha256": "f83abf386a5709f559215bedf7123ee9e563da8916f45def33a90ef567e74363"
+    },
+    {
+      "source": "vibekits-cluster-capabilities/references/common-capabilities.md",
+      "sha256": "836382446cb23ec47426fbeb3d2f9478b2c8446ef044aaa8ccde8ba457fb6b65"
+    },
+    {
+      "source": "vibekits-cluster-capabilities/references/contract.md",
+      "sha256": "35e1e77581afdbb0b1d1c22e0f5d597bb359917ac5b3f80609b74ba949d64cfe"
+    },
+    {
+      "source": "vibekits-cluster-capabilities/references/github-capability-handoff.md",
+      "sha256": "93892308090bbfe08fa9c157e67afc8030efa509235279596745729cd2997447"
+    },
+    {
+      "source": "vibekits-cluster-capabilities/references/full-goal-acceptance-map.md",
+      "sha256": "fdb5db06ddd12f19a4f3aab2f2a773e4ea6c6f5ae7098e0bfe57326b6911f290"
+    },
+    {
+      "source": "vibekits-cluster-capabilities/references/contracts/mutation-result.schema.json",
+      "sha256": "1624e160da5e2611f171a291bc8decd47605b192f5d07d1a669e212c3111cf67"
+    },
+    {
+      "source": "vibekits-cluster-capabilities/references/contracts/capability-report.schema.json",
+      "sha256": "e172b2e12960e3dee2d6a974dd2163223e33f863b5b4cffbfdbdfcc4174690a2"
+    },
+    {
+      "source": "vibekits-cluster-capabilities/references/contracts/heartbeat-ack.schema.json",
+      "sha256": "26ee13d8af919508864439021e9e7426591c6bdcf5fc71cae457f27d4420bae1"
+    },
+    {
+      "source": "vibekits-cluster-capabilities/references/contracts/report-ack.schema.json",
+      "sha256": "7c95e8a5db9e4c84314e13a4f00521eb596ddee50252e0e95c4b1e5cb9ce002b"
+    },
+    {
+      "source": "vibekits-cluster-capabilities/references/contracts/heartbeat.schema.json",
+      "sha256": "8b3155b855a085ea872133faecff963aac90241f04902adbb17f4c1d8b765444"
+    },
+    {
+      "source": "vibekits-cluster-capabilities/references/contracts/claim-mutation.schema.json",
+      "sha256": "0d8037c92e9587457fd247098af8e8af5460f7d33d7e821b8d65d969ba7e37e5"
+    },
+    {
+      "source": "vibekits-cluster-deployment/SKILL.md",
+      "sha256": "dae43900710e83bef4fda6bfcdf9fa049f8c694deec23fb9c6cc80fe91d7452a"
+    },
+    {
+      "source": "vibekits-cluster-deployment/references/contract-runtime-schema-20261003.md",
+      "sha256": "71e18c66452f3255f614db8aebd43c67315f4f2f49ae2349d5b6b7b341f06e93"
+    },
+    {
+      "source": "vibekits-cluster-deployment/references/windows-upgrade-context-20261003.md",
+      "sha256": "645032f75c26c8edbb416dc945838c3cbfbae9735557dbb158194826364e7fbb"
+    },
+    {
+      "source": "vibekits-cluster-deployment/references/service-reload-observation-20261003.md",
+      "sha256": "ebe79cd90497fe1525684d472eb4e0138913502d6c8b4fcf9fb66be69289ae4b"
+    },
+    {
+      "source": "vibekits-cluster-deployment/references/fleet-lessons.md",
+      "sha256": "397060ea0836b0bafb2be6a77c62a24af6237a3b93963c617cfedf128734a994"
+    },
+    {
+      "source": "vibekits-cluster-deployment/references/network-switch-incident-20260930.md",
+      "sha256": "ab9994b8d5041f6d2d728d0f22652035d267643c67f8fd34ae4dcab837b00154"
+    },
+    {
+      "source": "vibekits-cluster-deployment/references/windows-direct-join-and-safe-retirement-20261004.md",
+      "sha256": "1c24a68040d92b97e67c6a5a13c0b443860af3d51dbf0c801868ab5d417272d7"
+    },
+    {
+      "source": "vibekits-cluster-deployment/references/dashboard-fleet-lessons-20260930.md",
+      "sha256": "91caf69452a8075c7d0eda2c4ac5e341a02b3ce15204f224718de7278a6dc30e"
+    },
+    {
+      "source": "vibekits-cluster-deployment/references/windows-relay-provenance-20261003.md",
+      "sha256": "f4bb514746e6571c4a6869d27cfc2f8bad4660d15b030b4ae064dd73e7df4cdf"
+    },
+    {
+      "source": "vibekits-cluster-room-deploy/SKILL.md",
+      "sha256": "96e96d35a1a06d3b5fc0ab6f87bdbc62c02ba5291acdb01dcde87cb83ecdb864"
+    },
+    {
+      "source": "vibekits-cluster-room-deploy/references/remote-recovery.md",
+      "sha256": "647de7cfbf3ae745c4eb9863e25a0d40977943247d061a7fbebe440bd24f4f1d"
+    },
+    {
+      "source": "vibekits-cluster-work/SKILL.md",
+      "sha256": "280b6ce9aae6f4b5b602a23ed7355d32180d78e543d5f9c2ae173540d8d11944"
+    },
+    {
+      "source": "vibekits-cluster-work/references/harness-debug-reset.md",
+      "sha256": "1876252eaa0b3ca30028130a6398fd8665439fa757098beaad190f6da9c1b516"
+    },
+    {
+      "source": "vibekits-cluster-work/references/operations.md",
+      "sha256": "3369a1ab34776591bfe2981b85115c04449aed62372ec308031bb19960f4004d"
+    },
+    {
+      "source": "vibekits-cluster-work/references/resource-recovery.md",
+      "sha256": "612b5da3f2e05303eb0417d59793ab197a752389b353dbccca8737021787dba0"
+    },
+    {
+      "source": "vibekits-cluster-work/references/goals.md",
+      "sha256": "be35d50636f4750c9dcc81ad0f0b3e9438b500953f0e168a2bc9c5c9fcd8eec6"
+    },
+    {
+      "source": "vibekits-cluster-work/agents/openai.yaml",
+      "sha256": "9525321ed0b5a67a8c22e33f765f39fcebfebffca6c1583c9c2f7bd9206a6745"
+    },
+    {
+      "source": "hbbv-server-build-deploy/SKILL.md",
+      "sha256": "c0d4f8cdd08518d81aa4becf034018c652fd5fc2a6746974aeb8a85c231e8720"
+    },
+    {
+      "source": "vibekits-fleet-compatibility/SKILL.md",
+      "sha256": "e268e973e1b64e8525f32acbe4570ef5b619e5857edf1205a7277f2e2a81db5b"
+    },
+    {
+      "source": "vibekits-release-error-preflight/SKILL.md",
+      "sha256": "6766be67fa124b0f779a6f222fbd19451508522f03934a51663520cd0e9534f4"
+    },
+    {
+      "source": "vibekits-release-error-preflight/references/pad-builder-component-release.md",
+      "sha256": "b83de8ae007e77469b97d6972feac029f89ebff63feb6e18f1ec7ff46c1cdb53"
+    },
+    {
+      "source": "vibekits-release-error-preflight/references/errors.md",
+      "sha256": "890caec00c3af61a5c633ff1c40a0caff3d7fa88031463fa42ddf26a289fe2ef"
+    },
+    {
+      "source": "vibekits-release-error-preflight/references/pad-three-simulation-scenarios-20261010.md",
+      "sha256": "b977e2eaeac27d01e39e75c247ae8603fdb9c93d693db467a89bc450902b7024"
+    },
+    {
+      "source": "vibekits-release-error-preflight/references/pad-weekly-incidents-20261010.md",
+      "sha256": "ccc5a93059b28324b303ecee57407bd132a5aa2fa564f6e79f17de09b443132b"
+    },
+    {
+      "source": "vibekits-release-error-preflight/references/pad-identity-startup-20261009.md",
+      "sha256": "89af6ff1d2b0153e7541c77df8be70c9cb8a03f43208aea9f734685453cf8ca8"
+    },
+    {
+      "source": "vibekits-release-error-preflight/references/code-cache-spill-upgrade.md",
+      "sha256": "ebfcada06e59d16d79c357ba41a15755560aac57c3aa40bfebda5c934b6d2687"
+    },
+    {
+      "source": "vibekits-release-error-preflight/scripts/check_release_error_preflight.py",
+      "sha256": "5eb18d9990338b2d59eca85edf8ba05d6893c9e5a7d7d5c9e22d711873336360"
+    },
+    {
+      "source": "kemi-windows-remote-signing/SKILL.md",
+      "sha256": "fb010c54b600fd7acf0a7df6e3c87c0b436dc6a8471152f2e3dbf955bfb34150"
+    },
+    {
+      "source": "kemi-windows-remote-signing/references/authenticode-signing.md",
+      "sha256": "e12d889144ca25ffb9c6a30dac1fbcbf3c8930540c583556577d1f4b1681cc50"
+    },
+    {
+      "source": "kemi-windows-remote-signing/references/workflow.md",
+      "sha256": "f5c2ff291f2635b1ad130972c7d67ffa10e3e8a2e7b1522ad2807cc0d58e1ec3"
+    },
+    {
+      "source": "kemi-windows-remote-signing/references/recent-changes.md",
+      "sha256": "df4514f6d97ad6bef35b079ab30d558587a04ee5920223cff8431cc7eb96030e"
+    },
+    {
+      "source": "kemi-windows-remote-signing/agents/openai.yaml",
+      "sha256": "39ee06ebc683d06f1bea52475e892d2b40b8344deac59b1f312c755862757cc8"
+    },
+    {
+      "source": "kemi-windows-device-lab/SKILL.md",
+      "sha256": "964b259654674515e1c3efa3972bd30eb48b9bf3863f76a44eaca7f9c3cd6a6c"
+    },
+    {
+      "source": "kemi-windows-device-lab/references/windows-release-inputs-615-20261011.md",
+      "sha256": "e33b578b1ea9114cc71af787a3bd80d44bc1a7c169ec531fffd00a5db108eda8"
+    },
+    {
+      "source": "kemi-windows-device-lab/references/authenticode-signing.md",
+      "sha256": "e12d889144ca25ffb9c6a30dac1fbcbf3c8930540c583556577d1f4b1681cc50"
+    },
+    {
+      "source": "kemi-windows-device-lab/references/windows-startup-crash-388-20261003.md",
+      "sha256": "ea9c32e6db032c23cc1bb3f8189ce496c04253ee6f682447a4f3ab2bd5f5c8ba"
+    },
+    {
+      "source": "kemi-windows-device-lab/references/build-test-loop.md",
+      "sha256": "59c4d1a4c2e2a763c9b0adb88fbfa741a000ca726fc0975651d9f9fc7c43f84f"
+    },
+    {
+      "source": "kemi-windows-device-lab/references/node-security.md",
+      "sha256": "2faeaa1756184c734174222e63edf539fdafab7446cf4c608d16fd47fb7d832c"
+    },
+    {
+      "source": "kemi-windows-device-lab/references/windows-resource-exhaustion-58-20261006.md",
+      "sha256": "46ff409411c41ffbcc082efd4b0aef0e49f184d4a46b1662987fe52c0056674b"
+    },
+    {
+      "source": "kemi-windows-device-lab/references/kemi-send-node.md",
+      "sha256": "16cef752da26dd8472eb67fcc53f4409c116e263e69526514daa7a03f99830b0"
+    },
+    {
+      "source": "kemi-windows-device-lab/references/remote-confirmation-focus-20261006.md",
+      "sha256": "5ec39142d4c62b470829a023b96e33996f18ea085167f1d355c6bb9703cc7502"
+    },
+    {
+      "source": "kemi-windows-device-lab/agents/openai.yaml",
+      "sha256": "2892258c4cbafed0966d5a6dc29edcc6a200a4c233523c11aaeb6d90e866401d"
+    },
+    {
+      "source": "kemi-windows-device-lab/scripts/Invoke-KemiAuthenticode.ps1",
+      "sha256": "42d2c66e70df618c9cfd7635b501fd456c0124184bd70582ed4d2d0e3bf1d840"
+    },
+    {
+      "source": "kemi-market-publish/SKILL.md",
+      "sha256": "fa4d715415510018a9154fb2efea6ccb90071cd725f9614422a7a18a5d9df766"
+    },
+    {
+      "source": "kemi-market-publish/references/vibekits-windows-one-minute-publish.md",
+      "sha256": "5367b26066816736f343faca1ff7eb2af20cee584dab4561d739556b88c1f5f1"
+    },
+    {
+      "source": "kemi-market-publish/references/signing-certification-closure.md",
+      "sha256": "fd38b6025f0d924e35fad573122edb56b88da5f43ece58b758cf506d4f25462d"
+    },
+    {
+      "source": "kemi-market-publish/references/host-validation-and-session-recovery.md",
+      "sha256": "d3b62cef55b7633fdeaa22442b1501a5e3404c18b40e0ea76df3733fa0dc4738"
+    },
+    {
+      "source": "kemi-market-publish/references/release-contract.md",
+      "sha256": "d37d69be08afda3812fa5a3fbd3a7e2043e0d33508bcfd87a7c3438eb27622df"
+    },
+    {
+      "source": "kemi-market-publish/references/vibekits-macos-one-minute-publish.md",
+      "sha256": "fa1b946c65c36fd25a2371cadd62f498327f8715b03ee92055e2603dabca80c3"
+    },
+    {
+      "source": "kemi-market-publish/agents/openai.yaml",
+      "sha256": "59bb9ca421489239efdb0f5a897d2452eddd4629150408082138c1085381b382"
+    },
+    {
+      "source": "kemi-market-publish/scripts/verify_macos_release.sh",
+      "sha256": "40bbb880b2459b942c16f0ccf5770b3a406ba66d69a53d576384cb11263613b2"
+    },
+    {
+      "source": "kemi-storage-cleanup/SKILL.md",
+      "sha256": "b790779c32875151e4a8d2c8108562712305e2bc814febdedd72602136d70e32"
+    },
+    {
+      "source": "kemi-storage-cleanup/references/capacity-target-cleanup.md",
+      "sha256": "5f4977c13ed7be24869e9d59f9c0fcaad072fbb9baf9dce4f1ae205de11a4f2b"
+    },
+    {
+      "source": "kemi-storage-cleanup/references/shared-build-cleanup-lessons.md",
+      "sha256": "e1fde3b593b8065b42f39f4d5d6c67f6b7fe1d2cc35ed6e93e1d0f6a59392d65"
+    },
+    {
+      "source": "kemi-storage-cleanup/references/system-disk-cleanup.md",
+      "sha256": "251f42df2f7c1f1c1a4a8f55139afb40a09cffbe7639cec75bd0ea2d6dd93eae"
+    },
+    {
+      "source": "kemi-storage-cleanup/references/fast-capacity-cleanup.md",
+      "sha256": "1b8ccfc19e111623f5a0730e950395e0000eb25e3e6c92b15855fbe4cb5329c0"
+    },
+    {
+      "source": "kemi-storage-cleanup/agents/openai.yaml",
+      "sha256": "369796936e715987c1fd6134dc2be2506e201eb1b128fcbec8a9631f2a512aa8"
+    },
+    {
+      "source": "cloud-build-cleanup/SKILL.md",
+      "sha256": "9ba4f0baf8ddd3ef803280585d90f7b23fbaa7521e42bb381da605a582c78db9"
+    },
+    {
+      "source": "vibekits-pad-development/references/snapshot-capacity-migration.md",
+      "sha256": "7a52e83e6f7f1ebbd1bea79af0be6ba0e124969312752a01398d48c2b93502bb"
+    }
+  ]
+}

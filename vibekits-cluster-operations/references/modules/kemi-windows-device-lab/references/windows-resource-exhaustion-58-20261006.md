@@ -1,0 +1,47 @@
+# 58：远程诊断命令导致提交内存耗尽（2026-10-06）
+
+## 已证实原因
+
+Windows 5.1的`Get-Content -Raw`结果带有PSDrive/PSProvider等ETS属性。把该值嵌入对象后直接`ConvertTo-Json -Depth 8`，可能递归展开与文本无关的对象图；输出截断发生在序列化之后，不能限制此前内存增长。本次PowerShell PID38592的启动事件和EncodedCommand还原SHA256 `EDF77F2EC907B63BF8609A04EC5CE46508F0F2A16889D292D716FAB334EC2ADC`与本助手报告读取调用一致；资源耗尽事件2004报告其提交内存达到12613246976字节。责任是助手发起的诊断命令和缺少目标端预算保护，不能归为用户操作或无证据的relay自身泄漏。
+
+完整脱敏事故结论：[VibeKits事故报告](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/INCIDENT_58_CONTACT_LOSS_REVIEW_2026-10-06.md)。恢复后原安装身份、MCP及房间可达，仅证明恢复，不证明长期稳定。
+
+## 下次执行方式
+
+- 读取文本先检查文件长度，使用.NET `ReadAllText`或有界流取得纯文本；仅将明确的字符串、数字、布尔值和有限数组组成DTO再序列化。不要将FileInfo、事件、进程、PSDrive等完整对象直接深度转JSON。
+- 原始日志先按时间、条数、文件大小与字段筛选；不把全量输出收集完再截断。Windows 5.1仍受支持，不能假设PowerShell7.2的ETS行为已经存在。
+- 诊断、构建、签名、安装分别设资源策略。对短诊断在目标端限制进程树提交内存、CPU、进程数、输出和墙钟；超时真正回收本次自有树。保护机制必须在目标端运行，控制端HTTP超时不是回收证明。
+- 同设备诊断串行，识别任务ID、PID和完成回执。观察超时或SSH255先查询原事务；没有终态不得重复发起升级、签名、删除或长命令。不得因保护策略误杀正在运行的签名、升级或无关应用。
+- 验收同时记录系统提交量/提交上限、可用物理内存、分页文件、目标进程树峰值与CPU、事件2004、预算受控拒绝和资源释放。单次空闲内存不能否定历史提交额度耗尽。
+
+## 修复状态与证明范围
+
+58已实测.NET纯文本读取不存在PSDrive/PSProvider扩张，并正常读取签名243项报告。Windows原生预算guard v3的正常退出、墙钟超时、输出洪泛、内存超额、并发拒绝及自有子进程回收负控通过。此结论只覆盖该组件及实际负控；最终客户端整包编译、签名、覆盖安装、权限延续和全平台资源验收需另外出具证据，不能宣称所有运行客户端已受保护。
+
+后续代码状态以项目事故报告和正式发布清单为准。禁止重放原始失控Depth8命令验证；使用受预算保护的最小负控验证同类机制。
+
+
+## Windows 动态端口耗尽：2026-10-10 补充
+
+58实际595的VibeKits PID12648占用约16300个TCP端点，`netstat -anoq -p tcp`显示系统约16370个BOUND端点，动态范围49152起、16384个端口。普通TCP连接报WSAENOBUFS/10055；同一目标21116用明确空闲的非动态本地端口40001进行只读短探针则连接成功。普通`netstat -ano`没有显示全部BOUND端点，不能据其少量ESTABLISHED排除端口耗尽。服务器可达、可信SSH可读和旧房间心跳新鲜，都不证明目标能够新建仿真/桌面连接。
+
+- 分开核对RAM、提交额度、动态端口及排除范围。用`netstat -anoq -p tcp`在目标端按状态和PID计数，只返回前几项；不深度序列化进程对象。句柄数量只是线索，须核实际端点归属。
+- 自动绑定报10055时，显式绑定一个已核验空闲的非动态端口仅用于短诊断并立即Dispose，不修改产品端口、网络策略或TLS验证。
+- 冻结595的SSH就绪探针使用`await socket.close()`而未消费读流，冻结604已改`socket.destroy()`。此前Mac实测close遗留60个socket，destroy无增长。本次Windows已证实进程归属和端口耗尽；不冒称全部端点已逐一追溯到同一调用。
+- 优先正常退出并重开精确原App，保身份、配置和业务。重启只是缓解；安装合格修复包并实测BOUND/句柄不增长才是验收。保留活跃SafeNet、SignTool和签名父进程，不重启整机或重签。
+- 登记标准账号能诊断不等于能控制另一用户桌面。跨账号操作被拒绝时不修改权限、换身份或复制凭据绕过；桌面和原管理入口均实测受阻才请求最小现场动作，同时推进其他设备。
+- 资源验收加入BOUND端点、动态端口、句柄增长及普通自动绑定连接，复验原ID MCP、真实桌面和云心跳。短采样、源码修正不等于正式包或长期稳定通过。
+
+证据：[Windows58动态端口耗尽](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/WINDOWS58_EPHEMERAL_PORT_EXHAUSTION_20261010.json)。
+
+2026-10-10 Windows隔离回归补证：在实际58、Dart运行时、15秒/512MiB原生guard下，60次close后BOUND增加60，destroy后增加0，两种模式最后显式清理均0。永久工具已在VibeKits主线`tool/socket_probe_windows_bound_regression.dart`保存；netstat中文OEM标题不能按UTF8解码，应流式读取并只解析ASCII的TCP/BOUND/PID字段。测试保持相同引用用于两种模式，不宣称追踪了产品全部端点。
+
+
+## 测试资源监控硬门禁（2026-10-10）
+
+后续每项真实测试必须按[资源实时跟踪硬门禁](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/RESOURCE_SAFETY_LIVE_GATE_20261010.md)记录系统及App两层CPU/RAM/提交/句柄/FD/网络BOUND与动态端口。每5秒目标端有界落盘并实时报异常，异常即暂停新增自有测试、保事务并沿原通道修复；不能盲目杀签名/升级/用户任务。未知指标不能写0，缺完整覆盖不得通过。观察器结束必须报告，不把有限样本冒称持续守护。
+
+
+## 619观察器与覆盖升级补证（2026-10-11）
+
+详见[实际控制器错误及修复](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/WINDOWS619_UPGRADE_CONTROLLER_LESSONS_20261011.md)。公共函数必须在调用方作用域可见，Parser PASS仅是语法证据。活跃日志默认ReadAllLines可能共享冲突，显式FileShare.ReadWrite并检查stderr/内层退出；不能把读取失败计为零采样。Task Ready需核LastTaskResult与实际进程。4551/0x800711c7为本机应用控制拒绝诊断EXE，不改策略、不借包装器运行被拒文件；用允许的系统计数接口独立观察。61帧首末296秒且一次网络缺项不算完整300秒通过；按实际时间补缺，只读busy84才有界重读，不重复安装或延长守护。
