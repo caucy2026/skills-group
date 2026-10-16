@@ -46,3 +46,7 @@
 在对应房间卡片“待审批 N”打开申请详情，显示电脑名、平台、原仿真 ID、办公 ID（存在时）、安装指纹、申请时间/状态、自述能力。核对原登记身份与入房范围后“批准加入并自动接入”或“拒绝申请”。提交时禁重复操作，未知结果先查原 applicationId。
 
 GET `/api/v1/manage/rooms/{roomId}/join-applications`；POST `.../join-applications/{applicationId}/decision`，`{decision:"approve"或"reject"或"revoke",expectedRevision:申请当前revision}`。旧成员撤销另走 `.../members/{deviceId}/decision` 与成员 revision，不能混用。处理后读回申请终态、卡片计数、客户端状态及服务端心跳。失败不将数量清零或显示假成功。
+
+## 文件邀请预览
+
+支持手工输入或 UTF-8 TXT（BOM兼容、每行一个ID、64KiB以内）。6–16位数字、去重后1–100台；无效内容整批拒绝，不覆盖原输入。先列目标房名/ID及每台ID，核实后确认发送；换房阻止旧预览。响应未知沿用原请求ID先对账。记录展示逐台状态、电脑名、平台、版本、实时心跳，未知标待上报。2026-10-16源码及交互测试通过；部署与真实浏览器验收单独核验。
