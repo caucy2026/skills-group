@@ -12,6 +12,8 @@ description: 操作和管理 VibeKits 集群：远程仿真、管理后台、客
 
 ## 选择操作
 
+- 产品机制、异地能力共享与 PAD 远程 ADB 的边界：读 [产品机制与场景](references/product-overview.md)，再按下列实际操作流程执行。
+
 - 首次接手、环境和连接：读 [连接与身份](references/connect.md)。外部 Mac 控制端附有可用桥接脚本；Harness 内优先原生 MCP。
 - 网页、创建客户/账号/管理员、房间、审批：读 [后台完整操作](references/management.md)。三个管理员概念必须分开。
 - 设备入群、互相仿真、退房、撤销和同步：读 [入房与通信](references/rooms.md)。申请、批准、激活、在线、工具验通是不同状态。
