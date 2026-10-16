@@ -13,6 +13,8 @@
 
 后端路由或目录读取器改变时，按hbbv服务器部署技能执行完整回归、原身份/数据库备份、活动租约核对和一次正常切换；不要把静态文件更新当Python模块重载。
 
+以后创建新的hbbv后端release时，保留`web/vibekits -> /opt/vibekits-distribution/current`这个受管理链接，再核全部公开资源；普通copytree默认解引用可能把门户复制回后端，造成后续版本与目录脱节。链接目标只由已授权部署者设置，不从HTTP参数选择路径。
+
 ## 当前Linux正式包快照
 
 Linux 1.9.0-dev.684 / 2684，amd64 DEB，278567024字节，SHA-256 `b8e0ed0739c2e5ee62ab81345522d8b8578d81b7f48f1803cd0c13ec6cc954d2`。面向Ubuntu20.04 x86_64；不是ARM64包。此为日期快照，后续仍读实时商城目录。
