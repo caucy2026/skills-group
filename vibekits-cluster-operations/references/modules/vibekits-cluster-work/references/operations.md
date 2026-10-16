@@ -308,3 +308,9 @@ Native revocation cancels room bindings and can surface as a generic HTTP connec
 
 A source-only Windows input manifest is not a complete runtime copy manifest: the 683 preparation omitted Node PE files. Copy the qualified complete runtime, verify existing bytes, add only missing files, and maintain a separate full runtime hash manifest. Validate both manifests. Generate version text with explicit LF bytes for parity with the Mac freeze. Preserve the original failed preparations.
 
+## Harness continuation: identify actual human messages
+
+Official SDK `user/message` records can contain `agent-instructions`, `runtime-context` and `skill-catalog` sources. For continuation summaries and the latest user requirement, inspect `source.kind`: tagged human input is `user`; preserve supported legacy untagged records. Filter synthetic records before applying an excerpt budget. Read only typed visible text; recursive string traversal can include reasoning, stream data and metadata. Do not edit the official SDK to implement this selection.
+
+The 690 real derived child lost a random fact while its persisted latest-user section contained a skill catalog. The minimal coordinator fix on main `8e901cc70f74af625c7c5714044d9bacf2766da2` has old-code negative controls and 34 passing continuation tests. These are source proofs; final signed 691 real-model retesting remains required. See project `docs/acceptance/HARNESS_CONTINUATION_USER_ORIGIN_20261016.md`. Preserve the failed child, derive a new child from the original source, then ask once without supplying the expected fact; verify exact answer, zero tools and persisted summary. Do not repair the failed stored summary by hand or label unit success as model-context success.
+
