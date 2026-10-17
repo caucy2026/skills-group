@@ -10,6 +10,8 @@ description: 操作和管理 VibeKits 集群：远程仿真、管理后台、客
 
 首次安装、同站后台地址、四端商城入口和完整从零接入流程，先读 [从零到集群协作](references/getting-started.md)。公开网站：https://kemi-chat.newlinksz.com:21122/vibekits/ 。Linux未有公开正式包时明确待上架，不混用平台。
 
+只拿到分享网址和后台管理密码、要把当前本机入房时，先读 [智能体入房执行单](references/onboarding.md)：自行发现本机原 ID，使用本团队默认接入参数，申请一次，再通过管理登录精确审批、激活及验通。密码只在可信登录或受保护输入中提供。
+
 ## 选择操作
 
 - 产品机制、异地能力共享与 PAD 远程 ADB 的边界：读 [产品机制与场景](references/product-overview.md)，再按下列实际操作流程执行。

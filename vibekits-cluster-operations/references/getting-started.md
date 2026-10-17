@@ -149,3 +149,7 @@ Mac远程登录已通但受保护文件不可读时：**系统设置 → 通用 
 未执行的项目标待验。网站是接手指南，不是对所有平台和功能已经通过的证明。
 
 详细仿真：[simulation-workflow.md](modules/vibekits-remote-simulator/references/simulation-workflow.md)。PAD远程ADB：[mac-pad-remote-adb.md](modules/vibekits-remote-simulator/references/mac-pad-remote-adb.md)。独立云端技能：https://github.com/caucy2026/skills-group/tree/main/vibekits-remote-simulator 。
+
+## 网址与后台密码即可开始的本机入房
+
+同事无需再提供后台地址、客户和房间 ID，按 [完整入房执行单](onboarding.md) 和门户 agent.json 的 onboarding 执行。默认管理账号 admin 已于2026-10-17核实存在；密码由账号持有人在可信登录页或受保护本机入口提供。客户端自行读取本机原仿真 ID 与安装身份，申请一次，管理身份只审批这一台，再核激活、实时心跳和真实只读调用。首次设备/OS认证按实际要求处理，管理密码不代替它们。

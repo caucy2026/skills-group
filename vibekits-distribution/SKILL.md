@@ -31,6 +31,10 @@ description: 维护和部署 VibeKits 四端下载与使用门户，核对商城
 
 `handbook.json`、15篇分类文档、`agent.json`、`llms.txt`和完整指南要相互一致。检查相对文档链接、GitHub路径、平台限制、安装/自更新、仿真/PAD远程ADB、入房和签名场景。实时工具Schema、实际授权和设备事实优先，不能将入房写成任意执行许可。
 
+## 智能体凭管理登录接入本机
+
+门户必须提供 agent.json/onboarding、默认用户名、serverOrigin、客户与房间、登录认证头及 accessToken 字段、精确申请审批的 applicationId/revision、激活和真实验通步骤。密码经可信登录/受保护输入提供，不放网页或脚本；默认账号存在与当前权限另核。首页复制说明和 rooms.md 必须能完整接续，不只写“等待管理员批准”。以隔离的真实 HTTP 登录→签名申请→只审批本机→激活→退出测试验证合同，不为文档核验向生产随意注册设备。
+
 ## 同步与交付
 
 - 网站文档与 skills-group 的 `docs/`逐字一致；完整技能目录保留 scripts/references。使用 skill-creator 校验新增技能。
