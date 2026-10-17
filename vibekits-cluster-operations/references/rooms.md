@@ -23,3 +23,11 @@
 同步验收包括新成员、管理员新增/降级、电脑名、掉线/恢复、退出、撤销。收到变更刷新当前修订；断网显示最后更新时间和未知状态，不把缓存显示为在线。自动同范围续约不能旋转修订使在途有效票突然失效；显式撤销、降级、退房必须拒绝旧授权。未知执行结果不自动换票重做。
 
 每机入房通过：原 ID+安装身份一致、客户端实时 connected/approved、正确服务新鲜心跳、真实只读 MCP、角色/名称同步。稳定性另按持续观察证明。
+
+## 单工具原生票据的实际验通
+
+隔离验证原生链路时，按实时Schema执行 simulator.room_connect（routingId、roomId、toolId、唯一requestId）→room_call（同目标、同工具、arguments）→finally room_disconnect。connect的tunnelPrepared和executionVerified=false只证明准备完成。票据短时有效，准备与调用连续执行；仅在已证明本地派发前过期时，才可重新申请只读检查，未知业务结果不得换票重做。
+
+同时检查外层ok、MCP isError、structuredContent.ok及实际数据。有管理审计入口时，核对同一delegationId的controller/target、claimed和completed，无需读取授权envelope或密钥。实际Mac app_signature及Windows applications已验证可通过房间票据执行，但空软件列表不证明便携程序不存在或版本正确。TOOL_DENIED保留为范围拒绝，不放宽白名单、TTL或目标同意来凑通过。
+
+反向测试可通过已有获授权通道调用对端控制器，分别记录编排通道与被测房间段。断开后的本地SESSION_EXPIRED不是成员退房或服务端撤销证据。心跳以last_seen和服务端阈值判断，presence的ended为空不足以证明在线；短采样不能覆盖历史共同间断、离线设备或长期稳定性。
