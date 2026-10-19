@@ -218,3 +218,16 @@ session_metadata_list若返回scope=ownedDebugOnly、source=trustedRegistryEmpty
 观察失败或超时先读同一控制进程的PID与创建时间、切换intent/state和实际systemd工作目录；未知不能重启。确认已自动回退且同次一致性备份通过、当前保护数据满足原约束后，可以复用该备份恢复同次部署，无需制造多份重复数据库。二次切换仍重新检查源哈希、当前PID/listener、租约/票据和其他服务PID，随后验证新service-info能力、原serverId、签名Key及保护记录。保留首次失败，不恢复旧DB覆盖新业务。
 
 新completion-receipt服务上线不等于客户端已完成：最终同身份客户端还须实际升级、原ID回连、真实模型与只读工具、会话数据及权限连续性；pending journal只有在原processed回执、注册serverId与同原生session/fence inactive均证实后才可自动退役。严格空闲CPU/RSS窗口与主动模型、仿真调用分开；采样未结束不能提前记PASS。
+
+
+## Windows时间字段、可续作清理与原事务保护（2026-10-20）
+
+同一台Python3.12已实测：路径stat的st_ctime_ns是创建时间，句柄fstat的st_ctime_ns是变更时间；inode、device、size、mtime和birthtime完全相同，直接比较ctime会误判。不能因此删掉时间保护。显式使用st_birthtime_ns，并用GetFileInformationByHandleEx(FileBasicInfo)分别冻结、复核CreationTime/LastWriteTime/ChangeTime；在独占读DELETE句柄内核同一文件ID、完整SHA和PE头，读前读后时间均匹配才标删除，关闭后再核路径消失。保留旧拒绝与修正后的同文件正控，不把元数据误差说成源文件损坏。
+
+保护在途进程也要区分时间来源：CIM CreationDate可能只有微秒，转换成FILETIME后会丢100ns尾数；精确PID代次校验用GetProcessTimes，不以四舍五入或忽略代次替代。不要把观察器到期、状态文件或空窗口标题当作签名结束；PIN仍由人员当次认证，不能重签或接管其他在途事务。
+
+大历史副本先复用原冻结manifest和已完成备份证明，生成有界候选元数据；不要每次重新全树扫描并双重完整哈希。每批核当前保留集合与实际引用，最终完整SHA仍必须在删除前的独占句柄内匹配，源码、文档、配置、原工具链和当前恢复/正式包不进入清单。记录paused/completed、游标与删除日志；只续作已确认paused的批，未知结果先对账。达到当次实测可用字节目标即停，后续源码复制产生新缺口时重新量化，只补所需闲置生成物。
+
+复用SDK输入时核对最新已验证组件，不因旧准备目录存在就编译旧SDK；保留原平台专有输入，禁止把Mac生成的ABI/version文件混入Windows。复用兼容Cargo target前先保全原合格独立raw产物，并验证没有其他构建占用同一可变target。独立硬件签名与无签名构建只能在原进程代次、不同输出路径及资源边界均已证实不冲突时并行；不使用token、不改签名目录、不停止别人的进程。
+
+同名helper也不是重复进程的充分证据：Native8新增固定只读stdio worker，按参数标志、父PID、创建时间区分主服务、stdio worker及短命查询，不能按进程名批量杀。SQL length(TEXT)是字符数，原消息哈希必须对原body字符串直接UTF8编码；例如字符4832与UTF8字节5566可同时正确，不能混用或手工重构正文。
