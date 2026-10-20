@@ -262,3 +262,8 @@ Windows 构建主命令 exit0，但自有 Job 仍有成员时，在终止或关�
 先对真实旧源码或内存变体作无配置访问的负控，再核完整原生候选、实际IPC拒绝／许可和最终签名App覆盖证据；这些层次不能互代。项目tool/test_native_account_readonly_identity.py检查窄处理器，verify_rustdesk_frozen_inputs.py在账号模块存在时拒绝已知生成式API；旧预检器缺这项时不能声称已检查。源码修正及组件测试不是生产同账号互通已可用。
 
 记住设备原生身份与当前账号绑定分开：短期挑战清理和注销可保留原ID／指纹记录，但退出后的历史记录不授访问；当前账号、绑定修订、真实身份、原开关及执行范围仍须重验。不要把历史owner、显示等级或同名账号当作当前本人登录证明。
+
+
+### Windows任务原生Principal与清理误分类
+
+见[Windows计划任务原生核验](windows-task-native-status.md)：XML缺省字段不是实际权限；核原生Principal和固定action，按HResult处理缺失，守护只读探针不代替真实App退出与全SDK空闲。
