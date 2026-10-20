@@ -1,6 +1,6 @@
 # 同账号“我的设备”：目录生命周期与研发接续
 
-当前状态见项目最新验收台账。目录源码与隔离HTTP联调通过，不等于客户端已发布；全局账号presence调度、生产可信身份适配、原生执行票据及完整远端原Harness呈现仍须分别验证。不能用简化远程面板替代用户要求的一键完整切换。
+当前状态见项目最新验收台账。目录源码与隔离HTTP联调通过，不等于客户端已发布；App级presence源码已接入并完成隔离联调；生产可信身份适配、旧会话原生证明迁移、原生执行票据及完整远端原Harness呈现仍须分别验证。不能用简化远程面板替代用户要求的一键完整切换。
 
 ## 身份、凭据和订阅
 
@@ -19,3 +19,16 @@
 合并到主线时保留并行内容，仅应用本任务增量。共享区宿主与桥接类可能不属于同一次主线：不要删主线新增调用来迎合旧桥接，也不要整文件覆盖。冻结同一Git提交的lib及pubspec声明的path依赖，再用离线、强制lockfile生成package_graph等元数据。区分依赖声明分类差异与实际包版本/内容变化；保留原锁，不能伪造缓存有效标记或忽略真实版本变化。用合并后闭包再验证，源码/共享索引/正式包和运行服务均保护。
 
 实证：[目录正式宿主与跨域回归](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/CLIENT_ACCOUNT_DIRECTORY_RUNTIME_20261021.md)。其中25项Flutter包括隔离Dart→真实hbbv Handler登录/签名presence/目录SSE，不是两台物理设备、最终signed GUI原生IPC、七台覆盖或AC01–34通过。最终应用仍需完整真实验收后发布。
+
+
+## 应用级在线心跳与会话继承
+
+App拥有唯一HarnessAccountPresenceRuntime，不能把心跳挂到设备面板/房间列表的显示生命周期。一次完成后4秒再发，最多一个在途心跳，失败复用既有4～60秒抖动退避，Retry-After最低期限对重连、恢复前台和同绑定换TLS配置都有效。无账号不建心跳timer，退出后不自动把该scope重新登录；启动仅核已有OS凭据，临时网络失败退避恢复，不保存管理密码。PAD须先完成原仓库恢复Gate再读取原key。
+
+原生短断/新generation/proof过期/旧sequence与会话撤销分开：前者重取可信当前状态、退避恢复，不强迫密码登录；真正会话过期或撤销停止。旧有效会话缺少新原生证明时保留登录和原功能、暂停新协同能力，不造证明、不生成替换ID或key。在线仍由服务端当前绑定、会话期限、签名及真实原生连接和12秒租约决定，不因客户端自报enabled/online放行。目录本机presence说明可缺失；presence-state/report仍严格拒绝缺原生上下文。
+
+共用传输信任指纹需覆盖URL/客户/可信host/证书/服务公钥/转发方式，房间enabled开关不改变账号信任。信任更新关闭旧HTTP；旧异步结果按scope、epoch、传输与账号代次拒绝。模型的UI错误边界可能吞原异常，重连层必须保留原错误/Retry-After，不能只抛泛化“不可用”后过早重试。错误仅留有界白名单code，不把响应message或令牌写日志。
+
+登录入口读取统一账号状态，不能只缓存本按钮的旧用户名。旧菜单退出前重新核绑定，实际logout还须核菜单显示UID/revision与原OS凭据快照，避免另一入口/进程已切到B却注销或删B。账号变更后用原restore核验，不索取另一遍管理密码。
+
+新实证：[应用级presence与登录状态](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/CLIENT_ACCOUNT_PRESENCE_RUNTIME_20261021.md)：46 Flutter、72后端；隔离服务无房间续租→原生断连→租约移除→原pin新generation恢复，无须再登录。包括100 emoji昵称按code point而非UTF16限长。不是物理机、最终包或生产已启用的证明；完整远端呈现与最终设备矩阵仍须验收。
