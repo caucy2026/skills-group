@@ -267,3 +267,8 @@ Windows 构建主命令 exit0，但自有 Job 仍有成员时，在终止或关�
 ### Windows任务原生Principal与清理误分类
 
 见[Windows计划任务原生核验](windows-task-native-status.md)：XML缺省字段不是实际权限；核原生Principal和固定action，按HResult处理缺失，守护只读探针不代替真实App退出与全SDK空闲。
+
+
+### 同账号目录运行时与跨域归属
+
+见[账号设备目录生命周期](account-directory-lifecycle.md)：完整绑定键、精确视图owner、凭据等待竞态、401停止、真实SSE与主线依赖闭包验证；源码组件通过不等于完整远端执行已发布。
