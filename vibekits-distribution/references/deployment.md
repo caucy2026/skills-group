@@ -20,3 +20,11 @@
 Linux 1.9.0-dev.684 / 2684，amd64 DEB，278567024字节，SHA-256 `b8e0ed0739c2e5ee62ab81345522d8b8578d81b7f48f1803cd0c13ec6cc954d2`。面向Ubuntu20.04 x86_64；不是ARM64包。此为日期快照，后续仍读实时商城目录。
 
 稳定入口：https://kemi.newlinksz.com/kd/s/com.caucy.vibekits?os=linux
+
+## 注册与十级管理文档维护（2026-10-20）
+
+首页按注册个人账号→权限分配→本机入房→仿真组织。注册/安装写入现有docs/installation.md，等级规则写入docs/rooms.md及simulation.md；首页access-levels说明四个独立维度、同低级规则和高级审批，十级表默认折叠。
+
+保持原15个文档ID与公开路由，不为文档别名伪造不存在的raw路径。机器清单的新注册入口放onboarding.registration.guide，分级入口放accessPolicy.webGuide；documentation的键继续与handbook文档ID一一对应。客户端账号多设备登录仍标研发中。完整账号设备规则同步cluster-operations/references/account-device-levels.md及公开验收文档，禁止把“没有网页注册”的旧说明继续发布。
+
+只改静态内容时沿原current链接原子切换，保服务PID、身份和动态商城目录；不把源码或桌面测试候选版本写成商城已发布版本。

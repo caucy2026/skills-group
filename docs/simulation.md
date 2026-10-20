@@ -46,7 +46,9 @@ ruby "$SKILL_ROOT/scripts/invoke.rb" vibekits.simulator.catalog '{"routingId":"<
 
 ## 房间内互通
 
-同房间有效成员使用 room-members 委托，无需逐设备手工白名单。原安装身份、目标同意、票据/连接代次、工具权限和本机 OS 权限仍保留。管理员身份不等于可以执行任意业务。
+同客户、同房间已批准成员使用 room-members 委托；控制设备有效等级不低于目标时，无需逐设备额外白名单。访问更高等级设备需走原白名单/同意审批。普通设备默认为0级，账号等级不自动提升设备等级。
+
+详见[房间与十级管理](rooms.md)及[分级全局技能](https://github.com/caucy2026/skills-group/blob/main/vibekits-cluster-operations/references/account-device-levels.md)。原安装身份、目标同意、票据/连接代次、工具权限和本机 OS 权限仍保留。管理员身份不等于可以执行任意业务。
 
 ## 分流与收尾
 

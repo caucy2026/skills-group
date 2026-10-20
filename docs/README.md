@@ -4,7 +4,7 @@ Website: https://kemi-chat.newlinksz.com:21122/vibekits/
 
 ## 开始使用
 
-- [安装与首次接入](installation.md): 选择正式客户端，核对身份与版本，完成第一次真实连接。
+- [注册、安装与首次接入](installation.md): 手机号注册默认一级，分配团队权限后用正式客户端原身份接入。
 - [自更新、覆盖与回滚](self-update.md): 检查商城更新，保留原授权，核实新进程和原房间。
 
 ## 连接与调试
@@ -15,7 +15,7 @@ Website: https://kemi-chat.newlinksz.com:21122/vibekits/
 
 ## 房间与协作
 
-- [智能体入房、后台审批与能力协作](rooms.md): 默认参数、受保护管理密码登录、本机原 ID、精确审批、激活和验通。
+- [入房、成员与十级管理](rooms.md): 账号1–10级、设备0级、客户权限和房间角色独立；申请审批、激活和等级仿真。
 
 ## 构建与签名
 
@@ -38,3 +38,5 @@ Website: https://kemi-chat.newlinksz.com:21122/vibekits/
 ## 产品机制
 
 - [VibeKits的机制与创新](product-innovation.md)。
+
+- [十级管理设计与验收说明](admin-level-acceptance.md)：规则、权限矩阵、验收范围与未上线边界。
