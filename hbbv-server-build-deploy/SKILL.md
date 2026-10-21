@@ -41,6 +41,8 @@ python -B server/app.py --data-dir /private/hbbv-data --database-name integratio
 
 云端部署收尾必须执行`cloud-build-cleanup`：健康核验后，清理本任务已结束且无恢复依赖的临时编译、测试、解包与传输缓存，并回读精确目标不存在及保留项仍完整。hbbv是Python源码服务也不例外。保留当前服务/venv、源码、数据与身份材料、最新交付和必要回退；staging常混有源码、SQLite备份和正式证据，禁止整目录当缓存删除。报告实际删除字节、保留原因及服务PID/身份/健康前后状态；只做盘点不算完成清理。
 
+从旧release准备候选时，根目录的`deployment-evidence`等历史数据库备份不得被整树复制进每个新版本。使用明确的源码集合或根级排除，保留原证据位置；不能递归按同名目录删除合法源码/fixture。复制后分别核对源码完整与备份未继承，已有`quality/test_release_copy_boundary.py`回归可复用。2026-10-21实测约61.92GB主要为SQLite历史副本，不能把它称为编译大小；备份保留与去重必须另按数据保护规则核验，禁止当缓存整删。
+
 ## 当前项目入口
 
 本机源码/README与远端准备记录位于项目hbbv；具体本机路径和端口通过kemi-server-ports本地索引获取。当前生产21122是设计预留，实时占用和公网部署待核验。参考项目docs/REMOTE_DEPLOYMENT_READINESS_2026-10-06.md与86_SERVER_INITIATED_ROOM_INVITATIONS_2026-10-05.md；源码变更后重新核验相应入口，不照搬历史状态。
