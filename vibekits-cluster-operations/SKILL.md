@@ -22,6 +22,7 @@ description: 操作和管理 VibeKits 集群：远程仿真、管理后台、客
 - 能力声明、任务竞标、唯一分配、消息和验收：读 [协作](references/collaboration.md)。成员资格不是业务执行许可。
 - 模型unknown、显式复验与不依赖目标模型的工具资源：读[模型证明与房间资源](references/model-proof-and-tool-resources.md)，区分证明时效、配置存在、工具可用及业务租约。
 - 断联、系统权限、监控、升级、清理和源码同步：读 [运维与验收](references/operations.md)。先对账未知结果，不重放升级、签名和外部操作。
+- hbbv服务器交付和只落本地的数据库备份：使用[hbbv服务器交付技能](../hbbv-server-build-deploy/SKILL.md)，按其一致性快照、三份保留和云端清理流程执行。
 - 查精确参数、平台路线、历史故障：读 [随包资料索引](references/library.md)。仅加载当前动作需要的资料。
 - 了解本项目：读 [部署入口及快照边界](references/environment.md)。换环境重新映射路径，不能复制旧设备凭据。
 
