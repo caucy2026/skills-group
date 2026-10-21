@@ -65,3 +65,9 @@ python -B server/app.py --data-dir /private/hbbv-data --database-name integratio
 ## SSE / SQLite 关闭竞争（2026-10-11）
 
 客户后台Linux测试曾在27个通过点后以-11退出：ThreadingHTTPServer的daemon SSE线程仍可能读取共享SQLite，不能无锁close。沿现有Store.lock关闭并幂等标记_closed，events及REST/MCP入口在锁内拒绝已关闭访问；不要把线程异常当网络离线。复用test_store_close_lifecycle及真实SSE回归，冻结后Mac/Linux各297项和5轮SSE通过才切换。保留原失败日志，生产原身份/成员/客户、其他服务PID及实际HTTPS资源哈希分别读回。真浏览器工具被拒绝时标明未验，不以资源200代替UI，不换自动化绕过拒绝。实际部署证据在项目docs/acceptance/CUSTOMER_DIALOG_CLOSE_RECOVERY_PRODUCTION_20261011.json；数字仅是本次记录，不是后续固定测试数量。
+
+## VibeKits/hbbv 云端容量与本地备份规则（2026-10-21）
+
+本项目用户明确禁止后续在云端创建或保留数据库备份：数据库一致性备份只存本地受控磁盘，权限600、目录700，不入Git。不得先在云端生成完整备份再下载；使用已验证的在线一致性导出至本地方案，或经协调的静止数据库读取方案，不能直接复制正在变化的SQLite主文件冒充一致备份。若本地备份链路尚未具备，先实现并验证，不执行需要备份保障的生产迁移。旧准备脚本含云端backup/数据库复制时不可直接重跑，须先按本规则调整。正式运行数据库、WAL及身份配置不是备份，禁止删除来满足容量指标。
+
+Rust Linux服务优先按`rust-linux-cross-build`在本地冻结源码、测试、交叉编译并核验ELF/GLIBC/哈希，再上传最小交付；hbbv是Python服务，在本地测试后上传必要源码和锁定依赖，无需Rust编译。不在生产云端建立长期编译缓存。用户提出1GB目标时区分临时构建空间与包含正式数据库的服务总空间；现有正式库已超过1GB，不虚报总空间达标，不为目标擅自删业务数据。
