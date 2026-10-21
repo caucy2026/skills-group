@@ -31,3 +31,8 @@
 - [在本机写代码，借房间Windows编译](docs/windows-build.md)。
 - [需要Linux ARM64仿真设备](docs/linux-arm64.md)。
 - [从找设备到交付任务](docs/collaboration-tasks.md)。
+
+## Cloud service release
+
+- [hbbv server build and deployment](hbbv-server-build-deploy/SKILL.md).
+- [Mandatory cloud build and post-deployment cleanup](cloud-build-cleanup/SKILL.md).
