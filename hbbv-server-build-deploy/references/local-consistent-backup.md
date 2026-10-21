@@ -25,6 +25,6 @@
 
 外部Mac缺少注册工具时，项目`tool/examples/backup_external_controller_example.py`与`finalize_external_snapshot_example.py`是成功路线的环境变量模板，不是自动发现或新环境的一键安装器。必须先准备当前只读preflight和明确的既有三份保留索引，逐项设置HBBV_*环境；具体远端布局、Python路径须匹配本团队部署。模板不内嵌账号、凭据或本机路径；其他控制环境按其已授权MCP接口映射相同协议。
 
-当前实证与完整回执索引：项目`docs/acceptance/LOCAL_CONSISTENT_DATABASE_BACKUP_20261021.md`。首轮WAL保护失败未改旧备份；第二轮成功后本地正式保留三份、云端仅余原服务/DB/WAL及依赖，不把“片段已收到”算完成。
+历史和最新实证分别见项目`docs/acceptance/LOCAL_CONSISTENT_DATABASE_BACKUP_20261021.md`及`CACHE_RETENTION_PREDEPLOY_BACKUP_20261021.md`。后者已真实验证88表、7,400,271行；本地恰好三份有效备份、云端零数据库副本。首轮WAL保护失败保留，不把片段接收当完整备份。连续轮转时将旧条目的currentProductionSnapshot清为false，只给新验证归档置true，并回读恰好一个当前标记；项目finalizer模板与连续两次归档的真实文件夹具已修正和验证。
 
 本地空间不足时，先读[备份准备空间恢复](local-backup-space.md)，只处理核实闲置的编译生成物，不提前淘汰旧有效备份。
