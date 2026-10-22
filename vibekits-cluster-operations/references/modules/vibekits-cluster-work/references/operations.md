@@ -374,3 +374,12 @@ A fresh claim is a new progress epoch: reset its progress counter only while ato
 A backend proved_no_effect decision alone does not remove an old native-session reservation on the client. The697 real132 case received a fresh offer but skipped claim because that instance remained in the local recovery map. Source b6078a35 checks only when a real new offer already exists: exact server room/task/instance/fence/worker disposition and evidence, no pending local result, no unresolved operations in that instance, plus the current official SDK confirming the same old session/fence inactive and idle/not-resumed. Archive bounded reservation metadata, never erase the SDK log, server history or operation journal. Unknown/active cases remain pending and a new claim still needs a new valid signed ticket. The source passed75 tests three times; runtime qualification remains separate. Task-detail operation summaries omit fence, so do not invent that field or block on a different worker's confirmed operation.
 
 The management hbbv_task_messages and hbbv_task_events tools already support after/limit. Read their actual schemas and page to the relevant cursors. Output elision is not lost data; do not decompress/search SDK persistence to recover a long tool display. Prefer bounded authenticated API pages or a clearly attributed exact-field projection with the original response hash. Message kind is limited to question/answer/guidance/progress/issue/result/ack; messages use the task ID, each sender's sequence includes automatic ACKs across attempts, and ACKs target verified incoming messages only.
+
+
+## 一次性房间工具的准备态与模型、Office核验
+
+普通simulator.connect与simulator.room_connect不是同一状态机。room_connect返回tunnelPrepared=true、connected=false、executionVerified=false可以是正常准备态；按返回的expiresAt毫秒期限，立即对原目标/唯一toolId调用一次room_call，随后核真实结果及关闭。不要等永久connected=true或先写长报告耗尽票据。先复用已验证的一体化顺序；已确认未调用且票据过期可关闭后另记新attempt，未知调用结果不能换requestId重放。单次调用/完成记录/自动关闭与完整范围、撤权、降级及取消验收分开。
+
+Windows应用清单为空不等于没装便携应用；按实际运行EXE的processes版本/签名元数据确认。只比较同包名/平台的商城整数码，同版或本机更高不下载、不降级；不把未运行高版副本当当前实例，也不改动无关KEMI OFFICE。直接房间MCP可用时，SSH初始化错误不代表整机离线。
+
+模型复验的request_started不是成功。跟踪同一描述生成、原SDK状态及真实心跳，source=harness及有效modelReady再形成时效证据；不写DB健康、不以Key存在或旧绿灯代替，也不把旧任务accepted/清单任务当软件已更新。对应真实证据见hbbv docs/acceptance/G03_G04_ROOM_OFFICE_CURRENT_20261023.md。
