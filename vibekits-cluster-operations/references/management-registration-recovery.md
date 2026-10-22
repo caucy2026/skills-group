@@ -25,3 +25,9 @@
 新源码支持`hbbv_room_devices(...,view="summary")`及REST同名参数：SQL只投影设备facts，工具/技能正文不随列表返回，仍按完整声明搜索；保留在线/等级/成员修订及就绪摘要。先核当前工具schema确实支持view并实际调用，不能把main源码当生产部署证明。summaryOnly不是执行授权，按deviceId取完整详情/工具及当前身份、授权后才能执行。旧默认full仍保留；摘要与完整视图cursor不可互换，翻页保持view/搜索/平台/状态不变。
 
 本地10,000合成成员首100项约100KB，仅证明SQL分页/响应边界；不代表10,000真实设备、跨网稳定、真实GPU跑分或长期空闲通过。正式规模结论仍需实际设备、时长、资源与重连证据。
+
+### 服务新schema与本机登记快照不同步
+
+2026-10-22已验证：服务部署摘要参数后，本机catalog_list仍可能展示旧登记schema。复用原ManagementRelay和原私有配置，真实认证tools/list；对比旧schema，确认只新增获授权的可选view枚举，再原子更新该工具schema/catalogRevision。保留原工具名集合、房间enum、执行文件、参数及私有配置；检查写前文件未被并发修改、权限600和写后读回。临时管理探针会话在finally注销，随后通过App实际catalog_list及tool_call确认。无需重启共享App，也不提高响应限制。
+
+本次生产limit30+summary真实返回15名成员约24KB，旧full单台仍有完整目录。此为历史实例证据；每次仍核当前schema、权限、房间及实际返回，不能将源码或登记写入成功等同于调用成功。
