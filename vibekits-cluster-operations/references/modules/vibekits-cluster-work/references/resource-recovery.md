@@ -45,3 +45,6 @@
 - 看实际Mach-O LC_BUILD_VERSION与架构，不把空CMake部署字段当低版本兼容证明。已构建组件满足真实目标系统时复用原SHA；新签名须重新记录SHA、公证及接收端校验，保留许可证/对应源码/构建信息，不向已签名App里直接复制组件。
 - 固定clpeak3.0.0的Metal实现仅接受Apple silicon；Intel GPU枚举可见也可能被它跳过。此限制属于该引擎实现，不是“Metal API不支持Intel”。Intel设备改用已核系统OpenCL路径时，仍需固定版本、API、构建输入、签名及真实GPU输出；CPU回退、枚举与退出0不能冒充GPU通过。
 - 原资源判定显式notStarted、没有执行意图和子进程时，资源实测变化后才另记重试；在途或未知结果不能重发。硬件成绩和严格空闲门禁分开；后台任务不能为跑分被强停。项目实证见VibeKits docs/acceptance/MAC132_BENCHMARK_COMPONENT_20261023.md与MAC_ARM_BENCHMARK_COMPONENT_20261023.md，不能据此宣称8台或App内入口全部完成。
+
+
+遇到已安装客户端返回“未知vibekits.hardware_benchmark”时，先核真实目录及所用源码主线，不能用旧safe_benchmark替代CPU/GPU入口。新增入口、Mac Resources分架构目录、真实结果解析及9秒RPC正反控制见VibeKits docs/acceptance/HARDWARE_BENCHMARK_MAINLINE_INTEGRATION_20261023.md；其源码通过不代表已装App更新或最终签名包通过。组件按当前进程ABI选择，不能以硬件CPU猜测进程架构，也不能把连接/RPC等待预算当作房间票据有效期。
