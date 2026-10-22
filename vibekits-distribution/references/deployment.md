@@ -1,6 +1,6 @@
 # 云端同级目录、共用端口
 
-2026-10-16部署结构：hbbv位于`/opt/vibekits-group`，分发网站位于同级`/opt/vibekits-distribution`。两者由现有`vibekits-cluster.service`在同一HTTPS21122提供服务：根路径是管理后台，`/vibekits/`是公开分发门户。不新增listener、UDP、防火墙或另一个Web服务。
+2026-10-16部署结构：hbbv位于`/opt/vibekits-group`，分发网站位于同级`/opt/vibekits-distribution`。两者由现有`vibekits-cluster.service`在同一HTTPS21122提供服务：/manage是管理后台，根路径及/account是个人账号，`/vibekits/`是公开分发门户。不新增listener、UDP、防火墙或另一个Web服务。
 
 分发文件存放在`/opt/vibekits-distribution/releases/<release>/`，`current`指向当前完整版本。hbbv实际工作目录的`web/vibekits`指向该`current`，现有精确公开路由读取这些文件。后台源码、数据目录、SQLite、服务UUID、签名私钥与账号保持原处；不得把数据或凭据拷入公开目录。
 
@@ -25,6 +25,6 @@ Linux 1.9.0-dev.684 / 2684，amd64 DEB，278567024字节，SHA-256 `b8e0ed0739c2
 
 首页按注册个人账号→权限分配→本机入房→仿真组织。注册/安装写入现有docs/installation.md，等级规则写入docs/rooms.md及simulation.md；首页access-levels说明四个独立维度、同低级规则和高级审批，十级表默认折叠。
 
-保持原15个文档ID与公开路由，不为文档别名伪造不存在的raw路径。机器清单的新注册入口放onboarding.registration.guide，分级入口放accessPolicy.webGuide；documentation的键继续与handbook文档ID一一对应。客户端账号多设备登录仍标研发中。完整账号设备规则同步cluster-operations/references/account-device-levels.md及公开验收文档，禁止把“没有网页注册”的旧说明继续发布。
+保持原15个文档ID与公开路由，不为文档别名伪造不存在的raw路径。机器清单的新注册入口放onboarding.registration.guide，分级入口放accessPolicy.webGuide；documentation的键继续与handbook文档ID一一对应。客户端账号按实际候选及正式版本标明验收边界，不把浏览器登录当设备绑定。完整账号设备规则同步cluster-operations/references/account-device-levels.md及公开验收文档，禁止把“没有网页注册”的旧说明继续发布。
 
 只改静态内容时沿原current链接原子切换，保服务PID、身份和动态商城目录；不把源码或桌面测试候选版本写成商城已发布版本。

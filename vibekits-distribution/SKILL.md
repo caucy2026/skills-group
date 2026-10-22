@@ -10,7 +10,7 @@ description: 维护和部署 VibeKits 四端下载与使用门户，核对商城
 ## 入口和源码
 
 - 分发网站：https://kemi-chat.newlinksz.com:21122/vibekits/
-- hbbv 管理后台：https://kemi-chat.newlinksz.com:21122/
+- hbbv 管理后台：https://kemi-chat.newlinksz.com:21122/manage
 - 客户端后台地址：https://kemi-chat.newlinksz.com:21122（不含网站路径）。
 - 技能库：https://github.com/caucy2026/skills-group
 - 网站规范源码在 hbbv 的 `web/vibekits/`；路由和动态商城目录在 `server/app.py`、`server/public_download_catalog.py`。按当前环境定位项目，不照搬同事本机外盘路径。
@@ -41,3 +41,5 @@ description: 维护和部署 VibeKits 四端下载与使用门户，核对商城
 - 本机已安装技能与云端对应内容一起更新。只提交本任务明确路径，普通推送main并读回远端blob；不reset、force或覆盖共享脏树。
 - 运行相关公共路由/目录测试、轮播行为测试；浏览器核真实版本、Linux架构、下载/二维码和文档。上线后重查正常受信HTTPS全部资源，静态SHA与清单一致，动态目录按合同核对而不比较旧JSON字节。
 - 给出可分享网址、当前Linux版本/架构、主线和技能提交、实测结果及剩余限制。网站上线不等于七机升级、所有工具或商城新客户端已通过。
+
+账号/售后说明按最新已验收规则：/account普通会员注册，/manage独立客户管理；只有admin可按customerId授予1–10级管理员。通用售后不允许凭同房成员互访，自动新装入房/多后台/万台真实在线未完成须明示；旧默认一级仅列历史。

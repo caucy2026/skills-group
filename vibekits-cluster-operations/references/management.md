@@ -1,30 +1,28 @@
-# 后台、账号和房间管理员
+# 后台、账号与客户管理员
 
-## 登录及范围
+## 登录和账号边界
 
-本项目入口： https://kemi-chat.newlinksz.com:21122/ 。用获授权原管理账号登录；页面地址不含 token。先选客户，再选房间，核对 customerId 和 roomId，不能只看同名标题。登录后的 `/api/v1/manage/agent-guide`、`/api/v1/manage/openapi.json` 为实时合同；管理 MCP 为 `/api/v1/manage/mcp`，调用 tools/list 后用实际目录。仅源码有接口而生产目录没有时，不声称可用。
+个人注册/登录入口：https://kemi-chat.newlinksz.com:21122/account 。独立管理入口：https://kemi-chat.newlinksz.com:21122/manage 。客户端serverOrigin仍为同站Origin，不带/account、/manage或/vibekits路径。
 
-浏览器使用同源 cookie，写操作还需要 X-CSRF-Token；API 登录 POST `/api/v1/auth/login`，请求头 `X-Hbbv-Client: api`，JSON username/password；使用响应实际 accessToken 字段（兼容旧版需查合同），后续 Bearer。秘密只从安全凭据入口读取，不放命令行、URL、源码、报告或技能。
+注册只建立普通会员账号，没有自动客户、房间、设备或管理员绑定。一个账号可在支持的客户端登录多台设备，可信设备绑定与账号管理权限独立；同账号能力仍按实际版本及验收记录使用。普通个人账号页不显示客户/房间管理列表。
 
-## 三类管理身份
+只有保留的内置admin为超级管理员，按认证用户ID及服务器记录判定。admin在明确customerId下授予/撤销1–10级客户管理员；客户管理员仅管理获授客户，不能转授管理员。房间管理员、设备等级、资源owner和旧全局数字等级都不能代替当前客户授权。
 
-| 身份 | 设置方法 | 实际范围 |
-|---|---|---|
-| 后台登录账号 | 主机侧正式账号配置 | 账号所拥有的资源；不自动跨客户 |
-| 客户总管理员/客户管理员 | 显式主机配置总管理；已有总管理分配客户权限 | 创建客户或管理指定客户；仍检查具体资源归属 |
-| 房间设备管理员 | 房间内登记已批准设备的原仿真 ID | 房间角色；不是网页登录账号，也不自动授予设备工具控制 |
+API个人登录POST /api/v1/account/login；管理登录POST /api/v1/manage/login。API请求头X-Hbbv-Client: api，响应实际accessToken仅留内存；后续Bearer。旧/auth/login仅兼容历史路线，不作为普通注册账号取得管理会话的方法。浏览器HttpOnly cookie写入还要求同源和X-CSRF-Token。不得把密码/token放URL、命令参数、报告或Git。
 
-## 注册、超级管理员与等级
+## 账号分级与迁移
 
-当前生产网页已提供“验证码注册”和“忘记密码”：手机号 → 图片验证码 → 短信验证码 → 设置/确认密码 → 返回登录。验证码与新密码按当前操作工具要求由本人完成；不通过程序解题、日志读取验证码或注入数据库代替真实验收。
+管理员授权以serverId/customerId/userId为范围。先选客户，再在“用户与管理员等级”核用户ID、当前客户等级及授权revision。PUT /api/v1/manage/customers/{customerId}/managers/{userId}/level，body为administratorLevel（1–10，或null撤销）及expectedRevision；首次授权也先GET同一路径，不能假定revision。仅admin可写，409读回后重新决定，不重放未知结果。
 
-只有默认 `admin` 账号可由受信启动入口设为超级管理员；手机注册账号初始均为一级管理员，升到十级也不会成为超级管理员。`--admin-user` 和兼容保留的 `--customer-super-admin-user` 只接受 `admin`，不能指定其他账号。首次空库的 `--password-file` 只初始化账号，已有库不得借此重置密码、另启空库或换服务身份。旧库非 admin 的超级管理员记录也不能获得该角色；不删除账号或重置其已获授的普通等级。
+旧自动一级不再是有效客户管理员；旧全局等级保留兼容/历史但不授新权限。无法确认的旧授权只显示待核提示，由admin明确决定，不能凭数字、手机号或房间owner自动补授。超级管理员不是普通10级；配置/升级不重置密码、身份或原设备授权。
 
-旧后台账号迁移和新注册账号默认一级。超级管理员是独立角色，可在“我的账号 → 用户与管理员等级”查看用户、选择1–10级并保存；普通账号只能看到自己的等级。账号等级、客户管理权、房间成员角色和设备等级相互独立，不随注册、邀请或房间管理员角色自动提高。
+注册短信、图片验证码、新密码按平台要求由本人在可信网页完成。hbbv独立数据库，不读取HBBC用户库。当前规则覆盖2026-10-18曾采用的默认一级规则，历史验收数字不当作新规则验收。详细接口与验收边界见[账号/设备分级](account-device-levels.md)。
 
-详细 UI/API、设备提级、等级仿真与失败处理见 [注册及账号/设备分级](account-device-levels.md)。2026-10-18生产切换、旧数据副本迁移/回退、375项服务器测试和已有账号网页登录已验证；真实短信注册与新账号登录、默认一级显示及超级管理员十级选项已另行实测；找回密码、真实生产提级/降级和跨等级设备仿真仍须分别验收，不能据此称全部完成。
+## 售后房
 
-创建客户：总管理首页“创建客户”→名称→提交→读回真实 customerId→进入客户空间，复制专属管理网址。精确 API 为 POST `/api/v1/manage/customers`，字段以实时合同为准；客户经理授予 POST `/api/v1/manage/customers/{customerId}/managers`，body `{userId:"已有账号32位ID"}`。仅总管理可授予；客户权限不等于接管其他账号已有房间。不能拿另一客户 token/设备凭据混用。
+本团队原roomId f450c684b868292f67c534b793e26314已改名vibekits通用售后，并持久设置support/default/pinned。普通成员不因同房互访；有效客户管理员仍需账号绑定、真实原生身份、目标许可和票据。普通协作房保留自己的成员协同规则。新装自动入房、多后台和全部客户端真实验收尚未完成。
+
+只有admin可通过PUT /api/v1/manage/rooms/{roomId}设置supportRoom布尔值，连同name/description/expectedRevision提交；一客户只能一个售后槽位。名称不是标记。先读当前房间和修订，保留成员/任务/积分，未知结果核原事务后再决定。管理列表用view=summary，展开读取原完整详情。
 
 ## 房间生命周期
 
@@ -35,7 +33,7 @@
 
 ## 管理员与成员
 
-房间“加入房间”中分“加入普通成员”和“加入管理员”，输入原仿真 ID，可批量。尚未批准的设备仍需邀请、安装身份签名申请、审批、激活；登记角色不等于已入房。
+仅内置admin可授予或撤销管理员资格；房间“加入房间”中分“加入普通成员”和“加入管理员”，输入原仿真 ID，可批量。尚未批准的设备仍需邀请、安装身份签名申请、审批、激活；登记角色不等于已入房。
 
 - 新增：POST `/api/v1/manage/rooms/{roomId}/members/add`，`{deviceIds:["原ID"],role:"member"或"administrator",requestId:"稳定唯一请求ID"}`。
 - 现有成员升降级：PUT `/api/v1/manage/rooms/{roomId}/members/{deviceId}/role`，`{role,expectedRevision:当前策略修订}`；降为成员不移出房间。

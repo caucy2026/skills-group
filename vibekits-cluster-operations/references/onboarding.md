@@ -1,10 +1,12 @@
 # 入房、管理员与能力协作
 
+个人注册为普通会员；管理入口为/manage，需admin显式授予对应customerId的管理权限。默认售后房已设support/default/pinned，成员身份不授予普通设备互访；自动新装入房和多后台接入尚未完成。旧客户端可能还未置顶，按原roomId识别。
+
 ## 入口与身份
 
-客户端后台地址是 https://kemi-chat.newlinksz.com:21122 ，本团队 customerId=newlink。网页管理入口同站根目录 /，用已有获授权账号正常登录。后台账号、客户管理员与房间设备管理员是不同身份，账号名为 admin 不代表总管理。
+客户端后台地址是 https://kemi-chat.newlinksz.com:21122 ，本团队 customerId=newlink。网页管理入口为 /manage，个人账号入口为 /account，用已有获授权账号正常登录。后台账号、客户管理员与房间设备管理员是不同身份，账号名为 admin 不代表总管理。
 
-默认通用房是 VibeKits 六机通用验收房（f450c684b868292f67c534b793e26314）。入房仍须本机原安装身份响应和管理员审批。
+默认售后房是 vibekits通用售后（f450c684b868292f67c534b793e26314）。入房仍须本机原安装身份响应和管理员审批。
 
 ## 只给智能体这个网址和后台密码，怎样把本机加入房间
 
@@ -14,10 +16,10 @@
 |---|---|
 | 分享网址 | https://kemi-chat.newlinksz.com:21122/vibekits/ |
 | 客户端 serverOrigin / 后台 Origin | https://kemi-chat.newlinksz.com:21122 |
-| 管理入口 | https://kemi-chat.newlinksz.com:21122/ |
+| 管理入口 | https://kemi-chat.newlinksz.com:21122/manage |
 | 后台登录账号 | `admin`（本服务已核实存在的默认账号；若分配了专属账号，使用该账号） |
 | 客户 ID | `newlink` |
-| 默认房间 | VibeKits 六机通用验收房 |
+| 默认房间 | vibekits通用售后 |
 | roomId | `f450c684b868292f67c534b793e26314` |
 | 机器可读清单 | [agent.json](../agent.json) 的 `onboarding` |
 | 后台接口发现 | `GET /.well-known/hbbv-management` 或 `GET /api/v1/service-info` |
@@ -54,7 +56,7 @@
 
 接口路线适合已有受保护凭据入口的智能体：
 
-1. `POST /api/v1/auth/login`，Header 为 `Content-Type: application/json`、`X-Hbbv-Client: api`，JSON 字段是 `username`、`password`。默认 username 为 `admin`。不要把真实密码写入命令行、文件或示例；通过受保护输入在内存组成请求。
+1. `POST /api/v1/manage/login`，Header 为 `Content-Type: application/json`、`X-Hbbv-Client: api`，JSON 字段是 `username`、`password`。默认 username 为 `admin`。不要把真实密码写入命令行、文件或示例；通过受保护输入在内存组成请求。
 2. HTTP 登录响应中的 `accessToken` 仅留本次进程内存。后续请求使用 `Authorization: Bearer <accessToken>`，不打印响应凭据。普通浏览器登录使用 HttpOnly Cookie；浏览器写请求还须同 Origin 和 `X-CSRF-Token`，不要混用两条认证路线。
 3. 登录后读 `GET /api/v1/manage/agent-guide`、`GET /api/v1/manage/openapi.json`，以**线上合同**为准；管理 MCP 在 `/api/v1/manage/mcp`，使用现有管理会话，不把设备令牌当管理令牌。
 4. `GET /api/v1/manage/rooms?customerId=newlink`，核对目标房间属于当前账号；再 `GET /api/v1/manage/rooms/{roomId}/join-applications`，按线上返回的 cursor 分页。精确找到第 A 段的本机 ID、安装指纹和 applicationId，禁止“批准全部待办”。
