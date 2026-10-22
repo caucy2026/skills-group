@@ -45,7 +45,7 @@ python -B server/app.py --data-dir /private/hbbv-data --database-name integratio
 
 ## 当前项目入口
 
-本机源码/README与远端准备记录位于项目hbbv；具体本机路径和端口通过kemi-server-ports本地索引获取。当前生产21122是设计预留，实时占用和公网部署待核验。参考项目docs/REMOTE_DEPLOYMENT_READINESS_2026-10-06.md与86_SERVER_INITIATED_ROOM_INVITATIONS_2026-10-05.md；源码变更后重新核验相应入口，不照搬历史状态。
+本机源码/README与远端准备记录位于项目hbbv；具体本机路径和端口通过kemi-server-ports本地索引获取。生产21122/TCP HTTPS/SSE已部署，当前状态须实时核验，不沿用早期设计预留或旧PID。2026-10-22缓存治理生产实证、旧端兼容及测试资源预算见[缓存治理部署](references/cache-retention.md)。早期接入设计仍见项目docs/REMOTE_DEPLOYMENT_READINESS_2026-10-06.md与86_SERVER_INITIATED_ROOM_INVITATIONS_2026-10-05.md，不把历史状态当当前事实。
 
 
 ## 已验证部署路线（2026-10-06）
