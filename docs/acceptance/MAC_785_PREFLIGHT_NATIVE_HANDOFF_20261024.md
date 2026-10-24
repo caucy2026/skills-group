@@ -41,3 +41,9 @@ Session-ID: 01a12aa0-1fd3-7862-8fbd-686ddc8732f2
 个人账号会话后续通报：445的原785事务以simulator_gate_not_ready健康失败，已自动回退784且回退HEALTH_PASS。此为同事原事务通报，root未重放或独立占用445调查；785对外舰队扩展保持BLOCK，root未对132/529暂存或应用。公证/签名通过不能替代此失败，待原负责人定位并按资格及验收门禁修复后继续。其原证据在个人账号785任务目录，不能把旧包回退健康冒称新785通过。
 
 Linux同事已通知同源main c5edc0fe加Linux补丁的755/2755两机clean构建，报告原生worker88=2483071、101=749323，之后320 GUI阶段计划正常退出748并finally恢复。root保存该维护通知，没有独立核其worker进程，也不连接、跑分或抢占两机；此前120秒基线已结束，不在本维护窗宣布全在线PASS或把计划断档认作产品故障。原755事务终态和原ID恢复后再安排严格稳定验收，不重启未知作业。
+
+## 追加：App内跑分组件实际缺失
+
+采样1792828487.69061重新读取本机现装Info.plist，确为1.9.0.785/2785、com.caucy.vibekits；同次核验Contents/Resources/tools/benchmark不存在。该路径与main HardwareBenchmarkService.componentBasePath的macOS分支一致，因此已装App缺少正式manifest/engine，不能通过用户指定的App内CPU/GPU第一项。未执行跑分引擎或产生分数，未增加GPU负载，也未向已签名App补复制文件。证据installed-benchmark-component-inventory-current.json；早一条inventory的版本为上下文标注，正式版本事实以此重新读回为准。
+
+已定向通知个人账号构建同事：不热改当前785，后续候选在签名前按ABI放入clpeak3.0.0完整manifest、引擎、许可证及对应源码，再核最终包和真实入口。源与布局见HARDWARE_BENCHMARK_MAINLINE_INTEGRATION_20261023.md；现有Intel/OpenCL组件最低macOS12，旧ARM/Metal组件实际最低macOS26，不可隐瞒或推断全部支持12。正式最低系统和引擎均须按实际最终包验证，独立组件旧成绩不替代本缺项。
