@@ -1,0 +1,34 @@
+# 旧设备账号首次接入Host：生产交付记录
+
+Session-Name: vibekits 集群开发
+Session-ID: 01a12aa0-1fd3-7862-8fbd-686ddc8732f2
+
+## 结果
+
+2026-10-24部署priv/main e8b579922b641fab39c6340a7e6489e835880540，前置实现918e1bc8ce6d71f161b4ca8f752e90700ec6dbf5。生产release为/opt/vibekits-group/releases/20261024-host-bootstrap-v1；原PID960050正常替换为1333726，590运行文件SHA逐一核验，原serverId da3553a32048bfe691d99ad1a27a914b、原稳定账号密钥、数据库和全部既有参数保留。门户仍为受管理current链接。其他三服务与本次切换前实际PID1270336/1270335/1270472一致；这些PID与更早轮次不同，不把他人此前正常重启归于本次切换。
+
+受信HTTPS capabilities确认hostLegacyBootstrap=true，原account/native/SDK能力保留，fullHarnessCollaborationReady仍false。四个host/bootstrap路由逐一以无凭据请求核得401 CLIENT_SESSION_REQUIRED；没有注册假设备或写生产迁移事务。最终只读审计bootstrapTransactions=0，不能据此宣称真实Mac已入协同目录。
+
+## 实现
+
+新增account_host_bootstrap.py，接入account_collaboration_api.py、account_native_identity.py和account_native_verification.py。源为当前有效v1独立设备会话，账号从原绑定取出；核原安装/原生身份与实时generation、源安全策略、源绑定代次及账号安全代次。严格双签证明后仅签发本安装、短期、purpose=host-bootstrap的凭据，普通account/Phone/管理认证不接受。继续执行原Host MFA与challenge/prepare/activate；无新角色、房间、MFA信任或普通账号会话。
+
+复用原原生签名器严格client-login/1形状和已有签名domain，customerId限host-bootstrap:<serverId>，独立challenge不写client_login_proofs。首次签名窗口60秒，接入凭据最多300秒；ready重试同结果不延长，status不返token。存储只含摘要；用原稳定密钥HMAC恢复同一事务结果，不持久化源或新bearer明文。注销、换绑、源安全策略撤销、账号安全变化及原生重连立即使旧接入证明失效。异常/空customer显式拒绝，不回落默认客户。
+
+## 验证和首败
+
+Mac相关模块分批覆盖107个不同用例。Linux原冻结918e1b的106项合同全部通过，无skip/FAIL/ERROR；最终e8b579仅新增customer类型拒绝与测试，两个提交差异已核实只涉及bootstrap模块和其测试；该最终候选的18项迁移合同再次在Linux通过。17项与原106重叠，总不同用例107，不将124次执行冒称124个不同功能。真实loopback TLS、原P256/Ed25519握手、ClientDeviceSessions实际签发与Host激活、原v1登录保留均覆盖；SMS提供商和Host SDK元数据为夹具，未发真实短信，不等同最终设备验收。
+
+首败保留：Mac最初对标准422及嵌套error.code的测试预期不符，改正测试而不放宽拒绝；一次误写不存在测试模块导致加载ERROR，纠正后补26项HTTP；Linux首次使用运行交付集合时缺测试模块，8项加载ERROR，未执行产品用例。补齐同一main的完整696文件测试集合后才通过106项，未把首败或空执行视为通过。之后最终18项单独验证输入校验增量。所有日志、源清单、状态、哈希与退出码保留于本任务host-bootstrap-v1/final及上级，不靠通过点计数掩盖FAIL。
+
+## 数据与收尾
+
+部署前完成只落本地一致性备份：源快照1792822344.9019046，128表173773行，104493056字节，SHA256 15c2d75f687b0027af5a5d8bf6353aa1baad261b7cc9943f1814f110f77a08a7。新备份读回验证后保留最近3份，删除旧142794752字节及11770835字节中间流；发送端退出、读取事务释放，4个临时云端文件已清理。没有云端数据库备份。预检因WAL余量不足停止，正常SQLite checkpoint成功后才进入备份，不删除数据库/WAL文件或放宽3GB门槛。
+
+云端三个自有测试/上传暂存目录全部删除，2007文件、25419776分配字节，另3个/run清理辅助文件回读不存在。保当前release、最新源包、源码与证据及必要回退。最终实测后台2685239296字节、门户1994752、专用journal1048576，合计2688282624，低于3000000000。空闲本地再生源码副本和重复测试归档593文件、10420224分配字节亦已核哈希后清理，最新runtime.tar.gz及所有首败/正式证据保留。空间净变化与删除量分别记账，不冒领并发释放。
+
+## 对接与未完成
+
+已定向通知“vibekits手机版本”接口正式上线可继续联调，并给出精确[合同](../development/HOST_BOOTSTRAP_API_20261024.md)。Phone继续原v2 API；Host需将此首次接入接在原v1登录恢复后，再接doc92 HostQueue/presence。没有要求退出重登、导出凭据、终端命令或移除Phone过滤。不能使用只接受account-v2范围的旧HostLoginChallenge解析器直接解析bootstrap挑战，需校验专用命名空间。
+
+最终Mac原生IPC调用与签名客户端集成、Mac在75真实目录出现、原会话中文实收、审批、文件、异常重连和低占用尚未通过。当前交付证明服务端可供继续开发，不宣称个人协同或G01–G10整体完成。
