@@ -43,3 +43,12 @@ v2个人目录按serverId、服务器认证的canonical account、installationId
 服务端hostLegacyBootstrap能力出现只说明接口存在，不说明桌面已有Host槽位、实时原生通道或可信presence。旧登录无Host槽位时按[正式Host Bootstrap合同](https://github.com/caucy2026/skills-group/blob/main/docs/development/HOST_BOOTSTRAP_API_20261024.md)以原v1独立设备凭据及原双钥接入；保源绑定/原v1通道，继续原Host MFA，成功后再启动HostQueue/presence。普通account、remembered、device与management令牌用途分开，不能互换；失败不清旧登录、会话或草稿。
 
 目录为空先按原生生产者→Host槽位→队列→可信presence/12秒租约→客户端过滤逐层核对，不移除Phone安全过滤或把原仿真在线投影成v2在线。新版App版本、后端ready、旧原生签名IPC都不证明包内有v2通道/host descriptor；冻结实际relay的原生Git ref、完整输入和签前/签后SHA，复用受限正文验证解释正常签名差异。实际包的旧来源与新开发的最新main分别记录，不能把兼容对照ref当降级指令；增量须保留PEM链、原v1、原签名IPC及权限，走独立完整构建和最终GUI门禁。
+
+
+## 同设备有效 MFA 继承到 Host（2026-10-24）
+
+服务器已支持 `features.hostExistingDeviceTrustInheritance`；以实时 capabilities 为准。旧v1已可信设备应通过正常bootstrap双证明迁移，已有ready事务也可在认证/state查询时幂等派生。派生不是独立MFA或执行许可：账号、installation、安装/原生双指纹、源session/binding、原信任和安全revision必须持续有效，期限不延长；失效按原安全验证处理。不能只凭相同账号文本、设备ID或客户端metadata放行。
+
+`host-bootstrap-v1.`加64hex是专用票据，不改成普通账号/Phone token；只能给规定Host认证/验证路径。服务上线、bootstrap ready或信任状态为true均不等于Host已激活、更不等于原SDK业务通过。需要最终客户端实际Host目录、中文消息、工具/审批、附件和注销隔离证据。不要手工修改信任表或更改旧SDK DataOwner来修客户端接线。
+
+操作依据：`docs/development/HOST_EXISTING_TRUST_INHERITANCE_20261024.md`。当次运行代码priv/main452eeb5，原serverId及密钥保持；本次135个不同Linux合同覆盖、生产能力和清理已核验，真实788/Phone业务仍待客户端验收。此版本号仅是当次证据，不代替下次现场核对。
