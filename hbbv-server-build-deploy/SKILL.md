@@ -85,4 +85,6 @@ Rust Linux服务优先按`rust-linux-cross-build`在本地冻结源码、测试�
 
 服务身份读取`GET /api/v1/service-info`的`serverId`；账号协作开关读取`GET /api/v2/account/capabilities`的`apiVersion=2`及严格布尔`enabled`。service-info没有`accountCollaborationEnabled`，不能据此误判关闭或触发回退。与授权计划中的serverId和开关值逐项比对，缺字段、类型错误、错误身份均拒绝；旧版不支持能力端点时明确记为旧版/不支持，不能伪造false或冒充支持v2的新候选。
 
-可复用当前hbbv main的`tool/runtime_release_health.py`；它固定两端点、保持TLS验证、拒绝重定向并限制响应大小。`enabled=true`不等于SDK/Phone全链路就绪，`fullHarnessCollaborationReady=false`也不是服务宕机。2026-10-24已有Mac/Linux各6项检查器回归和8项真实TLS启动合同；这是非交付证据，修复后生产尚未重新部署。部署编排的原事务、资格及最终功能门禁仍需现场核验。
+可复用当前hbbv main的`tool/runtime_release_health.py`；它固定两端点、保持TLS验证、拒绝重定向并限制响应大小。`enabled=true`不等于SDK/Phone全链路就绪，`fullHarnessCollaborationReady=false`也不是服务宕机。2026-10-24已有Mac/Linux各6项检查器回归和8项真实TLS启动合同；这些合同是非交付证据；之后生产已按账号协作关闭配置部署，并补验真实房间文件工具。仍不能将其当作Phone/SDK全链路、统一舰队或完整功能通过。部署编排的原事务、资格及最终功能门禁仍需现场核验。
+
+warning过滤的systemd命名空间须同时核验实际流等级：警告文本不会自动决定journald优先级。hbbv已验证配置为stdout=null、stderr=journal、SyslogLevel=warning，并用真实Python诊断发射器的一次明确标识故障注入确认Priority4落盘，不请求生产业务或新增周期采样。更新日志设置后只对账原重启的PID、目录和健康，不因瞬时观察缺失重复重启。
