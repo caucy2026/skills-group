@@ -2,31 +2,37 @@
 
 ## 先注册个人账号
 
-打开[个人账号](https://kemi-chat.newlinksz.com:21122/account)，通过本人手机号、图片与短信验证码注册并设置密码。验证码与新密码由本人在可信页面完成，不进聊天、脚本、URL或日志。
+打开[个人账号](https://kemi-chat.newlinksz.com:21122/account)，通过本人手机号、图片与短信验证码注册并设置密码。验证码与新密码由本人在可信页面完成，不进入聊天、脚本、URL或日志。
 
-注册后的权限是**普通会员**：没有自动客户、房间、设备绑定或管理员资格。个人账号页只显示本人资料。设备需在支持的客户端另行登录并核验原安装/原生身份；浏览器登录不能代替设备绑定，同账号功能以实际版本及验收记录为准。
+注册后是普通会员，不自动获得customer、房间、设备绑定或管理资格。浏览器注册和客户端原身份登录分别完成；同账号个人协同不要求先加入集群房间，最终能力以实际客户端和验收结果为准。
 
-需要管理权限时，由唯一内置 `admin` 在明确的 `customerId` 下授予1–10级客户管理员；之后从[独立管理入口](https://kemi-chat.newlinksz.com:21122/manage)登录，只见获授客户。等级不跨客户，普通管理员不能转授管理资格。旧数字一级/全局等级不代表新客户授权。
+## kemi业务与newlink通用服务
 
-## 通用售后与普通协作房
+本团队业务客户ID为 **kemi**，协作接入房为 **kemi 通用测试房**（`c0985cc4dfeedaf71515ae029fc4cc4f`）。已有approved成员直接核实时心跳和工具；未加入时按下方原安装身份申请、审批、激活流程操作。其他组织使用其管理员明确分配的customerId。
 
-本团队原房间ID `f450c684b868292f67c534b793e26314` 已改名为 **vibekits通用售后**。服务端已设置support/default/pinned标记。加入售后房本身不授予设备互访；访问须有当前客户管理员账号绑定、真实原生身份、目标许可及有效票据。房间管理员ID、昵称或旧owner字段都不是管理凭据。
+**newlink**保留独立通用服务关系。当前第一槽是 **通用服务1**（原ID `f450c684b868292f67c534b793e26314`）；它不是kemi业务客户，也不是所有设备必须硬编码加入的房间。客户端只展示自己已分配/加入的服务房，不列出其他服务槽。普通设备只见有效设备管理员，彼此不可见、不可互相仿真；有效设备管理员按当前等级及目标许可维护设备。业务普通协作房继续按有效成员和room-members规则协作。
 
-普通协作房仍按有效成员、原身份和目标许可协作；同账号个人协同是独立链路。不同客户的数据与权限隔离。设备默认普通0级，受邀入房不自动提级。
+规划为最多8个服务槽、每槽10000台，服务器按原身份找回既有关系或分配下一有容量的槽，用户退出服务后保留退出决定。**2026-10-25实测生产automaticServiceAssignmentEnabled=false**：自动新装入服务、重装找回及万台真实在线仍不能报完成；不为演示而开启全局功能或把所有设备强塞第一槽。当前设备可在一个服务Origin下加入多个获授权房间，不宣传同时连接多个服务域名。
 
-**交付边界：** 新安装自动入售后房、多后台多域名同时入房、跨后台一键退出和万台真实在线验收尚未完成。当前仍按原设备签名申请、审批和激活接入；旧客户端可能收到新标记但未把售后房置顶。不要把服务端default标记当成客户端已自动入房。
+## 账号管理员与房间设备管理员
 
-## 客户管理员分级
+只有内置 **admin超级管理员**可任命注册账号为1–10级客户管理员或通用管理员。客户管理员选择customerId，只管理获授客户的全部房间；通用管理员管理本服务器所有客户，不等于超级管理员，也不能任命其他账号管理员。普通注册不再默认一级。
 
-`admin`从/manage登录，先选择客户，再在用户列表核用户ID，授予该客户1–10级或撤销为普通会员，读回授权revision。只有admin能设置管理员及房间管理员资格；超级管理员是独立角色，10级客户管理员不是超级管理员。
+房间中的管理员是**设备管理员**。有权的客户/通用管理员可为已批准设备设置不超过自己等级的设备管理员，0表示撤销显式授权；有效更高权限不能被越权覆盖。账号当前登录的设备可在已加入的相应房间继承账号管理等级，必须核当前绑定、客户会话、原安装/Native身份和授权修订。后台管理员账号与设备管理员是不同对象，设备保护等级也不因普通入房而自动提升。
 
-设备提级需当前客户管理权和安装绑定；普通客户管理员只能提到自己在该客户的等级，超级管理员可选择提升后的1–10级。既有接口不提供设备降级。高级目标须走原同意审批；等级、成员关系或工具目录不能替代目标许可、系统权限、签名证明和任务执行租约。跨等级真机及全平台验收仍需分别确认。
+设备管理员访问同级/低级目标仍核原身份、成员、目标许可、工具范围和有效签名票据；更高目标按原同意审批处理。服务房成员资格不授予普通成员互访。房间身份不代替业务任务唯一租约、本机grant、系统权限或签名材料授权。
+
+## 在线、登录到期与独立授权
+
+集群心跳在线、个人协同在线、模型证明和工具可用分别核验。手机在线电脑0时，检查同账号Host当前绑定、目录心跳和协同凭据期限，不用原MFA尚有效或canHost声明替代在线证明；先对账原恢复事务，不改期限、反复登录或清数据掩盖问题。
+
+客户登录到期后，旧继承管理员快照重验失效；另有有效显式2级设备授权时，只能以独立2级重新解析，不能沿用过期账号4级，撤销该显式来源后也失效。个人协同短凭据到期与房间独立设备授权分别处理。相关[31项合同与负控证据](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/ADMIN_INHERITANCE_SESSION_EXPIRY_CONTRACT_20261025.md)不代表最终GUI、全舰队或真实未消费票据撤销矩阵通过。
 
 ## 入口与身份
 
-客户端后台地址是 https://kemi-chat.newlinksz.com:21122 ，本团队 customerId=newlink。网页管理入口为 /manage，个人账号入口为 /account，使用个人注册且已获授权的账号正常登录。本服务只有原默认 `admin` 可为超级管理员，须读取服务器返回的 `superAdmin` 确认；普通1–10级账号、客户管理员与房间设备管理员相互独立，不能仅按名称或等级推断权限。
+客户端serverOrigin是 https://kemi-chat.newlinksz.com:21122 ，业务customerId=kemi。网页管理入口是/manage，普通个人账号入口是/account。管理登录后以返回的superAdmin、管理员类型、customerId和等级确认范围，不从账号名称、旧owner或等级数字猜权限。
 
-默认售后房是 vibekits通用售后（f450c684b868292f67c534b793e26314）。入房仍须本机原安装身份响应和管理员审批。
+本团队默认业务房为kemi 通用测试房（c0985cc4dfeedaf71515ae029fc4cc4f）。newlink通用服务关系独立保留；在普通业务房加入不代表已获售后管理员资格。
 
 ## 只给智能体这个网址和后台密码，怎样把本机加入房间
 
@@ -38,9 +44,9 @@
 | 客户端 serverOrigin / 后台 Origin | https://kemi-chat.newlinksz.com:21122 |
 | 管理入口 | https://kemi-chat.newlinksz.com:21122/manage |
 | 后台登录账号 | `admin`（本服务已核实存在的默认账号；若分配了专属账号，使用该账号） |
-| 客户 ID | `newlink` |
-| 默认房间 | vibekits通用售后 |
-| roomId | `f450c684b868292f67c534b793e26314` |
+| 客户 ID | `kemi` |
+| 默认房间 | kemi 通用测试房 |
+| roomId | `c0985cc4dfeedaf71515ae029fc4cc4f` |
 | 机器可读清单 | [agent.json](../agent.json) 的 `onboarding` |
 | 后台接口发现 | `GET /.well-known/hbbv-management` 或 `GET /api/v1/service-info` |
 
@@ -55,7 +61,7 @@
 3. 设置里开启集群，填写上表 serverOrigin 和 customerId；房间操作在外面的“远程状态 / 仿真信息”。有 MCP 时先用 `vibekits.system.describe_tool` 读取本版本实际 Schema，再调用下列工具；没有该工具时走同一原界面，不编造 API。
 
 ```json
-{"tool":"vibekits.cluster.configure","arguments":{"serverOrigin":"https://kemi-chat.newlinksz.com:21122","customerId":"newlink","trustedHosts":["kemi-chat.newlinksz.com"]}}
+{"tool":"vibekits.cluster.configure","arguments":{"serverOrigin":"https://kemi-chat.newlinksz.com:21122","customerId":"kemi","trustedHosts":["kemi-chat.newlinksz.com"]}}
 {"tool":"vibekits.cluster.set_enabled","arguments":{"enabled":true}}
 {"tool":"vibekits.cluster.rooms","arguments":{}}
 ```
@@ -65,21 +71,21 @@
 4. 核对默认房间名称和 roomId。若当前已经 approved，直接做第 C 段，不退出重加；若 pending，复用原 applicationId。未申请时只提交一次：
 
 ```json
-{"tool":"vibekits.cluster.apply","arguments":{"roomId":"f450c684b868292f67c534b793e26314"}}
+{"tool":"vibekits.cluster.apply","arguments":{"roomId":"c0985cc4dfeedaf71515ae029fc4cc4f"}}
 ```
 
 保存原申请的 applicationId、revision、本机 ID 和安装指纹摘要。挑战签名、设备凭据及激活由本机客户端完成，智能体不用导出私钥，也不手工给服务器伪造安装身份。
 
 ### B. 有权的账号审批自己的原申请
 
-浏览器路线：打开上表管理入口 → 用已获客户/房间管理权的个人账号登录（只有明确授权的代办会话才能使用默认 `admin`） → 选择客户 `newlink` → 选择默认房间 → 点击房间入口的待审批消息 → 核对本机名称、仿真 ID、平台和安装指纹 → 批准**这一条申请**。账号只管理自身获授权的客户/房间；不要用另一客户的房间或从账号名推断权限。
+浏览器路线：打开上表管理入口 → 用已获客户/房间管理权的个人账号登录（只有明确授权的代办会话才能使用默认 `admin`） → 选择客户 `kemi` → 选择默认房间 → 点击房间入口的待审批消息 → 核对本机名称、仿真 ID、平台和安装指纹 → 批准**这一条申请**。账号只管理自身获授权的客户/房间；不要用另一客户的房间或从账号名推断权限。
 
 接口路线适合已有受保护凭据入口的智能体：
 
 1. `POST /api/v1/manage/login`，Header 为 `Content-Type: application/json`、`X-Hbbv-Client: api`，JSON 字段是 `username`、`password`。username 使用当前获授权账号；默认 `admin` 只用于明确获准的超级管理员操作。不要把真实密码写入命令行、文件或示例；通过受保护输入在内存组成请求。
 2. HTTP 登录响应中的 `accessToken` 仅留本次进程内存。后续请求使用 `Authorization: Bearer <accessToken>`，不打印响应凭据。普通浏览器登录使用 HttpOnly Cookie；浏览器写请求还须同 Origin 和 `X-CSRF-Token`，不要混用两条认证路线。
 3. 登录后读 `GET /api/v1/manage/agent-guide`、`GET /api/v1/manage/openapi.json`，以**线上合同**为准；管理 MCP 在 `/api/v1/manage/mcp`，使用现有管理会话，不把设备令牌当管理令牌。
-4. `GET /api/v1/manage/rooms?customerId=newlink`，核对目标房间属于当前账号；再 `GET /api/v1/manage/rooms/{roomId}/join-applications`，按线上返回的 cursor 分页。精确找到第 A 段的本机 ID、安装指纹和 applicationId，禁止“批准全部待办”。
+4. `GET /api/v1/manage/rooms?customerId=kemi`，核对目标房间属于当前账号；再 `GET /api/v1/manage/rooms/{roomId}/join-applications`，按线上返回的 cursor 分页。精确找到第 A 段的本机 ID、安装指纹和 applicationId，禁止“批准全部待办”。
 5. `POST /api/v1/manage/rooms/{roomId}/join-applications/{applicationId}/decision`，JSON 为 `{"decision":"approve","expectedRevision":<刚读取的申请revision>}`。revision 是申请版本，不能拿房间版本代替。409 时重新读原申请；请求超时先查询其状态，不创建另一条申请或盲目重放。
 6. 结束后 `POST /api/v1/auth/logout` 退出本次临时管理会话；已有同事会话不动。后台密码不保存进设备集群配置，客户端只保留自己的正常安装身份和凭据。
 
