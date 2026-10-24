@@ -8,7 +8,7 @@
 
 `POST /api/v1/agents/rooms/{roomId}/instances/{instanceId}/terminal-receipt`
 
-请求仅为`{"fence":原整数,"sessionId":"原会话或null"}`，使用原设备正常认证；不要把设备token复制到其他设备或写报告。当前客户端自动使用该路径；技能本身不允许从管理端伪装worker。旧服务器没有能力标记时保留原恢复流程，不猜接口。
+请求仅为`{"fence":原整数,"sessionId":"原会话或null"}`，使用原设备正常认证；不要把设备token复制到其他设备或写报告。已接入并经过最终包验证的客户端自动使用该路径；技能本身不允许从管理端伪装worker。旧服务器没有能力标记时保留原恢复流程，不猜接口。
 
 - accepted旧格式：服务端必须核原结果与审核哈希一致、原session证据、唯一result消息、原worker/controller及当前controllerEpoch、原正文UTF8哈希和真正接收人的processed ACK。客户端还须核原生同session/fence处于inactive及idle/not-resumed。正文不必是新版JSON封套，不能手工重建正文计算哈希。
 - rejected无会话预留：必须有原recoveredAfterFence失败结果、没有session证据及operation；退役原因仍是审核拒绝，不算任务成功或升级积分。不能用这条路径处理有真实副作用的接受结果。
@@ -45,3 +45,12 @@
 若终态为`COPYING/AUTHORIZATION_OR_POLICY_REJECTED`，先读取`update_status`的非敏感字段、原事务及进程，确认是否尚未替换旧App。保留失败证据。只有证实本次控制连接提前结束、原更新器已退出、旧App与授权仍有效，才通过正常重连和同一更新接口重新核权；不能直接运行SSH更新脚本、修改guard、白名单或授权revision。真实撤销、目标拒绝、身份变化或平台拒绝继续保持阻断。
 
 实证：同一签名候选在macOS12设备第一次在复制期断开原连接，随后来源复核失败且未替换旧App；时序及来源校验代码支持提前断连的解释，但未取得原生拒绝原因的直接日志；保留失败终态并恢复正常来源后，同一工具正常核权，保持原连接直到第二次事务`COMMITTED/PASS`。这证明等待提交的必要性，不代表所有同名错误都可自动重试。令牌、完整update_status和私有路径不进公开文档。
+
+
+## 终态只读工具与短票据审计
+
+目标实际catalog包含 `vibekits.cluster.tasks.terminal_receipt` 时，可按Schema用roomId、instanceId、原整数fence和原sessionId读取本人历史回执。此工具只投影有限元数据，journalModifiedByThisCall=false、executionAuthorized=false；不能将调用成功称为本地记录退休。源码存在不等于旧客户端已安装该工具。原生停止需独立从目标的 `vibekits.cluster.tasks.session_status` 取得同session/fence、active=false和agentStatus=idle/not-resumed；缺字段不能靠进程列表或服务端executionStopped代替。
+
+当前作用域没有pending记录，不能证明原serverOrigin/customerId作用域已退休。通过合格客户端正常读取原作用域、核服务与身份并成功持久化退休审计，再重启读回；不能切客户后只看空列表、导出Keychain秘密或手工删除旧记录。
+
+每次真实房间调用完成后，及时只读取回该delegation的controller/target、created、claimed、completed、expires，核领取和完成均在有效期内。当前v1短授权票据只保留过期后5分钟，随后发票时会有界清理；延后审计查不到旧行不能判未执行，也不能编造完整回执，应保留缺项及已取得的目标调用结果。不要为保留证据放宽票据期限或重放副作用。原生状态回包只留所需字段；不把finalAssistantText、工具正文、凭据或完整上下文写普通日志。

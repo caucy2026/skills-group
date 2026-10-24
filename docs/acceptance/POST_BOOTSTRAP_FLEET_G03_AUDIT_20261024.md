@@ -1,0 +1,32 @@
+# 新后台上线后的舰队、原任务ACK及原生停止复验
+
+Session-Name: vibekits 集群开发
+Session-ID: 01a12aa0-1fd3-7862-8fbd-686ddc8732f2
+
+## G01/G08：真实设备与房间调用
+
+2026-10-24只读核验生产PID1333726。原六台1554650784、4456560334、5298938227、1321656264、4240650696、6192992780及补充Linux3201833792、5713793648，采样1792823698.025691时均有12秒内心跳，未撤销。617仍按用户确认离线，不连接；两台Linux不是替代617。未连接已要求忽略的950/844。
+
+通过kemi房间c0985cc4dfeedaf71515ae029fc4cc4f委派在619真实执行processes：实际应用1.9.0-dev.732+2732、PID7876，应用/command-guard/relay均为原B82824C01226426C2D2BD423F883DCBC999C7E82有效Authenticode。仍是732，不能称统一最新版。已向获授权Windows同事同步下一合格候选需包含main54e0b8的只读终态工具；不改动其已冻结包或当前58调试。
+
+随后从真实catalog确认cluster.tasks.session_status schema，通过房间委派读取原会话cluster-be626a34-b275-4adc-81a2-c25675cf6635，返回active=false、fence=1、agentStatus=not-resumed。没有使用普通仿真执行作为房间拒绝后的替代路径。普通连接只用于发现catalog，任务状态仍由单调用房间票据执行；本次自有619连接已断开。
+
+两次任务状态调用的服务端created/claimed/completed/expires均核对有序，controller155、target619正确：974c58d6a064c8a9116026931556bb40及75ef3f1dfaef3a84fc459e5ea386e671。第一笔processes短票据4d179de30ade18ac21b2a89fc9379dbd在延后审计时已不在短期表；初次“应有三行”断言失败，保留缺项，不能声称三笔生命周期全部持久验证。源码保留策略为过期后5分钟、后续issue有界清理；后续应及时取回声明/领取/完成元数据，不修改或放宽清理策略。
+
+## G03：历史证据分层核对
+
+原任务7ab36135ed5614d317f2987fe530ec0a仍failed/revision3，过期deadline不改；619原实例15d0b76ec1517e3ffac9655c0de45bb8保持accepted/fence1。只读重算原result正文UTF8 SHA、review/output一致性、原session和task-message证据，processed ACK反向端点/controllerEpoch及ACK正文hash，9项谓词通过。processed ACK为ack-24fb0ab170ff5e44d98dceda38e2e51d，正文SHA22ba9e74ed68d4df488a340dbc51d8a23da0fd9d6ff70a8f89451b6cc731b4f3，输出SHA88d7da1dbeb7e81fe120949f9d0eee81535d40856873cdb788c2ef78cbb6ac65。未返回业务正文或凭据。
+
+全任务6个不同实例、6台不同设备各1笔评分，总6分，0冲正；619未决外部operation为0。该服务端证据与上述目标原生inactive/not-resumed/fence1相互匹配，证明当前退休前提中的服务端终态和设备停止条件；仍没有证明旧newlink作用域本地journal已退休，更没有替过期总任务改成completed。
+
+只读terminal_receipt源码已主线，但619旧732不能据源码推定有此工具。待合格新包同身份覆盖后，经客户端正常持久化路径读原作用域、退休并重启读回时间/哈希；不读取Keychain原始秘密、不手工删journal、不把当前kemi作用域零记录当成旧newlink退休。原G01–G10整体未完成。
+
+## G09：两分钟上线后基线
+
+1792823986.2736008至1792824106.282618，共120.009秒、41次采样、每设备41/41心跳年龄不超过12秒且kemi成员approved。最大采样间距3.0993秒，观测异常0；最大心跳年龄4.9114秒。始终同一服务PID1333726/startTicks390472937。hbbv单核CPU中位7.6045%、峰值9.277%，RSS峰111190016字节。
+
+这是生产普通流量下的后台进程和心跳基线，设备版本混合且同事可能继续准备升级；没有逐样本采设备revoked标志、客户端CPU/GPU/RAM、真实仿真持续性或OS健康，不能称设备全健康、全应用低占用、统一最终包稳定、24/72小时或100台扩展通过。原始样本独立重算计数、年龄、进程代次及资源汇总，SHA443efc60718112a33c4b9fc3b676e8e23f1e840060eadc368d0c004a2ee013a3。
+
+监测unit已正常结束并确认MainPID0，读回最终日志/采样后精确清理其自有/run目录5文件、53248分配字节，服务PID不变。普通原始采样本地保留上限24小时，清理期限在raw-retention.json，尚未到期，未虚称未来清理已执行；脱敏正式汇总保留。没有云端编译或数据库备份，没有触碰其他设备会话。
+
+证据位于本任务post-bootstrap-fleet-g03-audit-v1：server-readonly-audit、g03-server-proof、g03-combined-verdict、619-room-result、619-session-status-catalog、619-task-stop-result-r2、619-delegation-verdict、619-own-disconnect及baseline的independent-verdict/cleanup-result。所有动作只读或收回本次自有连接与暂存，未发布任务、claim、续租、重复ACK、审核或评分。
