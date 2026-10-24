@@ -88,3 +88,10 @@ Rust Linux服务优先按`rust-linux-cross-build`在本地冻结源码、测试�
 可复用当前hbbv main的`tool/runtime_release_health.py`；它固定两端点、保持TLS验证、拒绝重定向并限制响应大小。`enabled=true`不等于SDK/Phone全链路就绪，`fullHarnessCollaborationReady=false`也不是服务宕机。2026-10-24已有Mac/Linux各6项检查器回归和8项真实TLS启动合同；这些合同是非交付证据；之后生产已按账号协作关闭配置部署，并补验真实房间文件工具。仍不能将其当作Phone/SDK全链路、统一舰队或完整功能通过。部署编排的原事务、资格及最终功能门禁仍需现场核验。
 
 warning过滤的systemd命名空间须同时核验实际流等级：警告文本不会自动决定journald优先级。hbbv已验证配置为stdout=null、stderr=journal、SyslogLevel=warning，并用真实Python诊断发射器的一次明确标识故障注入确认Priority4落盘，不请求生产业务或新增周期采样。更新日志设置后只对账原重启的PID、目录和健康，不因瞬时观察缺失重复重启。
+
+
+## systemd进程就绪与原事务对账
+
+`Type=simple`的restart返回与MainPID变化不是应用就绪证明。复用项目main的`tool/runtime_service_readiness.py`，固定模块SHA：核systemd配置目录、真实/proc/cwd和exe、PID及startTicks连续两次一致，再进入HTTPS身份和版本化能力检查。错误配置/failed必须拒绝；过渡目录、0PID或消失进程有界等待。超时保留原事务及输入，先查Job和实际进程，不用第二次restart掩盖未知结果。回退同样等待真正旧进程就绪，不能将早期/目录快照写成恢复完成。
+
+旧`tool/maintenance/account-backend-20261024/deploy.py`入口已退役；新账号启用入口在`tool/maintenance/account-enabled-sdk-20261024/`，先读其README与当前资格。2026-10-24修复经过Mac/Linux各8项合同及真实旧实例只读复验；新候选正向启用仍未通过，不能将这些证据写成已上线，也不能自行恢复事故执行者资格。
