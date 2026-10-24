@@ -1,5 +1,7 @@
 # 同账号“我的设备”：目录生命周期与研发接续
 
+本文件前半保留v1客户端的customer作用域兼容路线；不要将其当作v2 Phone/Native Host个人目录的客户过滤规则。v2边界见末节及实时部署/客户端验收记录。
+
 当前状态见项目最新验收台账。目录源码与隔离HTTP联调通过，不等于客户端已发布；App级presence源码已接入并完成隔离联调；生产可信身份适配、旧会话原生证明迁移、原生执行票据及完整远端原Harness呈现仍须分别验证。不能用简化远程面板替代用户要求的一键完整切换。
 
 ## 身份、凭据和订阅
@@ -32,3 +34,12 @@ App拥有唯一HarnessAccountPresenceRuntime，不能把心跳挂到设备面板
 登录入口读取统一账号状态，不能只缓存本按钮的旧用户名。旧菜单退出前重新核绑定，实际logout还须核菜单显示UID/revision与原OS凭据快照，避免另一入口/进程已切到B却注销或删B。账号变更后用原restore核验，不索取另一遍管理密码。
 
 新实证：[应用级presence与登录状态](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/CLIENT_ACCOUNT_PRESENCE_RUNTIME_20261021.md)：46 Flutter、72后端；隔离服务无房间续租→原生断连→租约移除→原pin新generation恢复，无须再登录。包括100 emoji昵称按code point而非UTF16限长。不是物理机、最终包或生产已启用的证明；完整远端呈现与最终设备矩阵仍须验收。
+
+
+## v2 Phone与Native Host：独立于房间的账号范围
+
+v2个人目录按serverId、服务器认证的canonical account、installationId和当前bindingRevision隔离，不按customer筛选同账号设备；不能混入另一服务器或账号。Phone只发起同账号协同，不作为Host、没有集群/房间。原v1来源customer仍用于验证旧设备凭据、原pin和安全策略，不可省略或伪造，但它不是v2个人目录过滤条件。
+
+服务端hostLegacyBootstrap能力出现只说明接口存在，不说明桌面已有Host槽位、实时原生通道或可信presence。旧登录无Host槽位时按[正式Host Bootstrap合同](https://github.com/caucy2026/skills-group/blob/main/docs/development/HOST_BOOTSTRAP_API_20261024.md)以原v1独立设备凭据及原双钥接入；保源绑定/原v1通道，继续原Host MFA，成功后再启动HostQueue/presence。普通account、remembered、device与management令牌用途分开，不能互换；失败不清旧登录、会话或草稿。
+
+目录为空先按原生生产者→Host槽位→队列→可信presence/12秒租约→客户端过滤逐层核对，不移除Phone安全过滤或把原仿真在线投影成v2在线。新版App版本、后端ready、旧原生签名IPC都不证明包内有v2通道/host descriptor；冻结实际relay的原生Git ref、完整输入和签前/签后SHA，复用受限正文验证解释正常签名差异。实际包的旧来源与新开发的最新main分别记录，不能把兼容对照ref当降级指令；增量须保留PEM链、原v1、原签名IPC及权限，走独立完整构建和最终GUI门禁。
