@@ -95,3 +95,12 @@ warning过滤的systemd命名空间须同时核验实际流等级：警告文本
 `Type=simple`的restart返回与MainPID变化不是应用就绪证明。复用项目main的`tool/runtime_service_readiness.py`，固定模块SHA：核systemd配置目录、真实/proc/cwd和exe、PID及startTicks连续两次一致，再进入HTTPS身份和版本化能力检查。错误配置/failed必须拒绝；过渡目录、0PID或消失进程有界等待。超时保留原事务及输入，先查Job和实际进程，不用第二次restart掩盖未知结果。回退同样等待真正旧进程就绪，不能将早期/目录快照写成恢复完成。
 
 旧`tool/maintenance/account-backend-20261024/deploy.py`入口已退役；新账号启用入口在`tool/maintenance/account-enabled-sdk-20261024/`，先读其README与当前资格。2026-10-24修复经过Mac/Linux各8项合同及真实旧实例只读复验；之后用户在原手机版会话明确恢复资格，经主线检查后用独立v4完成生产启用，真实公网enabled/mobileIdentity/originalSdkGlobalStreams/fileReceiverDeclarations为true，原serverId保持。仍不得将后端启用当作真实Phone/SDK全链路通过；fullHarnessCollaborationReady保持false，资格以当前主线台账重新核验。
+
+
+## 已启用账号服务的后续业务修复
+
+初次启用模板会检查账号参数尚不存在，不可原样用于已经启用的服务。沿用项目`tool/maintenance/room-reinvitation-20261024/deploy.py`的已验证保参路线：要求现有账号密钥参数及原SDK流开关恰好一次，核稳定密钥路径、SHA/权限并保留原argv，不再次append、初始化密钥或切换自动服务。每次只换自己唯一的stage/release/unit及排序更后的override名，固定helper和最终worker字节；不重放旧事务。模板README中的历史暂停说明不能代替当前main资格台账，仍需真实会话的最新门禁。
+
+把新候选全部非文档运行字节与已验证源码逐一比较，不能仅核两个修改文件就忽略依赖。2026-10-24终态重新申请部署585运行文件、实际代码仅direct_join.py改变；Mac68+1、Linux69合同及部署后的真实房间文件哈希通过，原serverId/密钥/SDK开关/外部门户/其他服务保持。新申请仍pending，客户端需要包含bd0893d后另做最终包验收；后端部署不代表设备重新入房或权限恢复。证据见项目`docs/acceptance/INVITED_TERMINAL_REAPPLICATION_PRODUCTION_20261024.md`，具体PID/版本以实时核验为准。
+
+旧云端测试源码副本只能在终态、无cwd/exe/fd引用并与本地保留归档逐文件哈希一致后清除；不一致的文件留存，不把整个staging当缓存。清理结果回执本地已存在时，核远端/本地SHA即可对账，不能因overwrite=false失败重跑删除。正式数据库大文件的freelist不是可直接删除的备份，本次仅只读计数，未为3GB目标VACUUM或更换数据库。
