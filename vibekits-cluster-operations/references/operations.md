@@ -277,3 +277,24 @@ Windows 构建主命令 exit0，但自有 Job 仍有成员时，在终止或关�
 ### 房间时间校验与等级拒绝
 
 出现INTROSPECTION_TIME_FUTURE、高等级审批拒绝或需要核普通成员双向互访时，读[房间时间与等级恢复](room-time-and-rank.md)。校时、成员资格、管理员等级和原生票据分别验证；关闭通道不是撤销证明。
+
+
+### 同账号恢复与原生节点观察的交付边界
+
+Phone可信恢复先核原服务caps的phoneTrustedRecovery/version1，只复用原P256、当前绑定/安全修订和仍有效的原MFA；新凭据不能延长原信任。恢复登录成功、设备目录可见、选中设备、operation入库、Host领取、会话/消息实收分别验收，不能合并成“协同已通”。现场对账只查元数据和固定错误码，不读token、密文或聊天正文。
+
+原A/B/C/D观察沿现有Host签名presence，只有features.nativeServerRoute=true及nativeServerRouteVersion=original-native-server-route/1时才发送可选字段。该flag只证明服务器承载格式，旧Host未采样时仍未知。观察绑定同账号、installation/binding和真实Native connectionGeneration；12秒短租约受凭据及目录期限限制，配置节点不能补实际节点。切账号/目标、失联、旧generation和观察过期都清显示；坏可选观察不破坏核心目录或授予权限，不新增轮询。
+
+字段与后续实际验收见公开主线[节点投影合同](https://github.com/caucy2026/vibekits/blob/main/docs/development/NATIVE_SERVER_ROUTE_PROJECTION_V1_20261025.md)和[生产证据](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/NATIVE_SERVER_ROUTE_PRODUCTION_20261025.md)。2026-10-25服务器格式已生产验证，最终Host采样→手机版节点显示/断线撤回仍未完成；不能把某台Root的C当手机或另一电脑的真实节点。
+
+### 房间工具诊断：参数、到期与执行回执
+
+房间票据按实际target/toolId及当前身份签出后，仅在有效期内room_call一次；先核目标真实catalog/当前版本合同，不能照搬同名本地脚本。vibekits.file_hash的已验证参数示例：
+
+```json
+{"input":"/System/Library/CoreServices/SystemVersion.plist","params":"sha256"}
+```
+
+返回digest/bytes；input是目标设备已获准的实际文件路径。不要误传path造成空输入后将“文件不存在”当整机/后台失败。529实测603字节与132旧样本529字节不同，各设备用自己的实收基线。失败结果已知且原委派claimed/completed后，修正参数使用新requestId/新票据；未知结果先查同一委派，不能重放。独立核created≤claimed≤completed≤expires，再关闭本次新建的通道；不关闭其他任务已有连接。
+
+ROOM_SIMULATION_CONSENT_REVOKED同时可能表示active=false、到期、成员revision变化或安装指纹失配，不能仅凭码断言人为撤销或服务回退。对照当前自有设备许可元数据、成员/身份和必要的部署前快照，区分原因；active=true但expiresAt已过仍不是授权。沿原客户端续期/已授权恢复路线处理，不写SQL补许可、不改走普通仿真绕过拒绝。部署前已过期而切换前后payload相同，不归为本次新代码撤销；这种新请求拒绝也不能代替有效未使用旧票据的撤销验收。
