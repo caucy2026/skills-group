@@ -54,3 +54,12 @@
 当前作用域没有pending记录，不能证明原serverOrigin/customerId作用域已退休。通过合格客户端正常读取原作用域、核服务与身份并成功持久化退休审计，再重启读回；不能切客户后只看空列表、导出Keychain秘密或手工删除旧记录。
 
 每次真实房间调用完成后，及时只读取回该delegation的controller/target、created、claimed、completed、expires，核领取和完成均在有效期内。当前v1短授权票据只保留过期后5分钟，随后发票时会有界清理；延后审计查不到旧行不能判未执行，也不能编造完整回执，应保留缺项及已取得的目标调用结果。不要为保留证据放宽票据期限或重放副作用。原生状态回包只留所需字段；不把finalAssistantText、工具正文、凭据或完整上下文写普通日志。
+
+
+## 旧客户命名空间的本机任务日志
+
+不能把当前kemi列表为空当成旧newlink日志已退休。仅当合格客户端真实catalog包含 `vibekits.cluster.tasks.historical_terminal` 时，用原customerId/roomId/instanceId/fence/sessionId先mode=inspect，再对同一目标retire并读回；缺记录不制造退休。该入口保守标记writesData，服从已有具体授权，遇平台拒绝不改用SSH读写Keychain。
+
+入口校验原存serverId、当前空闲与预算、后台原实例/设备收据及新鲜原SDK停止状态，只归档匹配旧fence并保留审计和其他记录，不改变当前customer或聊天。原服务不支持、来源不符、当前工作非空或结果未知时保持原数据，先对账原事务，不重发结果、评分、模型或升级。
+
+代码及53项合同不是已部署证明；需要最终客户端真实旧命名空间和重启读回。依据 `docs/acceptance/G03_HISTORICAL_CUSTOMER_JOURNAL_20261024.md`，当次155仅已证明服务端原终态及本机native不活跃，真实旧journal退休仍待验。
