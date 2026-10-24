@@ -94,4 +94,4 @@ warning过滤的systemd命名空间须同时核验实际流等级：警告文本
 
 `Type=simple`的restart返回与MainPID变化不是应用就绪证明。复用项目main的`tool/runtime_service_readiness.py`，固定模块SHA：核systemd配置目录、真实/proc/cwd和exe、PID及startTicks连续两次一致，再进入HTTPS身份和版本化能力检查。错误配置/failed必须拒绝；过渡目录、0PID或消失进程有界等待。超时保留原事务及输入，先查Job和实际进程，不用第二次restart掩盖未知结果。回退同样等待真正旧进程就绪，不能将早期/目录快照写成恢复完成。
 
-旧`tool/maintenance/account-backend-20261024/deploy.py`入口已退役；新账号启用入口在`tool/maintenance/account-enabled-sdk-20261024/`，先读其README与当前资格。2026-10-24修复经过Mac/Linux各8项合同及真实旧实例只读复验；新候选正向启用仍未通过，不能将这些证据写成已上线，也不能自行恢复事故执行者资格。
+旧`tool/maintenance/account-backend-20261024/deploy.py`入口已退役；新账号启用入口在`tool/maintenance/account-enabled-sdk-20261024/`，先读其README与当前资格。2026-10-24修复经过Mac/Linux各8项合同及真实旧实例只读复验；之后用户在原手机版会话明确恢复资格，经主线检查后用独立v4完成生产启用，真实公网enabled/mobileIdentity/originalSdkGlobalStreams/fileReceiverDeclarations为true，原serverId保持。仍不得将后端启用当作真实Phone/SDK全链路通过；fullHarnessCollaborationReady保持false，资格以当前主线台账重新核验。
