@@ -80,3 +80,9 @@ Rust Linux服务优先按`rust-linux-cross-build`在本地冻结源码、测试�
 ## 外部分发门户的目录归属
 
 部署包含 `web/vibekits` 的后台新版本前，核对当前实际入口及 source-main-manifest 的 externalDirectories。已由 vibekits-distribution 管理的门户必须保持指向 `/opt/vibekits-distribution/current` 的符号链接，不得复制或解引用成随后台冻结的旧静态目录；本机路径按现场映射。部署后核验链接实际目标、正式门户资源哈希与动态下载目录。外部可变目录不冒充后台 core 文件哈希，分别记录后台源码 SHA 与门户来源 SHA。2026-10-22 实测发现后台复制目录导致 current 更新不生效，恢复链接后无须重启服务；清理旧副本前须逐文件证明与保留回退源一致。
+
+## 账号协作发布的健康端点
+
+服务身份读取`GET /api/v1/service-info`的`serverId`；账号协作开关读取`GET /api/v2/account/capabilities`的`apiVersion=2`及严格布尔`enabled`。service-info没有`accountCollaborationEnabled`，不能据此误判关闭或触发回退。与授权计划中的serverId和开关值逐项比对，缺字段、类型错误、错误身份均拒绝；旧版不支持能力端点时明确记为旧版/不支持，不能伪造false或冒充支持v2的新候选。
+
+可复用当前hbbv main的`tool/runtime_release_health.py`；它固定两端点、保持TLS验证、拒绝重定向并限制响应大小。`enabled=true`不等于SDK/Phone全链路就绪，`fullHarnessCollaborationReady=false`也不是服务宕机。2026-10-24已有Mac/Linux各6项检查器回归和8项真实TLS启动合同；这是非交付证据，修复后生产尚未重新部署。部署编排的原事务、资格及最终功能门禁仍需现场核验。
