@@ -14,6 +14,8 @@ macOS SSH 可连接但不能访问受保护文件时，在获授权设备打开�
 
 每台记录采样时间、设备原 ID/电脑名、进程路径/PID/出生时间、版本、房间心跳 age、真实 MCP 成败、模型/负载/磁盘/内存及错误。房间 HB 监控、实际工具健康和 OS 工作状态分别呈现。轮询使用有界、单飞、退避；页面隐藏/编辑/提交暂停，失败显示未知，不清零或伪造在线。只有 HB 的24小时记录不能称 OS/MCP 全稳定；5分钟空闲CPU验收包含 App/WebKit/helpers，先确认真实空闲而不是正在构建/模型请求。
 
+若要补设备侧证据，用原ID与固定主机指纹核身份后，逐台只读调用`vibekits.system.info`和有界的`vibekits.system.resources(samples=1,intervalMs=250)`；脱敏只保留平台/PID、CPU测量状态、内存和存储数值，不收Top进程名称、文件或聊天。2026-10-26原在线六机真实工具6/6返回，但Mac155、Mac132、Windows424所报最满卷分别使用98.40%、96.69%、97.43%；高写盘任务前须重新测实际目标卷并清闲置生成物，不能凭单次CPU或HB说系统长期正常。见[六机资源快照](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_SIX_DEVICE_OS_RESOURCE_SNAPSHOT_20261026.md)。
+
 长期七台巡检须有**实际采样回执**，不能只凭自动化已ACTIVE宣称正在监控。项目`tool/original_seven_health_sampler_20261025.py`用指纹绑定的远程档案只读取原七台心跳、两房成员、服务身份及RSS/FD/TCP等有限元数据；原始样本仅留24小时，较旧样本转小时汇总并按时间去重，采样器自身错误与产品故障分开。现有线程heartbeat已配置每15分钟运行此入口并传`--source heartbeat`，手工补采传`--source manual`；截至2026-10-25首批回执仅证手工样本，调度器真实运行须等来源标记读回，状态未变时保持安静。完整24/72小时与百台真实验收仍要求连续覆盖和真实设备池。只读首轮与留存回归见[原七台监控入口](../../docs/acceptance/ORIGINAL_SEVEN_MONITOR_SAMPLER_20261025.md)。不同同事设备须按各自本机规则提供档案ID与输出根，不照搬别人外盘路径。
 
 活跃开发聊天期间若heartbeat没有真实样本，先核其调度状态和来源，再补独立但同范围的有界只读采样，不把手工样本标作调度成功。采样器现支持`--source scheduled_local`与旧manual/heartbeat分开，互斥锁防重叠；2026-10-26本机72小时后台进程前两轮样本成功、间隔901.214秒；完整24/72小时覆盖仍须继续读回。该Mac的LaunchAgent因后台访问外盘被系统拒绝，失败配置已移除；不要为巡检绕过系统磁盘权限，可沿当前已授权的执行通道启动有截止时间的监控，并在外盘卸载时停写。方法及限制见[原七台监控生产回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/ORIGINAL_SEVEN_MONITOR_SAMPLER_20261025.md)。
