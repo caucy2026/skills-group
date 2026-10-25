@@ -25,3 +25,7 @@ Session-ID: 01a12aa0-1fd3-7862-8fbd-686ddc8732f2
 - 原七台中529心跳失联、617按用户确认关机/断网；自动分房开启不等于七台升级和房间任务G01–G10完成。
 
 本地私有回执：`/Volumes/ORICO/kemi-build-cache/app-release-gate/hbbv/hbbv-main-deploy-20261024-v1/`下`backup-space-service-auto-20261025-v1/`、`snapshot-service-auto-20261025-v1/`、`service-auto-enable-20261025-v1/`；公开文档只保留脱敏事实，不含设备令牌、私钥、聊天正文或账号口令。
+
+## 公共说明与技能同步
+
+2026-10-25 14:18:48，公开分发网页已静态切到`20261025-service-auto-guidance-v1`，后台PID与serverId不变；入口及r1预检类型错误、r2成功、全资源SHA和云端清理见[网站上线回执](PORTAL_SERVICE_AUTO_GUIDANCE_PRODUCTION_20261025.md)。`skills-group/main b42dd69ea3346f15286805200694e03a52b08ec2`及本机全局技能同步当前kemi业务客户/newlink服务父系、实际自动服务状态与未验边界。线上能力和网页都已更新；七台最终版本与全新安装首次服务入房仍是独立缺项。
