@@ -25,6 +25,8 @@ ZIP按唯一命名14块传入，目标每块独立SHA、整包再次SHA均一致
 
 PID54678目前是唯一有监听及现成仿真连接的relay，裸杀可能切断仅存诊断通道。原KEMI备用桌面在本次电脑操作接口返回`noWindowsAvailable`，严格核G73指纹后的直连LAN SSH认证被拒；故此时没有已证可操作的独立恢复入口。尚未停止PID54678、未重启旧723、未清失败bundle或私有数据。下一步需先冻结它的PID/出生时间/映射inode和当前任务空闲，再沿已验证的独立守护或桌面入口准备**有自恢复能力的精确接管**：仅在能自动启动并核原723正式helper、原ID、SSH/MCP/房间心跳，且失败可保留原混合进程或恢复旧包时执行。此项未做之前Mac132状态仍BLOCK，其他设备不能以本机回滚绿灯作为扩散依据。
 
+17:06对历史`tool/maintenance/windows713-prepared-20261018-v1/Mac132ColdGuard712-v3.js`作只读源码核验：它绑定当时旧主PID2023、出生时间及旧主程序SHA，功能仅为观察该主进程退出后最多一次`open -g -n`原App；没有对当前PID54678映射inode、单实例原生relay、旧helper回退、原ID及SSH/MCP/房间健康做接管核验。目标机常用路径亦未找到该脚本。**不得原样运行或仅改PID后用作现在的中继恢复守护。**本次未上传、未执行，混合现场仍保留。
+
 ## 已定位与未证明的原因
 
 候选PID53983的DSH/Web诊断多次ready，启动阶段总耗时约3.5秒；失败点集中于仿真原生中继。旧relay在07:48:20Z收到close；新relay开始IPC后，07:48:22/23/25Z向多节点登记均返回`Cluster registration refused: SERVER_ERROR`，约07:48:30及07:48:43Z另有relay启动尝试报`Address already in use`。这与健康检查一直看不到原仿真gate ready一致，**但尚不能判定SERVER_ERROR的服务器内部根因，亦不能把第二个IPC竞争当唯一首因**。生产hbbs当前主机的窄时间日志未提供匹配条目；目标时间戳按UTC换算无明显时钟漂移。不得简单延长健康窗口、跳过原生来源校验、使用旧helper混装或靠重启/重复apply凑PASS。

@@ -52,7 +52,7 @@
 
 桌面包的`--vibekits-harness-status`在原生IPC仍活、服务器尚未确认时可返回`offline`及实时原ID；若IPC断开，同一CLI可改从持久`--get-id`取回显示用ID。两种ID不能混为“当前服务可用”或“旧中继已失效”。Mac132的旧源码默认8秒探测超时后可能stop/relaunch正在注册的服务，多入口并发还会重复启动；修复已在VibeKits main `68c332225bd15d8a9643a3c603d232c045545a3c`以实时IPC来源区分和桌面启动single-flight做48项非交付回归。正式包与Mac132真实覆盖仍未通过，不能凭源码修复清现场或宣称G02完成。详见[注册等待与并发启动修复](../../docs/acceptance/MAC132_REGISTRATION_PENDING_SINGLE_FLIGHT_SOURCE_FIX_20261025.md)。
 
-当目标新helper日志有`Cluster registration refused: SERVER_ERROR`及另一relay进程`Address already in use`时，把服务器拒绝和IPC竞争分别定位；Mac132失败798实际向前三节点各被拒，第四节点的`keep_alive`出现在原30秒门禁失败约2秒后，旧723也长期有`ipc_service`重试；不能把后一重试当798独有根因，也不能凭晚到回应推断当时gate已ready。同字节签名798 helper在Mac445约0.95秒得到keep_alive、无SERVER_ERROR且当前gate ready，先查失败目标特有多实例/多节点时序。不能凭DSH/Web已ready或延长健康窗口、关闭native门禁、混装旧helper、重复apply来宣称兼容。保留失败候选、原App和唯一仍可用的仿真连接。接管残留relay前，用`lsof -d txt -Fni`核PID映射inode和监听连接；先准备可在仿真掉线后独立执行的精确PID守护与回退入口，并能验原723 helper、原ID、MCP和房间心跳，不能裸杀唯一中继。待新源修复、负控及同一macOS12真机覆盖重验。控制端封装含一次性token的工具调用时，捕获`TimeoutExpired`并仅记录异常类型与原事务索引，避免默认异常文本把完整命令/令牌写入日志或聊天。
+当目标新helper日志有`Cluster registration refused: SERVER_ERROR`及另一relay进程`Address already in use`时，把服务器拒绝和IPC竞争分别定位；Mac132失败798实际向前三节点各被拒，第四节点的`keep_alive`出现在原30秒门禁失败约2秒后，旧723也长期有`ipc_service`重试；不能把后一重试当798独有根因，也不能凭晚到回应推断当时gate已ready。同字节签名798 helper在Mac445约0.95秒得到keep_alive、无SERVER_ERROR且当前gate ready，先查失败目标特有多实例/多节点时序。不能凭DSH/Web已ready或延长健康窗口、关闭native门禁、混装旧helper、重复apply来宣称兼容。历史`Mac132ColdGuard712-v3.js`只绑定旧主PID/哈希并最多重开App一次，不验证或回退当前独立relay，不能当作混合中继的恢复守护。保留失败候选、原App和唯一仍可用的仿真连接。接管残留relay前，用`lsof -d txt -Fni`核PID映射inode和监听连接；先准备可在仿真掉线后独立执行的精确PID守护与回退入口，并能验原723 helper、原ID、MCP和房间心跳，不能裸杀唯一中继。待新源修复、负控及同一macOS12真机覆盖重验。控制端封装含一次性token的工具调用时，捕获`TimeoutExpired`并仅记录异常类型与原事务索引，避免默认异常文本把完整命令/令牌写入日志或聊天。
 
 
 ## 终态只读工具与短票据审计
