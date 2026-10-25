@@ -30,6 +30,8 @@
 
 同时检查外层ok、MCP isError、structuredContent.ok及实际数据。有管理审计入口时，核对同一delegationId的controller/target、claimed和completed，无需读取授权envelope或密钥。实际Mac app_signature及Windows applications已验证可通过房间票据执行，但空软件列表不证明便携程序不存在或版本正确。TOOL_DENIED保留为范围拒绝，不放宽白名单、TTL或目标同意来凑通过。
 
+2026-10-26旧Windows普通设备619与424的**两方向**实测可复用为正负例：在kemi业务房分别以新请求ID执行单次system.info，明确`authorizationMode=room-delegation`、真实目标PID及服务端同一委派`claimed=1/completed=1`，然后关闭；在newlink售后房分别返回`CUSTOMER_SIMULATION_ACCOUNT_BINDING_REQUIRED`且对应请求ID的服务端票据数为0，不继续调用目标。见[两方向旧端真机矩阵](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G06_G08_OLD_WINDOWS_BUSINESS_SUPPORT_MATRIX_20261026.md)。这只覆盖这对旧版普通设备和一个只读工具；最终统一包、管理员撤权及其他工具仍须各自验收。
+
 短授权票据有独立保留期，调用后立即收集当前账本证据；已按保留策略清除的行不补造、不恢复成活票据。缺证据须明确列出，必要时仅对可重复只读检查取得新回执，不重做未知结果的业务操作。
 
 反向测试可通过已有获授权通道调用对端控制器，分别记录编排通道与被测房间段。断开后的本地SESSION_EXPIRED不是成员退房或服务端撤销证据。心跳以last_seen和服务端阈值判断，presence的ended为空不足以证明在线；短采样不能覆盖历史共同间断、离线设备或长期稳定性。
