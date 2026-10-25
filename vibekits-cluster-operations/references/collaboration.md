@@ -4,6 +4,8 @@
 
 后台筛选在线、平台、关键词，展开设备的电脑名称、原 ID、办公 ID、版本、心跳、工具、能力证据、负载与权限。管理 MCP hbbv_room_devices 仅在当前 tools/list 存在时使用，按 nextCursor 全部分页。无 Key 设备可运行授权的确定性工具，但不能称自主模型就绪。
 
+模型健康字段会随时间回到`unknown`，不能把旧版或早先的`ready`当当前证明，也不能把unknown直接判成Key失效。确需真模型复验时，先核本机无请求在途、固定分析会话不忙；只调用一次正式`cluster.model.verify`。首回执`request_started/modelReadyAsserted=false`只是启动，等同一请求结束后再只读核描述`source=harness/state=ready`及生产新鲜心跳的`checkedAt/modelReady/credentialStatus`；超时或失败先对账，计费请求不自动重发，不读Key或聊天正文。最新799 Mac529的[一次真实复验](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/MAC529_799_MODEL_VERIFICATION_20261026.md)仅证明该设备当次生成，不替其他设备、长时状态或任务执行许可。
+
 普通房间消息在网页登录原管理账号后选接收 ID/正文发送，不要求发送者仿真 ID。POST `/api/v1/manage/rooms/{roomId}/messages` body requestId/deviceIds/body；最多32设备、4096字符/16384字节，GET after/limit 增量合并 messageId。queued=服务器已存，received=设备持久 ACK，processed=设备回报处理；都不是业务独立验收。超时复用同 requestId 与完全相同正文，先对账再重试。消息不自动执行命令或调用计费模型。
 
 真实任务：组长冻结合同/材料 hash/目标平台/原设备范围/工具/截止/分值/验收→原发布者签名 challenge→发布→候选能力分析竞标→唯一分配→签名 claim/fence/lease→本地 grant→每个外部操作 permit→执行→完整消息/产物/ACK→独立验收→积分。只有竞标、offers 或执行 scope 配置都不是执行许可。用实际 management MCP 和 cluster 工具，不猜 URL 或手写数据库状态。
