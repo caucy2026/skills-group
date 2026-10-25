@@ -41,4 +41,6 @@
 
 同日原七台Windows619（旧732客户端，modelReady=false）在同一业务房也按此顺序完成一次只读`system.info`，Windows进程回执、服务端同票据领取/完成与自有断开均真实读回；见[Windows619验收](../../docs/acceptance/G04_G08_WINDOWS619_NO_MODEL_ROOM_20261025.md)。这验证的是跨平台单工具与当前权限，不扩大到编译、签名、撤销或全部原七台升级。
 
+2026-10-26 又以两台**普通**旧版Windows（619/build732为控制端、424/build789为目标）对同一对设备做房间策略对照：在newlink通用服务房仅申请一次`system.info`即被`CUSTOMER_SIMULATION_ACCOUNT_BINDING_REQUIRED`拒绝，服务端该requestId委派数0；换成双方均approved的kemi业务房后，新requestId返回短票据，直接同票据`room_call`实际命中424，服务端领取/完成各1，最后关闭自有通道。见[真实正负矩阵](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G06_G08_OLD_WINDOWS_BUSINESS_SUPPORT_MATRIX_20261026.md)。跨房测试必须固定显式roomId、控制端/目标原ID及唯一只读工具；负控拒绝后不换ID盲试，正向准备阶段`connected=false`不替代实际调用。该单对矩阵仍不代表降级/退房/管理员撤权或全部客户、工具、设备通过。
+
 入房和实时心跳已验证，最新同源签名包、实际互通修复、账号延续、任务闭环及长期/规模仍以完整G01–G10台账为准。
