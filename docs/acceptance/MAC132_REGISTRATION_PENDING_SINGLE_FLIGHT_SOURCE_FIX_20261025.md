@@ -14,6 +14,6 @@ Session-ID: 01a12aa0-1fd3-7862-8fbd-686ddc8732f2
 - 原生`--status`从运行中IPC取得有效原ID时，`registration_pending`和服务器尚未确认的`offline`都保留现有单实例继续注册；超出本轮短探测窗口返回明确`HARNESS_REGISTRATION_PENDING`，不stop、不再次launch。仅从持久配置`--get-id`回读的ID不能冒充运行中IPC。后续调用仍先读取状态，等待同一实例。
 - 同一组桌面启动参数在进程内共享一个在途Future，避免同时看到offline的入口各自启动helper；结算后移除Future，不缓存旧在线结论。Android启动路径和真实旧单实例离线接管路径保留。
 - 隔离目录从当时VibeKits main提取这两个目标文件；直接导入的三个源码依赖与main SHA一致。`prebuild`执行资格检查返回`ELIGIBLE`，policyMain `023bff9b9f503c1c6f5afdafebeb085ba184bb83`。
-- 新增三项历史回归，分别覆盖显式`registration_pending`、有实时IPC但暂时`offline`、并发启动。前两项主要负控和并发负控先按旧源码失败，再按修复通过；历史“无IPC的旧单实例”fixture明确使用`routingId=null`，保留原精确接管验收。`test/rustdesk_harness_share_service_test.dart`整份48项通过。定向`dart analyze`退出0，仅报告两条本次改动之外的info级提示。
+- 新增三项历史回归，分别覆盖显式`registration_pending`、有实时IPC但暂时`offline`、并发启动。前两项主要负控和并发负控先按旧源码失败，再按修复通过；历史“无IPC的旧单实例”fixture明确使用`routingId=null`，保留原精确接管验收。`test/rustdesk_harness_share_service_test.dart`整份48项在最终主线同SHA源码独立连续三轮通过；追加两轮均退出0、`+48: All tests passed!`。定向`dart analyze`退出0，仅报告两条本次改动之外的info级提示。复测后仅清本次生成的`build`与`test-tmp`，前后可用字节`10,051,416,064→10,147,958,784`，源码和测试保留。
 
 **未完成的发布门禁**：这只是源码与模拟调用验收，尚无修复候选编译、Developer ID签名公证和旧723→新包在原132的真实覆盖。真实验收仍须证实原ID/公钥/授权、唯一helper进程与映射inode、原30秒gate、Safari15、房间心跳、MCP及失败回退；SERVER_ERROR服务器内部成因如继续复现要独立定位。132当前唯一混合中继不得因本次源码通过而停止或宣称恢复。
