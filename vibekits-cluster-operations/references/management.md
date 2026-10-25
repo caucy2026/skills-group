@@ -14,6 +14,8 @@ API个人登录POST /api/v1/account/login；管理登录POST /api/v1/manage/logi
 
 ## 账号分级与迁移
 
+面向几万账号时，目录走服务端分页/搜索，首屏只构建当前页的用户档案；跨客户角色过滤、通配字符转义和非法条件拒绝分别验收。2026-10-25当前hbbv源码的三万合成账号合同通过：首页限20、第二页不重复、搜索与客户作用范围正确；这不证明生产浏览器的两级折叠、独立操作弹窗和真实保存体验通过。复现与边界见[三万账号目录合同](https://github.com/caucy2026/skills-group/blob/main/docs/acceptance/G07_THIRTY_THOUSAND_ACCOUNT_DIRECTORY_CONTRACT_20261025.md)。
+
 管理员授权以serverId/customerId/userId为范围。先选客户，再在“用户与管理员等级”核用户ID、当前客户等级及授权revision。PUT /api/v1/manage/customers/{customerId}/managers/{userId}/level，body为administratorLevel（1–10，或null撤销）及expectedRevision；首次授权也先GET同一路径，不能假定revision。仅admin可写，409读回后重新决定，不重放未知结果。
 
 旧自动一级不再是有效客户管理员；旧全局等级保留兼容/历史但不授新权限。无法确认的旧授权只显示待核提示，由admin明确决定，不能凭数字、手机号或房间owner自动补授。超级管理员不是普通10级；配置/升级不重置密码、身份或原设备授权。
