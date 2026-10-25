@@ -4,7 +4,11 @@
 
 专用QA房内原132曾为revoked，即使服务端存在仍有效且设备绑定的pending邀请，旧723客户端的`vibekits.cluster.apply`仍可在本机直接拒绝“已有申请或决策，不会自动重新申请”。控制端`simulator.call`外层ok只证明传输；须读目标Harness诊断及服务端成员/邀请/application三份状态。2026-10-25真实首败中后台全未改变，不重复点击、不改SQLite或放宽房间隔离。只有安装并验收含`freshInvitation`终态重申请路径的新签名包后，才由原设备回应原邀请，再走管理员审批和委派撤销。见[132旧端受邀拒绝](../../docs/acceptance/ROOM_QA_132_INVITATION_OLD723_REJECTION_20261025.md)。
 
+132已用同一最终签名799包从723真实覆盖并原ID/G73指纹重连，目标事务`COMMITTED/PASS`、旧relay混代未复发。新799对**原pending邀请**单次`cluster.apply`后，服务端产生新的pending application/revision3并绑定邀请，原成员仍revoked2；这证明客户端终态重申请路径，**没有**自动审批或产生仿真权限。下一步由获授权管理员审设备身份、批准，再分别核正向房间委派与降级/撤销拒绝。完整时间线见[132签名799与受邀重申请](https://github.com/caucy2026/skills-group/blob/main/docs/acceptance/MAC132_799_ORIGINAL_ID_OVERLAY_AND_QA_REAPPLY_20261026.md)。
+
 长空闲后的MCP只读调用可能在控制端普通8秒预算边缘超时，**目标仍可能晚到成功**。Mac132旧723于11:54房间读取在控制端约8.021秒`mcp_timeout`，目标同次调用仅530毫秒且成功；身份/进程/连接仍有效后，一次只读重试约7.775秒成功、两房仍live。先核目标脱敏工具时戳与控制端结果、原PID/inode及服务器心跳，不把控制端超时写成房间离线，更不能对有副作用工具照此重试。最终签名包须补长空闲→原ID只读工具的两侧时间回归；见[132空闲房间读取首败](../../docs/acceptance/MAC132_IDLE_ROOM_READ_TIMEOUT_20261025.md)。
+
+799真机仍出现两种只读预算缺口：`app_signature`目标实际13.556秒成功但控制端普通8秒先报失败；一次`cluster.rooms`目标725毫秒成功而外层超时，核原连接与目标日志后仅对该只读工具有界复读成功。修正应只为这些明确只读操作设置覆盖目标处理与relay传输的有界预算和负控；绝不把所有RPC无限延时或对`update_apply`、申请/审批等有副作用操作照搬重试。当前799不能凭COMMITTED或房间一瞬在线判长空闲稳定。
 
 ## 原进程仍活但缓存App路径已消失
 
