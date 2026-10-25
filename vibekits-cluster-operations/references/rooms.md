@@ -18,6 +18,8 @@
 
 2026-10-26[已安装Mac132/799真机目录回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G06_G07_MAC132_799_ROOM_ROSTER_SCOPE_20261026.md)展示普通成员的两种视图：newlink通用服务1后台16台approved，132的`room_devices`仅返在线管理员155一台、不返回自己和其他普通设备；kemi普通业务房后台8台approved，132得到完整8/8（1管理员、7成员，含自己）。先核原serverId、安装身份、房间批准和目录真实结果，再判可见范围。这个目录数据验收不代替最终网页折叠、实时通知、管理员看全体或其他客户房间矩阵。
 
+**覆盖升级数据冻结期间的调用边界**：800冻结源码的`harness_tool_bridge.dart`中`cluster.rooms`和`room_devices`均先调用`ClusterRoomAgent.start()/sync()`；`sync()`在修订变化时可能`_persistProfile()`写本地房间快照。因此工具被标为只读、HTTP使用GET，不等于本机配置文件绝对不变。做升级前后文件SHA比对时，先与负责会话协调并冻结读房间调用；确需调用则记录准确时间/工具/目标，将可能的正常缓存刷新与异常数据变化按具体文件对账。2026-10-26共享800首次启动的归因仍由原负责人核验，不能仅凭源码可能写入就声称本次差异已查明。
+
 按当前catalog使用room_connect/room_call选择明确的房间范围；不向普通simulator.connect传未声明参数。若普通connect自动选择房间，也须从实际返回核authorizationMode=room-members、roomId、server/customer、transport与原身份，再做真实工具调用。按两方向检查：system.info、一个超出历史五项诊断的低副作用工具（如获授权文件差异读取）、调用审计与工具结果。目录265项不代表265项都验过。
 
 必须区分：后台设备在线、MCP connected、SSH ready、模型 ready、任务执行授权。委托按需模式 SSH=false 可以正常调用 MCP。旧逻辑会话 expiry 显示离线但实际新票调用成功，需修复状态刷新，不放宽票据 TTL 或用永久白名单掩盖。
