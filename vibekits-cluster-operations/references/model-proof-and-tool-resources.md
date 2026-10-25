@@ -13,10 +13,12 @@
 
 无新鲜模型证明时，已授权设备仍可能提供文件、编译、系统等确定性能力。先读当前catalog和任务requiresModel合同；不把普通仿真工具成功冒充Harness竞标/执行租约通过，也不为测试清除真实模型凭据。
 
-1. `vibekits.simulator.connection_status {routingId}` 核对已有连接归属。只回收自己创建的连接。
-2. 双方已批准入同一房间时，用 `vibekits.simulator.connect {routingId,roomId}` 精确选择房间；room-members/room-delegated-on-demand可能只有MCP，sshReady/transportReady=false不等于MCP失败。不能回退旧白名单来掩盖房间失败。
-3. 获取目标实际catalog，然后用 `vibekits.simulator.call {routingId,toolId,arguments}` 执行目标支持、授权范围内的工具。只读可先用system.info；system.resources按当前schema和平台用小预算。编译、写文件、签名等使用各自既有合同/资源预算，不由只读例子扩权。
-4. 检查每层结构化ok及真实结果；记录目标PID/时间、来源/目标ID、房间、版本证据层次及调用收尾。目录、取票、connected与真实执行成功分开。
-5. 结束用simulator.disconnect回收自有连接，再确认connected=false。当前“不自动建连”的调用合同下，可用同一只读工具做一次关闭后拒绝负例；拒绝后不换通道重放。关闭负例不等于服务端退房/撤销负例，后者另验。
+1. `vibekits.simulator.connection_status {routingId}` 核对控制端已有连接归属；外部控制器新建的直连只回收自己的连接。先核双方原ID/指纹、当前同房批准成员和目标实际catalog。
+2. 按**当前schema**显式使用 `vibekits.simulator.room_connect {routingId:目标,roomId,toolId,requestId:新唯一ID}`。普通`simulator.connect`只接受其实际声明的参数，不能自行加`roomId`；不能回退旧白名单掩盖房间失败。准备阶段`tunnelPrepared=true/connected=false`仅表明短票据就绪，room-delegated-on-demand可能无需SSH ready。
+3. 立即以同目标、同唯一工具调用`vibekits.simulator.room_call {routingId,toolId,arguments}`；只读可先用system.info，再用当前schema的`system.resources(samples=1,intervalMs=250)`等小预算工具。编译、写文件、签名另需自身合同/资源预算，不能由只读票据扩权；未知调用结果保留原requestId，不换票重做。
+4. 检查外层、内层、目标结构化ok/isError及真实数值/身份；管理端按精确requestId核同房/controller/target、claimed=1/completed=1。模型健康心跳在调用前后均无可用模型时，只能证明这次确定性工具不依赖新鲜模型证明，不能推断目标没有安装模型。
+5. finally调用`simulator.room_disconnect`并核closed；若外部控制器为了核身份另建直连，再单独关闭那条自建连接，不能断开他人连接。关闭负例不等于服务端退房/撤销负例，后者另验。
 
 2026-10-21项目实证索引：`docs/acceptance/FLEET_MODEL739_ROOM_RESOURCES_20261021.md`。739曾取得一次新鲜模型证明；之后超过TTL回unknown。Windows619的modelReady=false/checkedAt=null时通过原房间完成系统/内存读取，关闭后not_connected。仅证明该确定性工具链，不是未配置模型机器的完整业务验收、长期稳定或七台统一升级通过。
+
+2026-10-26新的[真机G04/G08回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G04_G08_NO_MODEL_ROOM_RESOURCES_REAL_20261026.md)：普通控制端424在kemi业务房对619取一次限定工具票据，目标在调用前后生产心跳可用模型0，真实资源回执CPU计数器可用/内存/存储数值，服务端领取和完成各1，连接已关闭。只保留脱敏数值与原回复SHA，原回复中的Top进程名、告警正文及票据全文已清。这个正例不代替最后统一包、编译/签名能力、管理员撤权或24/72小时。
