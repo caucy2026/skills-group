@@ -37,4 +37,6 @@
 
 2026-10-23本批两台Linux的房间调用曾返回ROOM_SIMULATION_NATIVE_POLICY_INACTIVE；该首败保留。2026-10-25已用原ID155→ARM64 Linux571在kemi业务房完成一次签名房间短票据`system.info`：room_connect为tunnelPrepared=true/connected=false，立即同票据room_call实际成功，room_disconnect关闭自有通道，服务端同委派ID的领取及完成均读回；目标当时modelReady=false，证明这项确定性只读资源不依赖模型。参见[真实验收](../../docs/acceptance/G04_G08_LINUX_ARM64_NO_MODEL_ROOM_20261025.md)。另一Linux、编译/签名工具、撤销矩阵及所有房间仍未因此通过。遇到原native错误时仍须查server/room/target、激活/过期、工具/限额和实际安装包，不能关闭安全检查或借普通白名单绕过。
 
+同日原七台Windows619（旧732客户端，modelReady=false）在同一业务房也按此顺序完成一次只读`system.info`，Windows进程回执、服务端同票据领取/完成与自有断开均真实读回；见[Windows619验收](../../docs/acceptance/G04_G08_WINDOWS619_NO_MODEL_ROOM_20261025.md)。这验证的是跨平台单工具与当前权限，不扩大到编译、签名、撤销或全部原七台升级。
+
 入房和实时心跳已验证，最新同源签名包、实际互通修复、账号延续、任务闭环及长期/规模仍以完整G01–G10台账为准。
