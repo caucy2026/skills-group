@@ -12,7 +12,7 @@ description: 操作和管理 VibeKits 集群：远程仿真、管理后台、客
 
 只拿到分享网址和后台管理密码、要把当前本机入房时，先读 [智能体入房执行单](references/onboarding.md)：自行发现本机原 ID，使用本团队默认接入参数，申请一次，再通过管理登录精确审批、激活及验通。密码只在可信登录或受保护输入中提供。
 
-当前生产的kemi业务房、newlink通用服务、重复入口及既有设备迁移，先读 [Kemi业务与通用服务迁移](references/kemi-service-migration.md)。旧接入文档中的newlink业务默认值仅作历史，不直接覆盖现有配置。当前业务默认客户为kemi；newlink是独立通用服务父系，服务端自动分配已启用，但全新安装首入、重装和退房恢复仍待实机验收。
+当前生产的kemi业务房、newlink通用服务、历史重复房退休及既有设备迁移，先读 [Kemi业务与通用服务迁移](references/kemi-service-migration.md)。旧接入文档中的newlink业务默认值仅作历史，不直接覆盖现有配置。当前业务默认客户为kemi；newlink是独立通用服务父系，服务端自动分配已启用，但全新安装首入、重装和退房恢复仍待实机验收。
 
 ## 选择操作
 
