@@ -16,7 +16,7 @@
 
 模型完成、结果镜像、对方持久入箱、processed ACK镜像、反向实际送达、独立验收分别核对。发送返回pending时保留原messageId/seq；不得换正文或新消息冒充重试。租约过期但原生会话确已停止且完整原结果可验证时，使用正式reconcile接口核原outputHash，不重做业务；对账到verifying不等于accept或加分。
 
-原七台Office任务的[生产只读账本审计](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G03_SIX_ACCEPTED_ACK_SCORE_READONLY_20261026.md)展示验收口径：六个实例accepted且各唯一`+1 accepted_result`、零冲销，但617不可达使总任务仍failed；290条消息中153条ACK的`ack_of`均指同实例原消息、收发方向相反，同时有16个原消息收到多条ACK，不能把消息ACK唯一性与积分唯一性混同。逐实例看实际是否同时存在两个业务方向；只有单方向原消息时不能伪造反向业务ACK。本次六台零重复积分也不证明Office实际下载安装或七台任务成功。审计时只读元数据与哈希，勿导出聊天/结果正文。
+原七台Office任务的[生产只读账本审计](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G03_SIX_ACCEPTED_ACK_SCORE_READONLY_20261026.md)展示验收口径：六个实例accepted且各唯一`+1 accepted_result`、零冲销，但617不可达使总任务仍failed；290条消息中137条非ACK原消息各恰有一条`received`，其中16条另有一条`processed`，总ACK153。全部ACK的`ack_of`均指同实例原消息、收发方向相反；原先16个“一条消息两ACK”是两个合法阶段，不是同阶段重复。`received`仅是接收确认，不能冒充`processed`或独立评分。逐实例看实际是否同时存在两个原业务方向；只有单方向原消息时不能伪造反向业务消息。本次六台零重复积分也不证明Office实际下载安装或七台任务成功。审计只读元数据与ACK固定state，勿导出原消息/结果正文。
 
 核工具回执时，按callId/offset重组后台分片，检查总字节数、完整SHA和实际原生session_status的回执索引。MCP文本不一定是JSON：保留解析失败及原hash，不能重写原文冒充有效结构；关键事实须有可验证结构化来源。不要读取或发布SDK私有推理记录、授权envelope或宽范围原始进程内容。
 
