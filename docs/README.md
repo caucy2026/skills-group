@@ -4,7 +4,7 @@ Website: https://kemi-chat.newlinksz.com:21122/vibekits/
 
 ## 开始使用
 
-- [注册、安装与首次接入](installation.md): 手机号注册默认一级，分配团队权限后用正式客户端原身份接入。
+- [注册、安装与首次接入](installation.md): 手机号注册为普通会员，不自动获得客户、房间、设备或管理员权限；正式客户端另行核验原身份。
 - [自更新、覆盖与回滚](self-update.md): 检查商城更新，保留原授权，核实新进程和原房间。
 
 ## 连接与调试
@@ -16,6 +16,8 @@ Website: https://kemi-chat.newlinksz.com:21122/vibekits/
 ## 房间与协作
 
 - [入房、成员与十级管理](rooms.md): 账号1–10级、设备0级、客户权限和房间角色独立；申请审批、激活和等级仿真。
+- [自动通用服务生产验收](acceptance/SERVICE_AUTO_PRODUCTION_20261025.md): 业务默认kemi，独立newlink服务端已开启原生签名自动分房；4台既有设备通过，全新安装和万台真实在线仍待验。
+- [使用网页与云端发布回执](acceptance/PORTAL_SERVICE_AUTO_GUIDANCE_PRODUCTION_20261025.md): 最新公开说明、机器可读清单、校验范围与残留缺项。
 
 ## 构建与签名
 
@@ -39,4 +41,4 @@ Website: https://kemi-chat.newlinksz.com:21122/vibekits/
 
 - [VibeKits的机制与创新](product-innovation.md)。
 
-- [十级管理设计与验收说明](admin-level-acceptance.md)：规则、权限矩阵、验收范围与未上线边界。
+- [十级管理设计与验收说明](admin-level-acceptance.md)：历史规则与验收边界；当前客户、管理员和设备权限以实时服务及房间说明为准。

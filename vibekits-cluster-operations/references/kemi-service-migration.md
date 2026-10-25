@@ -1,6 +1,6 @@
 # Kemi业务与Newlink通用服务：接手要点
 
-这是2026-10-23本团队生产案例，换部署先核实时serverId、customer、设备身份与用户授权，不把旧设备表当任意设备操作许可。完整证据见hbbv/docs/acceptance/KEMI_ROOMS_PRODUCTION_20261023.md；该记录还列出未完成目标。
+这是2026-10-23本团队生产案例，换部署先核实时serverId、customer、设备身份与用户授权，不把旧设备表当任意设备操作许可。历史迁移证据见hbbv/docs/acceptance/KEMI_ROOMS_PRODUCTION_20261023.md；自动服务最新生产回执见[技能库验收文档](../../docs/acceptance/SERVICE_AUTO_PRODUCTION_20261025.md)。
 
 ## 当前入口与边界
 
