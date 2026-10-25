@@ -14,6 +14,8 @@
 
 Mac529真实案例中hbbs仿真ID显示在线，但hbbv心跳已停、`simulator.connect`在source_authorization失败；严格指纹LAN SSH证明原792主进程仍运行，所指Caches App磁盘已不存在。此时不得用旧正式723覆盖、不按同版名称复制未知字节，也不能把进程存活或hbbs在线算房间可用。沿登记备用通道先核原PID/出生时间、用户数据根及当次副本，私有副本逐文件SHA与权限读回，Keychain/原公钥/系统授权独立保护；下一合格签名包覆盖后再用原ID、MCP、房间心跳验收。2026-10-25只读盘点及22文件保护实例见[529升级前保护](../../docs/acceptance/MAC529_PREUPGRADE_DATA_PROTECTION_20261025.md)。macOS无Linux`/proc`，不要用其是否存在判断目标PID；用实际`ps -p`与出生时间。
 
+该机后来由原指纹LAN SSH完成一次有回执的同身份799覆盖：先把已签名公证799和同Team/Bundle/指定签名要求的792应急包分别验SHA、解包和Gatekeeper，旧进程在此之前不停止；同签名792**无法证明与已丢失磁盘路径的原运行inode逐字节相同**，只作为失败时应急回退。目标保护副本22/22哈希有效、无其他原生连接后，用绑定旧PID/出生/inode与计划SHA的一次性脚本停旧主及旧relay，原路径原子放入799、真实启动并核原ID/公钥与helper映射；失败才精确回退同身份792，禁止盲目重跑。目标终态`COMMITTED/PASS`，原仿真ID从SSH引导HTTP500恢复为可连接，主/relay与正式包同字节、两房心跳恢复。业务Office任务结果/评分/52条消息哈希与升级前本地备份一致，用户聊天正文未取出。详见[529丢包路径受控恢复](https://github.com/caucy2026/skills-group/blob/main/docs/acceptance/MAC529_799_LOST_BUNDLE_RECOVERY_20261026.md)；这不是允许对别的设备复制该目标脚本或跳过本机资格、数据与回退门禁。
+
 ## 已审核的旧任务仍留在恢复队列
 
 先核原room/task/instance、worker、fence、原session、结果正文与审核/ACK。不要重做已经审核的任务，也不要直接清journal、延长deadline或伪造新版结果封套。
