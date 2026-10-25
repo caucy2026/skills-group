@@ -298,3 +298,14 @@ Phone可信恢复先核原服务caps的phoneTrustedRecovery/version1，只复用
 返回digest/bytes；input是目标设备已获准的实际文件路径。不要误传path造成空输入后将“文件不存在”当整机/后台失败。529实测603字节与132旧样本529字节不同，各设备用自己的实收基线。失败结果已知且原委派claimed/completed后，修正参数使用新requestId/新票据；未知结果先查同一委派，不能重放。独立核created≤claimed≤completed≤expires，再关闭本次新建的通道；不关闭其他任务已有连接。
 
 ROOM_SIMULATION_CONSENT_REVOKED同时可能表示active=false、到期、成员revision变化或安装指纹失配，不能仅凭码断言人为撤销或服务回退。对照当前自有设备许可元数据、成员/身份和必要的部署前快照，区分原因；active=true但expiresAt已过仍不是授权。沿原客户端续期/已授权恢复路线处理，不写SQL补许可、不改走普通仿真绕过拒绝。部署前已过期而切换前后payload相同，不归为本次新代码撤销；这种新请求拒绝也不能代替有效未使用旧票据的撤销验收。
+
+
+## 手机快照分片与跨证据核对（2026-10-25）
+
+同账号协同的operation终态、结果清单、事件流和界面必须分开。`completed`只说明宿主完成了该operation；`account_collab_results.state=sealed`说明分片已由宿主上传并封装，不能证明手机已收齐。`acknowledged`是源端明确确认并释放暂存分片，也不独立证明GUI渲染正确。事件流的open/closed、sequence和过期时间是另一组证据；它没有逐消费者读取ACK列，不能用该事实否认结果清单的接收确认。只读查询不会触发sweep，存储仍为open/sealed但期限已过时必须另标实际过期。
+
+当前HostReadResultTransfer的sessionSnapshot先校原SDK snapshot header.id与原请求sessionId；最终queue/complete封套只带state及eventCursor，正常不带sessionId。因此审计器从completion顶层提取sessionId得到false/缺失，既不能改为true，也不能直接推断错会话。保持“独立关联未证明”，再用原UI选中项、原构造器对应请求摘要和获授权的原SDK边界分别关联；不为补字段解密聊天或重读SDK制造新事务。代码见[原结果传输](https://github.com/caucy2026/vibekits/blob/main/lib/companion_host/integration/account-sdk-host/host_read_result_transfer.dart)，实际版本仍须与冻结源码对应。
+
+跨会话对账先匹配精确operationId摘要、双方installation/binding、时间、原回执及结果清单；只输出必要状态、大小与计数。相同operation并不能让所有派生字段自动通过。依赖命令必须先等待并检查实际退出状态及结构化结果，再生成后续通知；禁止把“检查命令＋预拟成功消息”当作独立并行步骤。false、缺失、截断与未知分别保留，发现错误说明立即更正到原接收方，按项目资格规则处理，不能自己恢复资格。
+
+操作名未以明文持久化时，可在不读取秘密/业务参数的条件下，对已知公开只读请求形状使用原生产canonical编码离线算摘要；引用前端原构造器的匹配时标明证据来源，不能冒称独立重建全部参数。严格限定源/目标、binding和时间窗；“该窗内没有已接收的发送操作”不代表没有HTTP尝试、其他传输或后续副作用，也不是自动重发许可。未知发送始终保留原草稿和operation，先对账原事务。
