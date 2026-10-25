@@ -48,6 +48,8 @@
 
 ### Intel/macOS12 候选已替换但仿真门禁未就绪
 
+Mac132真实混合中继最终已通过独立守护恢复：先核原PID/出生时间、主程序和两版helper哈希、失败映射inode、公钥与任务空闲；只有自己的一条有效控制连接或**后台空闲0连接**可进入接管，额外或其他peer持续存在则拒绝。触发文件必须绑定单次runId，守护在目标机独立于仿真SSH运行；只对精确原relay使用专用`--vibekits-harness-stop`，启动旧正式helper，核原ID、公钥、callable与映射inode，失败最多一次恢复原失败helper作救援。外部控制端随后必须断开并用原ID重连，真实调用MCP、读两房心跳，独立验签；不能把守护日志或控制端旧连接状态当PASS。前几次安全中止证实前台SSH调用自身会临时出现在`--connections`中，独立守护空闲却为0，切勿误判为空机离线。此方法有目标专属PID与私有plan，不得照搬静态脚本到别的设备；见[132真实接管记录](../../docs/acceptance/MAC132_MIXED_RELAY_EXACT_TAKEOVER_20261025.md)。恢复的是旧723同代进程族，不是798升级通过。
+
 若控制端`update_apply`观察超时且目标短暂出现新包，先沿原更新器PID/创建时间读取同一`transaction-public.json`及`transaction-health-*-public.json`，不要按磁盘一瞬间的版本或前一条`applying=true`判成功。2026-10-25原Mac132的723→最终签名798只提交一次：新PID53983实际启动，但30秒原生仿真gate未ready，更新器`ROLLBACK/FAILED/RESTORED`，旧723新PID54977独立健康PASS。旧主程序、原ID、公钥、MCP和房间心跳恢复；但后续映射inode核验发现独立relay PID54678仍加载失败798隐藏bundle的helper（inode12906188249），而当前旧723磁盘helper为inode12903573822。此时是723主程序与798中继混合运行，不能把更新器的`RESTORED/HEALTH_PASS`称为进程族完整回滚。原90份用户状态85份不变、2份运行时端点重建、3份consent-renew轮换。详情见[首败与回滚验收](../../docs/acceptance/MAC132_798_SIMULATOR_GATE_ROLLBACK_20261025.md)。
 
 桌面包的`--vibekits-harness-status`在原生IPC仍活、服务器尚未确认时可返回`offline`及实时原ID；若IPC断开，同一CLI可改从持久`--get-id`取回显示用ID。两种ID不能混为“当前服务可用”或“旧中继已失效”。Mac132的旧源码默认8秒探测超时后可能stop/relaunch正在注册的服务，多入口并发还会重复启动；修复已在VibeKits main `68c332225bd15d8a9643a3c603d232c045545a3c`以实时IPC来源区分和桌面启动single-flight做48项非交付回归。正式包与Mac132真实覆盖仍未通过，不能凭源码修复清现场或宣称G02完成。详见[注册等待与并发启动修复](../../docs/acceptance/MAC132_REGISTRATION_PENDING_SINGLE_FLIGHT_SOURCE_FIX_20261025.md)。
