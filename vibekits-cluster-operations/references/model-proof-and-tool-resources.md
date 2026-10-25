@@ -21,4 +21,4 @@
 
 2026-10-21项目实证索引：`docs/acceptance/FLEET_MODEL739_ROOM_RESOURCES_20261021.md`。739曾取得一次新鲜模型证明；之后超过TTL回unknown。Windows619的modelReady=false/checkedAt=null时通过原房间完成系统/内存读取，关闭后not_connected。仅证明该确定性工具链，不是未配置模型机器的完整业务验收、长期稳定或七台统一升级通过。
 
-2026-10-26新的[真机G04/G08回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G04_G08_NO_MODEL_ROOM_RESOURCES_REAL_20261026.md)：普通Windows控制端424在kemi业务房分别对Windows619、Mac132取一次限定资源工具票据；两目标在各自调用前后生产心跳可用模型均为0，真实资源回执含CPU计数器/内存/存储数值，服务端每次领取和完成各1，连接均已关闭。只保留脱敏数值与原回复SHA，Top进程名、告警正文及票据全文已清。Mac目标的`capturedAt`未标时区，以服务端请求/完成回执对账。这两例不代替最后统一包、编译/签名能力、管理员撤权或24/72小时。
+2026-10-26新的[真机G04/G08回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G04_G08_NO_MODEL_ROOM_RESOURCES_REAL_20261026.md)：在kemi业务房已分别验Windows424→619、Windows424→Mac132和Mac132→Windows424三次限定资源工具票据，跨平台这对设备两个方向均真实成功；每个目标在调用前后生产心跳可用模型为0，回执含CPU计数器/内存/存储数值，服务端每次领取和完成各1，房间连接均已关闭。仅保留脱敏数值与原回复SHA，Top进程名、告警正文及票据全文已清。Mac目标的`capturedAt`未标时区，以服务端请求/完成回执对账。这三例不代替最后统一包、编译/签名能力、管理员撤权或24/72小时。
