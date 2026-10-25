@@ -20,6 +20,8 @@ macOS SSH 可连接但不能访问受保护文件时，在获授权设备打开�
 
 活跃开发聊天期间若heartbeat没有真实样本，先核其调度状态和来源，再补独立但同范围的有界只读采样，不把手工样本标作调度成功。采样器现支持`--source scheduled_local`与旧manual/heartbeat分开，互斥锁防重叠；2026-10-26本机72小时后台进程前两轮样本成功、间隔901.214秒；完整24/72小时覆盖仍须继续读回。该Mac的LaunchAgent因后台访问外盘被系统拒绝，失败配置已移除；不要为巡检绕过系统磁盘权限，可复用hbbv项目`tool/original_seven_local_monitor_loop.py`，传实际受信profile/桥/输出根/serverId与本机必须挂载的卷；先以独立输出根`--max-runs 1`冒烟，在原监控终止后才对正式根启动，单实例锁会拒绝双开，外盘卸载即停写。当前活跃PID37265仍是先前脚本，整理新入口不等于已切换它。方法及限制见[原七台监控生产回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/ORIGINAL_SEVEN_MONITOR_SAMPLER_20261025.md)。
 
+评估24/72小时定时覆盖时，运行hbbv项目`tool/original_seven_continuity_audit.py --output-root <本机受控目录> --hours 24|72`，它合并raw与较旧小时摘要，分别报告窗口首尾不足、内部漏采、失败、服务PID变化及原七台/真实百台门槛。其`fullG09=BLOCK`刻意保留独立systemd停启日志和逐台OS/MCP长时证据要求；短窗口、六台在线或合成百台不能把总目标改判PASS。当前八条真样本只得到窗口未覆盖、6/7和10/100的BLOCK回执；参见上述监控生产回执。
+
 ## 覆盖升级
 
 目标机升级前先冻结原App签名身份和完整指定要求，再在目标本机留私有用户数据副本。Mac旧端可能没有可用Python3，优先用系统`ditto`复制、Ruby标准库逐项按`lstat`比对文件类型/普通文件SHA-256/符号链接目标；原始`diff -qr`会对失效的`node_modules`链接报`No such file`，零差异行不能当作备份PASS。私有manifest至少记录文件数、字节数、链接数、差异数和权限；先读回manifest与原PID，正式覆盖前若用户数据继续变化须重新核对或刷新。备份留在目标私有目录，不上传Git/云端；Keychain/TCC不靠文件复制替代升级后真实权限验收。2026-10-25 Mac445实证为11715文件、986链接、0差异，见[VibeKits七台基线](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/SEVEN_ORIGINAL_LIVE_BASELINE_AFTER_132_RECOVERY_20261025.md)。
