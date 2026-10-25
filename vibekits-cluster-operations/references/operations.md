@@ -18,7 +18,7 @@ macOS SSH 可连接但不能访问受保护文件时，在获授权设备打开�
 
 长期七台巡检须有**实际采样回执**，不能只凭自动化已ACTIVE宣称正在监控。项目`tool/original_seven_health_sampler_20261025.py`用指纹绑定的远程档案只读取原七台心跳、两房成员、服务身份及RSS/FD/TCP等有限元数据；原始样本仅留24小时，较旧样本转小时汇总并按时间去重；当前main还对旧于24小时的`scheduled_local`逐条保留时间/成功位/服务PID/新鲜计数或错误码，以便72小时后重建真实定时间隔，但跨日真实滚动仍待验。采样器自身错误与产品故障分开。现有线程heartbeat已配置每15分钟运行此入口并传`--source heartbeat`，手工补采传`--source manual`；截至2026-10-25首批回执仅证手工样本，调度器真实运行须等来源标记读回，状态未变时保持安静。完整24/72小时与百台真实验收仍要求连续覆盖和真实设备池。只读首轮与留存回归见[原七台监控入口](../../docs/acceptance/ORIGINAL_SEVEN_MONITOR_SAMPLER_20261025.md)。不同同事设备须按各自本机规则提供档案ID与输出根，不照搬别人外盘路径。
 
-活跃开发聊天期间若heartbeat没有真实样本，先核其调度状态和来源，再补独立但同范围的有界只读采样，不把手工样本标作调度成功。采样器现支持`--source scheduled_local`与旧manual/heartbeat分开，互斥锁防重叠；2026-10-26本机72小时后台进程前两轮样本成功、间隔901.214秒；完整24/72小时覆盖仍须继续读回。该Mac的LaunchAgent因后台访问外盘被系统拒绝，失败配置已移除；不要为巡检绕过系统磁盘权限，可沿当前已授权的执行通道启动有截止时间的监控，并在外盘卸载时停写。方法及限制见[原七台监控生产回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/ORIGINAL_SEVEN_MONITOR_SAMPLER_20261025.md)。
+活跃开发聊天期间若heartbeat没有真实样本，先核其调度状态和来源，再补独立但同范围的有界只读采样，不把手工样本标作调度成功。采样器现支持`--source scheduled_local`与旧manual/heartbeat分开，互斥锁防重叠；2026-10-26本机72小时后台进程前两轮样本成功、间隔901.214秒；完整24/72小时覆盖仍须继续读回。该Mac的LaunchAgent因后台访问外盘被系统拒绝，失败配置已移除；不要为巡检绕过系统磁盘权限，可复用hbbv项目`tool/original_seven_local_monitor_loop.py`，传实际受信profile/桥/输出根/serverId与本机必须挂载的卷；先以独立输出根`--max-runs 1`冒烟，在原监控终止后才对正式根启动，单实例锁会拒绝双开，外盘卸载即停写。当前活跃PID37265仍是先前脚本，整理新入口不等于已切换它。方法及限制见[原七台监控生产回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/ORIGINAL_SEVEN_MONITOR_SAMPLER_20261025.md)。
 
 ## 覆盖升级
 
