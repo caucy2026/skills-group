@@ -16,6 +16,8 @@ macOS SSH 可连接但不能访问受保护文件时，在获授权设备打开�
 
 长期七台巡检须有**实际采样回执**，不能只凭自动化已ACTIVE宣称正在监控。项目`tool/original_seven_health_sampler_20261025.py`用指纹绑定的远程档案只读取原七台心跳、两房成员、服务身份及RSS/FD/TCP等有限元数据；原始样本仅留24小时，较旧样本转小时汇总并按时间去重，采样器自身错误与产品故障分开。现有线程heartbeat已配置每15分钟运行此入口并传`--source heartbeat`，手工补采传`--source manual`；截至2026-10-25首批回执仅证手工样本，调度器真实运行须等来源标记读回，状态未变时保持安静。完整24/72小时与百台真实验收仍要求连续覆盖和真实设备池。只读首轮与留存回归见[原七台监控入口](../../docs/acceptance/ORIGINAL_SEVEN_MONITOR_SAMPLER_20261025.md)。不同同事设备须按各自本机规则提供档案ID与输出根，不照搬别人外盘路径。
 
+活跃开发聊天期间若heartbeat没有真实样本，先核其调度状态和来源，再补独立但同范围的有界只读采样，不把手工样本标作调度成功。采样器现支持`--source scheduled_local`与旧manual/heartbeat分开，互斥锁防重叠；2026-10-26本机首次72小时后台进程样本成功，下一轮和长期间隔仍须回读。该Mac的LaunchAgent因后台访问外盘被系统拒绝，失败配置已移除；不要为巡检绕过系统磁盘权限，可沿当前已授权的执行通道启动有截止时间的监控，并在外盘卸载时停写。方法及限制见[原七台监控生产回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/ORIGINAL_SEVEN_MONITOR_SAMPLER_20261025.md)。
+
 ## 覆盖升级
 
 目标机升级前先冻结原App签名身份和完整指定要求，再在目标本机留私有用户数据副本。Mac旧端可能没有可用Python3，优先用系统`ditto`复制、Ruby标准库逐项按`lstat`比对文件类型/普通文件SHA-256/符号链接目标；原始`diff -qr`会对失效的`node_modules`链接报`No such file`，零差异行不能当作备份PASS。私有manifest至少记录文件数、字节数、链接数、差异数和权限；先读回manifest与原PID，正式覆盖前若用户数据继续变化须重新核对或刷新。备份留在目标私有目录，不上传Git/云端；Keychain/TCC不靠文件复制替代升级后真实权限验收。2026-10-25 Mac445实证为11715文件、986链接、0差异，见[VibeKits七台基线](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/SEVEN_ORIGINAL_LIVE_BASELINE_AFTER_132_RECOVERY_20261025.md)。
