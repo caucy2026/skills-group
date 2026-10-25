@@ -17,3 +17,9 @@
 大压缩日志超过盘点预算不能当作零事件或空会话；按实际文件大小调整有界读取，并冻结停 owner 后的完整文件 SHA，删除器用流式摘要逐项核验。Windows 原生进程查询与实际 WMI 结果不一致时，对账同一 PID、出生时间、路径和签名，沿普通退出流程处理，不强杀或重启未知事务。
 
 Linux 用真实 XDG 数据目录与 /proc/{pid}/exe、进程出生 tick 核 owner；ps comm 通常是短名称，不能沿用 macOS 完整路径比较后误判“无人占用”。复用原图形会话环境恢复原路径，不输出环境中的凭据。备用远程办公 ID 若仅为设备自报，先核同机身份，不据此要求用户输入密码。
+
+## 六机仅元数据盘点与维护窗口（2026-10-26）
+
+先用原ID/登记主机指纹确认目标，**只计数**新旧Harness profile的canonical目录、普通/cluster命名空间、workspace与归档索引；不输出会话ID、标题或正文，不解压/读取JSONL。Mac可用现有Python或系统Ruby，Windows用已准许的只读PowerShell，不为盘点安装开发工具或改执行策略。Mac445的系统`python3`只是xcode-select开发工具安装入口，改用已存在的Ruby；其可见安装工具进程在本轮前已运行约14小时，不擅自关闭。六台在线设备真实计数见[私有只读范围回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/HARNESS_DEBUG_SCOPE_READONLY_20261026.md)：现用profile canonical目录依155/445/529/132/424/619分别为50/8/5/7/9/6，旧profile目录均0。`ownedDebugOnly=0`不等于这些普通/旧会话已清，也不能因目录存在就认定它们全是待删聊天。
+
+本机155仍有共享App和个人账号/签名在途时只读、零删除；其他设备同理先核owner空闲及原事务。到窗口后再按本技能上文用产品SessionStore、完整事件摘要、整批预校验、正常退出和永久删除，复验canonical/工作区/归档/删除账本及原ID房间心跳。617离线不计入六机成果。
