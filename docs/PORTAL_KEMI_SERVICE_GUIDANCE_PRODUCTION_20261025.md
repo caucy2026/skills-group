@@ -63,3 +63,7 @@ Linux新现场为cluster agent.deviceId长度0，同时原320仿真真实MCP仍�
 报告发布脚本首轮把中文章节标记写成bytes字面量，Python解析阶段即拒绝，未执行Git操作；已改为明确UTF-8编码，保留首败哈希及修复回执。
 
 新增证据目录portal-room-guidance-20261025-v2：manifest、candidate、html-contracts.log/verdict、predeploy-qualification、source-publications、local-preupload-input-failure、activation-result/receipt、cloud-cleanup-result、visual-proof-index；admin-expiry-contract-20261025-v1保留794-server-chain-current和794-local-tool-continuity。此补正没有改写先前失败或把候选发布到商城。
+
+## 2026-10-25 14:03 后续状态更新
+
+上文`automaticServiceAssignmentEnabled=false`为原发布时的历史实测值。当前生产已按[自动通用服务生产验收](SERVICE_AUTO_PRODUCTION_20261025.md)一次受控开启，公网`service-info`独立读回`true`、每槽上限10000。4台真实既有客户端完成原生签名resolve、旧令牌/epoch/owner不变；新安装首激活、重装找回、退出恢复和万台真实同时在线尚未完成。分发网页据此更新为“后台已启用、部分真实旧设备通过、上述实机缺项仍在”，不把源码合同当全链路完成。

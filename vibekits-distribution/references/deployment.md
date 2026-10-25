@@ -27,4 +27,8 @@ Linux 1.9.0-dev.684 / 2684，amd64 DEB，278567024字节，SHA-256 `b8e0ed0739c2
 
 保持原15个文档ID与公开路由，不为文档别名伪造不存在的raw路径。机器清单的新注册入口放onboarding.registration.guide，分级入口放accessPolicy.webGuide；documentation的键继续与handbook文档ID一一对应。客户端账号按实际候选及正式版本标明验收边界，不把浏览器登录当设备绑定。完整账号设备规则同步cluster-operations/references/account-device-levels.md及公开验收文档，禁止把“没有网页注册”的旧说明继续发布。
 
+## 2026-10-25 通用服务状态与静态发布
+
+后端同一正式release仅开启现有 `--enable-auto-service`，公网 service-info 实测 `automaticServiceAssignmentEnabled=true`、每槽10000台；4台既有真实设备签名resolve且原设备token/epoch/owner未变。新装、重装、退房恢复和万台真实在线仍需实机验收。公开门户当前release `20261025-service-auto-guidance-v1` 在同一HTTPS端口静态切换，后台PID2689633未重启；公开资源哈希读回通过，旧portal release保留回退。以后仍以实时 `current`、服务接口和商城目录为准。
+
 只改静态内容时沿原current链接原子切换，保服务PID、身份和动态商城目录；不把源码或桌面测试候选版本写成商城已发布版本。

@@ -22,9 +22,9 @@ API个人登录POST /api/v1/account/login；管理登录POST /api/v1/manage/logi
 
 ## 售后房
 
-本团队原roomId f450c684b868292f67c534b793e26314已改名vibekits通用售后，并持久设置support/default/pinned。普通成员不因同房互访；有效客户管理员仍需账号绑定、真实原生身份、目标许可和票据。普通协作房保留自己的成员协同规则。新装自动入房、多后台和全部客户端真实验收尚未完成。
+本团队原roomId f450c684b868292f67c534b793e26314现为newlink“通用服务1”，已持久设置support/default/pinned。最多8槽、每槽10000台；后续槽由服务器按原生身份和容量分配，不能给所有机器硬编码槽1。普通成员不因同房互访；有效设备管理员仍需账号绑定或显式授权、真实原生身份、目标许可和票据。普通业务房在kemi保留原成员协作规则。服务端自动分配已启用且4台既有真实设备签名resolve；新装首入、重装、退房恢复、多后台及全客户端真实验收未完成。
 
-只有admin可通过PUT /api/v1/manage/rooms/{roomId}设置supportRoom布尔值，连同name/description/expectedRevision提交；一客户只能一个售后槽位。名称不是标记。先读当前房间和修订，保留成员/任务/积分，未知结果核原事务后再决定。管理列表用view=summary，展开读取原完整详情。
+只有admin可通过PUT /api/v1/manage/rooms/{roomId}设置supportRoom布尔值，连同name/description/expectedRevision提交；newlink通用服务由服务端最多8槽容量策略管理，不能创建同名房间代替自动分配。名称不是标记。先读当前房间和修订，保留成员/任务/积分，未知结果核原事务后再决定。管理列表用view=summary，展开读取原完整详情。
 
 ## 房间生命周期
 

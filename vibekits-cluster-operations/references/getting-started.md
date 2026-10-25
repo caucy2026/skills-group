@@ -6,7 +6,7 @@
 
 - 下载与指南：https://kemi-chat.newlinksz.com:21122/vibekits/
 - **客户端后台连接地址（serverOrigin）：https://kemi-chat.newlinksz.com:21122**。这是与本网站同站的集群服务；不要把 `/vibekits/`、`/api/` 或浏览器客户参数填入 serverOrigin。
-- 本团队默认客户ID：`newlink`。默认售后房为“vibekits通用售后”（roomId `f450c684b868292f67c534b793e26314`），仍须原设备申请与管理员审批；其他客户按本组织管理员分配，不混用权限。
+- 本团队业务默认客户ID：`kemi`，业务验收房为“kemi 通用测试房”（roomId `c0985cc4dfeedaf71515ae029fc4cc4f`），入业务房仍须原设备签名申请和管理员审批。独立的`newlink`通用服务第一槽为“通用服务1”（roomId `f450c684b868292f67c534b793e26314`）；支持新版原生协议的设备由服务器自动分配服务槽，不要硬编码所有设备进第一槽。
 - 管理后台：https://kemi-chat.newlinksz.com:21122/manage 。用已有获授权管理账号正常登录，先选客户再选房间；仅有网址不等于有后台权限。
 - 统一技能：https://github.com/caucy2026/skills-group/tree/main/vibekits-cluster-operations 。必须下载整个文件夹，保留 references、modules 和 scripts，不能只复制 SKILL.md。
 - 给智能体的清单：[agent.json](https://kemi-chat.newlinksz.com:21122/vibekits/agent.json)；公开下载状态：[downloads.json](https://kemi-chat.newlinksz.com:21122/vibekits/downloads.json)。先核 checkedAt，再到商城确认当前状态。
@@ -21,11 +21,11 @@
 
 ## 通用售后与普通协作房
 
-本团队原房间ID `f450c684b868292f67c534b793e26314` 已改名为 **vibekits通用售后**。服务端已设置support/default/pinned标记。加入售后房本身不授予设备互访；访问须有当前客户管理员账号绑定、真实原生身份、目标许可及有效票据。房间管理员ID、昵称或旧owner字段都不是管理凭据。
+本团队原房间ID `f450c684b868292f67c534b793e26314` 现为 **newlink 通用服务1**。服务端已设置support/default/pinned标记并开启原生签名自动分配，最多8槽、每槽10000台。加入服务房本身不授予设备互访；访问须有有效设备管理员资格、真实原生身份、目标许可及有效票据。房间管理员ID、昵称或旧owner字段都不是管理凭据。
 
 普通协作房仍按有效成员、原身份和目标许可协作；同账号个人协同是独立链路。不同客户的数据与权限隔离。设备默认普通0级，受邀入房不自动提级。
 
-**交付边界：** 新安装自动入售后房、多后台多域名同时入房、跨后台一键退出和万台真实在线验收尚未完成。当前仍按原设备签名申请、审批和激活接入；旧客户端可能收到新标记但未把售后房置顶。不要把服务端default标记当成客户端已自动入房。
+**交付边界：** 服务端自动分配已启用，4台既有真实设备完成签名resolve且原身份不变；全新安装首入、重装找回、退出恢复、多后台多域名同时入房及万台真实在线仍待验收。业务房仍按原设备签名申请、审批和激活接入；服务房不要求管理员审批，旧客户端可能不支持自动协议或未置顶。不要把服务端default标记当成所有客户端均已自动入房。
 
 ## 客户管理员分级
 
