@@ -4,6 +4,8 @@
 
 专用QA房内原132曾为revoked，即使服务端存在仍有效且设备绑定的pending邀请，旧723客户端的`vibekits.cluster.apply`仍可在本机直接拒绝“已有申请或决策，不会自动重新申请”。控制端`simulator.call`外层ok只证明传输；须读目标Harness诊断及服务端成员/邀请/application三份状态。2026-10-25真实首败中后台全未改变，不重复点击、不改SQLite或放宽房间隔离。只有安装并验收含`freshInvitation`终态重申请路径的新签名包后，才由原设备回应原邀请，再走管理员审批和委派撤销。见[132旧端受邀拒绝](../../docs/acceptance/ROOM_QA_132_INVITATION_OLD723_REJECTION_20261025.md)。
 
+长空闲后的MCP只读调用可能在控制端普通8秒预算边缘超时，**目标仍可能晚到成功**。Mac132旧723于11:54房间读取在控制端约8.021秒`mcp_timeout`，目标同次调用仅530毫秒且成功；身份/进程/连接仍有效后，一次只读重试约7.775秒成功、两房仍live。先核目标脱敏工具时戳与控制端结果、原PID/inode及服务器心跳，不把控制端超时写成房间离线，更不能对有副作用工具照此重试。最终签名包须补长空闲→原ID只读工具的两侧时间回归；见[132空闲房间读取首败](../../docs/acceptance/MAC132_IDLE_ROOM_READ_TIMEOUT_20261025.md)。
+
 ## 原进程仍活但缓存App路径已消失
 
 Mac529真实案例中hbbs仿真ID显示在线，但hbbv心跳已停、`simulator.connect`在source_authorization失败；严格指纹LAN SSH证明原792主进程仍运行，所指Caches App磁盘已不存在。此时不得用旧正式723覆盖、不按同版名称复制未知字节，也不能把进程存活或hbbs在线算房间可用。沿登记备用通道先核原PID/出生时间、用户数据根及当次副本，私有副本逐文件SHA与权限读回，Keychain/原公钥/系统授权独立保护；下一合格签名包覆盖后再用原ID、MCP、房间心跳验收。2026-10-25只读盘点及22文件保护实例见[529升级前保护](../../docs/acceptance/MAC529_PREUPGRADE_DATA_PROTECTION_20261025.md)。macOS无Linux`/proc`，不要用其是否存在判断目标PID；用实际`ps -p`与出生时间。
