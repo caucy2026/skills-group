@@ -3,7 +3,7 @@
 Session-Name: vibekits 集群开发
 Session-ID: 01a12aa0-1fd3-7862-8fbd-686ddc8732f2
 
-**当前结论：132没有升级到798，G02仍BLOCK。** 原设备1321656264/macOS12.6.4/x86_64保持原仿真ID、公钥、授权与业务房；运行中的正式App已由更新器自动恢复为723/build2723。不能因798包在本机和445通过、目标磁盘曾短暂显示798或控制端apply调用已发出，就把132计为升级成功。
+**当前结论：132没有完成798升级，G02仍BLOCK。** 原设备1321656264/macOS12.6.4/x86_64保持原仿真ID、公钥、授权与业务房；正式主程序由更新器回到723/build2723，但独立中继仍映射失败的798 helper，存在混合代次。不能因798包在本机和445通过、目标磁盘曾短暂显示798或控制端apply调用已发出，就把132计为升级成功或完整回滚。
 
 ## 冻结输入与一次原事务
 
@@ -13,11 +13,17 @@ ZIP按唯一命名14块传入，目标每块独立SHA、整包再次SHA均一致
 
 ## 原更新器的终态与恢复
 
-同一原更新器PID53678的公开事务记录于2026-10-25T07:48:53Z为`phase=ROLLBACK`、`code=FAILED`、`rollback=RESTORED`。候选798进程PID53983已于07:48:17Z真实启动，但原30秒健康检查在07:48:47Z为`HEALTH_FAILED / simulator_gate_not_ready`；旧723回滚在07:48:53Z为`HEALTH_PASS`。这是明确的候选仿真门禁失败，不是单纯控制端超时。更新状态最终receiving=false/applying=false、无staged，目标磁盘和实际运行均回到723；新旧候选没有混合运行。
+同一原更新器PID53678的公开事务记录于2026-10-25T07:48:53Z为`phase=ROLLBACK`、`code=FAILED`、`rollback=RESTORED`。候选798进程PID53983已于07:48:17Z真实启动，但原30秒健康检查在07:48:47Z为`HEALTH_FAILED / simulator_gate_not_ready`；旧723回滚在07:48:53Z为`HEALTH_PASS`。这是明确的候选仿真门禁失败，不是单纯控制端超时。更新状态最终receiving=false/applying=false、无staged，目标磁盘和主程序回到723。**后续原生映射复核发现798中继残留，不能把更新器的RESTORED/HEALTH_PASS扩称整个进程族均为723。**
 
 独立回读旧723主程序原SHA、deep/strict/allarch签名、原仿真ID及nativePublicKeySha256`7656c766e0c1f0749bd2da9e4426e7193821fb5948e78510342e44a4e30a05c8`、当前relay callable=true；目标`vibekits.system.info`实际命中新PID54977、`cluster.rooms`仍connected/roomsAreLive=true，服务器房间与心跳继续新鲜。90个保护文件没有缺失；85个逐字节不变，2个仅MCP/任务运行时endpoint、PID、临时token随正常进程重建变化，3个`cluster-task-messages`仅短期consent-renew条目轮换，JSON其他路径均相同。原始与当前内容均保留，不以回写旧数据掩盖差异；**不能称90个全部字节相同**。用户聊天和其他受保护正文未被本报告读取或上传。
 
-已签798失败候选bundle留在目标隐藏`-failed.app`供诊断，目标读回主程序与helper分别和本机最终候选SHA一致、深签有效；该失败bundle的只读helper status在回滚后看到原设备ID/公钥，不能反推候选运行时曾注册成功。目标旧723当前helper仍是旧正式SHA，不存在未验证的新版helper占据中继。
+已签798失败候选bundle留在目标隐藏`-failed.app`供诊断，目标读回主程序与helper分别和本机最终候选SHA一致、深签有效；该失败bundle的只读helper status在回滚后看到原设备ID/公钥，不能反推候选运行时曾注册成功。目标旧723**磁盘**helper仍是旧正式SHA，但当前实际中继进程的磁盘映射须单独核验，不能由当前路径的文件SHA推断进程加载的字节。
+
+## 回滚后的原生中继残留（14:59独立纠错）
+
+当前旧723 GUI PID54977、磁盘旧723 helper SHA与原ID已核；但实际监听TCP并维持5条连接的独立relay PID54678（PPID1），`lsof -d txt -Fni`显示映射inode`12906188249`，精确等于隐藏失败798 bundle内helper inode，**不等于**当前723 helper inode`12903573822`。该进程启动于候选健康窗口内，回滚后仍活。因此现场是“旧723主程序 + 失败798原生relay”的混合代次；前段“完全恢复”仅覆盖旧主程序、原ID、签名、工具调用和房间心跳，不能证明辅助进程身份连续。第一次只用`ps comm`路径再读取该路径的当前磁盘SHA，错误地把已移动目录中的723文件当作PID54678已映射的798内容；现以打开映射的inode纠正，不重写首败。
+
+PID54678目前是唯一有监听及现成仿真连接的relay，裸杀可能切断仅存诊断通道。原KEMI备用桌面在本次电脑操作接口返回`noWindowsAvailable`，严格核G73指纹后的直连LAN SSH认证被拒；故此时没有已证可操作的独立恢复入口。尚未停止PID54678、未重启旧723、未清失败bundle或私有数据。下一步需先冻结它的PID/出生时间/映射inode和当前任务空闲，再沿已验证的独立守护或桌面入口准备**有自恢复能力的精确接管**：仅在能自动启动并核原723正式helper、原ID、SSH/MCP/房间心跳，且失败可保留原混合进程或恢复旧包时执行。此项未做之前Mac132状态仍BLOCK，其他设备不能以本机回滚绿灯作为扩散依据。
 
 ## 已定位与未证明的原因
 
