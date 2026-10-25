@@ -1,5 +1,9 @@
 # 终态恢复、原生管道和升级等待
 
+## 旧客户端对受邀终态成员的真实阻断
+
+专用QA房内原132曾为revoked，即使服务端存在仍有效且设备绑定的pending邀请，旧723客户端的`vibekits.cluster.apply`仍可在本机直接拒绝“已有申请或决策，不会自动重新申请”。控制端`simulator.call`外层ok只证明传输；须读目标Harness诊断及服务端成员/邀请/application三份状态。2026-10-25真实首败中后台全未改变，不重复点击、不改SQLite或放宽房间隔离。只有安装并验收含`freshInvitation`终态重申请路径的新签名包后，才由原设备回应原邀请，再走管理员审批和委派撤销。见[132旧端受邀拒绝](../../docs/acceptance/ROOM_QA_132_INVITATION_OLD723_REJECTION_20261025.md)。
+
 ## 已审核的旧任务仍留在恢复队列
 
 先核原room/task/instance、worker、fence、原session、结果正文与审核/ACK。不要重做已经审核的任务，也不要直接清journal、延长deadline或伪造新版结果封套。
