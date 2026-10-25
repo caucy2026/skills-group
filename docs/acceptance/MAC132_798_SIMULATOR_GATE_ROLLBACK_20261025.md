@@ -29,6 +29,10 @@ PID54678目前是唯一有监听及现成仿真连接的relay，裸杀可能切�
 
 候选PID53983的DSH/Web诊断多次ready，启动阶段总耗时约3.5秒；失败点集中于仿真原生中继。旧relay在07:48:20Z收到close；新relay开始IPC后，07:48:22/23/25Z向多节点登记均返回`Cluster registration refused: SERVER_ERROR`，约07:48:30及07:48:43Z另有relay启动尝试报`Address already in use`。这与健康检查一直看不到原仿真gate ready一致，**但尚不能判定SERVER_ERROR的服务器内部根因，亦不能把第二个IPC竞争当唯一首因**。生产hbbs当前主机的窄时间日志未提供匹配条目；目标时间戳按UTC换算无明显时钟漂移。不得简单延长健康窗口、跳过原生来源校验、使用旧helper混装或靠重启/重复apply凑PASS。
 
+### 16:40 原生日志与源码时序补证
+
+目标原生日志按目标本地时区记载：失败798 helper的`00:48:20`、`00:48:28`及仍存活的`00:48:38`三支日志各有3条`SERVER_ERROR`；`00:48:30`另一支明确在`/tmp/VibekitsHarness-501/ipc`遇`Address already in use`。存活支于`00:48:43.91`选择节点d，`00:48:45.95`记录`Connection secured`，`00:48:49.30`记录`keep_alive: 10000ms`，而原更新器于约`00:48:47`已报`HEALTH_FAILED`。冻结原生源码`7d938a4f...`的`RegisterPkResponse`处理仅在拒绝分支直接bail；`keep_alive`出现在该处理之后，因而**与晚于门禁的非拒绝回应相符**，但没有同刻客户端`simulator.status`或服务器内部回执，仍不能判定何时变为ready。旧723 helper的`00:00:09`日志也有289次`ipc_service`缺失重试，故该重试不是798独有故障证据。下一修复需分别证明多节点注册结果、单实例IPC所有权和原30秒门禁真实状态；不以延长等待或混合残留的现时可用性代替旧版覆盖验收。
+
 备用远程办公ID372799163在界面可见在线，电脑操作接口本轮返回`noWindowsAvailable`未取得可用画面；按原G73指纹验证的LAN SSH公开密钥认证被拒绝，未绕过。故本轮在原仿真恢复后用原MCP/SSH只读回执和服务器权威心跳完成对账，不能宣称备用桌面UI已验收。
 
 ## 下一步门禁
