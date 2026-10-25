@@ -46,6 +46,12 @@
 
 实证：同一签名候选在macOS12设备第一次在复制期断开原连接，随后来源复核失败且未替换旧App；时序及来源校验代码支持提前断连的解释，但未取得原生拒绝原因的直接日志；保留失败终态并恢复正常来源后，同一工具正常核权，保持原连接直到第二次事务`COMMITTED/PASS`。这证明等待提交的必要性，不代表所有同名错误都可自动重试。令牌、完整update_status和私有路径不进公开文档。
 
+### Intel/macOS12 候选已替换但仿真门禁未就绪
+
+若控制端`update_apply`观察超时且目标短暂出现新包，先沿原更新器PID/创建时间读取同一`transaction-public.json`及`transaction-health-*-public.json`，不要按磁盘一瞬间的版本或前一条`applying=true`判成功。2026-10-25原Mac132的723→最终签名798只提交一次：新PID53983实际启动，但30秒原生仿真gate未ready，更新器`ROLLBACK/FAILED/RESTORED`，旧723新PID54977独立健康PASS。旧ID、公钥、签名、MCP及房间均恢复；原90份用户状态85份不变、2份运行时端点重建、3份consent-renew轮换。详情见[首败与回滚验收](../../docs/acceptance/MAC132_798_SIMULATOR_GATE_ROLLBACK_20261025.md)。
+
+当目标新helper日志有`Cluster registration refused: SERVER_ERROR`及另一relay进程`Address already in use`时，把服务器拒绝和IPC竞争分别定位；不能凭DSH/Web已ready或延长健康窗口、关闭native门禁、混装旧helper、重复apply来宣称兼容。保留失败候选和原App回退，待新源修复、负控及同一macOS12真机覆盖重验。控制端封装含一次性token的工具调用时，捕获`TimeoutExpired`并仅记录异常类型与原事务索引，避免默认异常文本把完整命令/令牌写入日志或聊天。
+
 
 ## 终态只读工具与短票据审计
 
