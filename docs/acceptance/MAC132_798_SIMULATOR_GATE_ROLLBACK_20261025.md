@@ -33,6 +33,8 @@ PID54678目前是唯一有监听及现成仿真连接的relay，裸杀可能切�
 
 目标原生日志按目标本地时区记载：失败798 helper的`00:48:20`、`00:48:28`及仍存活的`00:48:38`三支日志各有3条`SERVER_ERROR`；`00:48:30`另一支明确在`/tmp/VibekitsHarness-501/ipc`遇`Address already in use`。存活支于`00:48:43.91`选择节点d，`00:48:45.95`记录`Connection secured`，`00:48:49.30`记录`keep_alive: 10000ms`，而原更新器于约`00:48:47`已报`HEALTH_FAILED`。冻结原生源码`7d938a4f...`的`RegisterPkResponse`处理仅在拒绝分支直接bail；`keep_alive`出现在该处理之后，因而**与晚于门禁的非拒绝回应相符**，但没有同刻客户端`simulator.status`或服务器内部回执，仍不能判定何时变为ready。旧723 helper的`00:00:09`日志也有289次`ipc_service`缺失重试，故该重试不是798独有故障证据。下一修复需分别证明多节点注册结果、单实例IPC所有权和原30秒门禁真实状态；不以延长等待或混合残留的现时可用性代替旧版覆盖验收。
 
+同签名同字节的 Mac445 控制组在16:43只读复核：其正式运行包为`1.9.0.798/build2798`，helper SHA256`960816de38bbc6f443e27af44b9665a59fb0b91a55dbe9ce12bfe09558f9558f`与132失败bundle和本机正式798完全一致；live relay PID6239的映射inode与当前正式helper inode`26313967`相同。该relay在445本地`15:02:50.991+08:00`启动、`15:02:51.942+08:00`即记`keep_alive: 10000ms`（约0.95秒），其当前日志`SERVER_ERROR`计数0，真实`simulator.status`为原ID`4456560334`且`enabled=true/ready=true`。此对照证明798 helper可在另一目标正常注册；132特有的多relay启动、三节点拒绝和门禁超时仍须独立定位，不能归因为“798 helper普遍失效”。
+
 备用远程办公ID372799163在界面可见在线，电脑操作接口本轮返回`noWindowsAvailable`未取得可用画面；按原G73指纹验证的LAN SSH公开密钥认证被拒绝，未绕过。故本轮在原仿真恢复后用原MCP/SSH只读回执和服务器权威心跳完成对账，不能宣称备用桌面UI已验收。
 
 ## 下一步门禁
