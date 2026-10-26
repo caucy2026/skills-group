@@ -27,6 +27,12 @@ admin登录管理入口，展开账号目录并搜索，打开单独权限弹窗
 
 核验普通会员后台拒绝、跨客户拒绝、通用管理员所有客户可见但不能任命账号、10×10等级矩阵、并发版本冲突、退房/换身份/撤权失效，以及最终设备真实房间仿真。单测、浏览器fixture与真实设备证据分开报告。
 
+### 页面权限诊断先读当前客户的真实响应
+
+管理页选择客户后会读取`GET /api/v1/manage/account?customerId=<当前客户>`。`generalAdministratorLevel`表示独立的服务器通用授权；该响应的`customerAdministratorLevel`是**在当前客户可用于管理的有效等级**，通用管理员即使没有`customer_managers`客户授予记录，这里也可返回其通用等级。独立客户授予须另看`GET /api/v1/manage/customers/{customerId}/managers/{userId}/level`，不凭这个有效等级字段判断授权来源。页面的房间设备控件原本就使用有效等级；排查“通用管理员看不到按钮”时，先核选定customer、真实账号响应、当前房间和页面渲染，再判断是否是前端缺陷。
+
+2026-10-27本项目曾只看`web/app.js`字段名误判缺入口，提交冗余修改和模拟了不真实响应的测试；真实管理登录/HTTP合同证明原页面字段可用，前端已按原字节撤回，生产运行文件也与原字节相同。见[误判纠正及生产读回](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G07_GENERAL_ADMIN_ROOM_DEVICE_UI_SOURCE_FIX_20261027.md)。这项经验不替代真实浏览器保存/撤销矩阵。
+
 源码与验收索引：hbbv `docs/requirements/ACCOUNT_AND_DEVICE_ADMIN_ROLE_REPLAN_20261022.md` 与 `docs/acceptance/ACCOUNT_DEVICE_ADMIN_REPLAN_20261022.md`。使用源码main及实时服务回执，不把文档写入等同于当前环境已经部署。
 
 
