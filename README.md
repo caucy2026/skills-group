@@ -4,6 +4,8 @@
 
 ## 从任务进入
 
+- Linux桌面编译、中文字体、ABI/GLIBC、透明窗口与真实验收：[KEMI通用Linux技能](https://github.com/caucy2026/skills/tree/main/linux-desktop-build-acceptance)，保留完整scripts/references安装。
+
 - 维护四端下载网站、商城版本同步和云端共用端口部署：[vibekits-distribution/SKILL.md](vibekits-distribution/SKILL.md)。
 
 - 完整接手房间与集群：[vibekits-cluster-operations/SKILL.md](vibekits-cluster-operations/SKILL.md)。
