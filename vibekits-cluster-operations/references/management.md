@@ -30,7 +30,7 @@ API个人登录POST /api/v1/account/login；管理登录POST /api/v1/manage/logi
 
 ## 万人房间的设备目录
 
-管理员页面在原“房间设备列表”内按**首次激活年→月→设备**折叠，年月默认关闭；折叠仍每4秒同步在线/总数，展开某月才读取那个月的最多100台设备。GET `/api/v1/manage/rooms/{roomId}/device-activation-buckets`可带`q`、`status`、`platform`，返回UTC `YYYY-MM`或`unknown`及各桶在线/总数。随后GET `.../devices?activationBucket=YYYY-MM&view=summary&limit=100`，按返回的HMAC游标翻页；历史首次激活没有可信服务端记录时使用`activationBucket=unknown`，不能用加入房间或最近心跳伪造原年月。搜索结果可自动展开所在年月。
+管理员页面在原“房间设备列表”内按**首次激活年→月→设备**折叠，年月默认关闭；折叠仍每4秒同步在线/总数，展开某月才读取那个月的最多100台设备。GET `/api/v1/manage/rooms/{roomId}/device-activation-buckets`可带`q`、`status`、`platform`，返回UTC `YYYY-MM`或`unknown`及各桶在线/总数。随后GET `.../devices?activationBucket=YYYY-MM&view=summary&limit=100`，按返回的HMAC游标翻页；历史首次激活没有可信服务端记录时使用`activationBucket=unknown`，不能用加入房间、最近心跳或最早`device.register`审计直接伪造原年月。生产缺记录的15台有更早的相关设备审计，另1台无register审计；逐台来源未证实时维持未知。搜索结果可自动展开所在年月。
 
 月积分页面只对当前页设备使用`GET .../monthly-scores?deviceIds=ID1,ID2`（最多100台）；旧不带`deviceIds`接口仍兼容，但不要在万人房间每4秒全量调用。客户管理员只能查看获授客户的房间；普通售后房成员从自己的设备接口继续只见有效管理员，管理页年月统计不向普通设备开放。HMAC游标绑定月份、筛选与权限范围，换月/换客户/换可见范围必须从第一页重新取。
 
