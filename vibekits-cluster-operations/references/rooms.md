@@ -36,6 +36,8 @@
 
 2026-10-26旧Windows普通设备619与424的**两方向**实测可复用为正负例：在kemi业务房分别以新请求ID执行单次system.info，明确`authorizationMode=room-delegation`、真实目标PID及服务端同一委派`claimed=1/completed=1`，然后关闭；在newlink售后房分别返回`CUSTOMER_SIMULATION_ACCOUNT_BINDING_REQUIRED`且对应请求ID的服务端票据数为0，不继续调用目标。见[两方向旧端真机矩阵](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G06_G08_OLD_WINDOWS_BUSINESS_SUPPORT_MATRIX_20261026.md)。这只覆盖这对旧版普通设备和一个只读工具；最终统一包、管理员撤权及其他工具仍须各自验收。
 
+售后房管理员正向例：原Mac155的kemi业务身份有当前Native账号会话、原房间服务链接与newlink一级客户管理员等级；在newlink通用服务1通过一次`room_connect→room_call(vibekits.system.info)→room_disconnect`实际读取普通Mac132，服务端同一请求委派/领取/完成各1，不增加旧白名单。普通Mac132同房目录只见155、445两名一级管理员，管理员155看全部16名成员；业务房目录仍8/8。跨客户售后权限按**设备业务customer的有效身份会话 + 售后房目标customer等级**验证，不能因newlink本身缺登录会话就判无权。见[当前原设备验收](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G08_SUPPORT_ADMIN_155_TO_132_REAL_TOOL_20261026.md)。单工具成功不等于任意工具、撤权旧票或所有成员都已验通。
+
 短授权票据有独立保留期，调用后立即收集当前账本证据；已按保留策略清除的行不补造、不恢复成活票据。缺证据须明确列出，必要时仅对可重复只读检查取得新回执，不重做未知结果的业务操作。
 
 反向测试可通过已有获授权通道调用对端控制器，分别记录编排通道与被测房间段。断开后的本地SESSION_EXPIRED不是成员退房或服务端撤销证据。心跳以last_seen和服务端阈值判断，presence的ended为空不足以证明在线；短采样不能覆盖历史共同间断、离线设备或长期稳定性。
