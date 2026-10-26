@@ -78,6 +78,8 @@ Unix socket 测试使用本机构建卷上的短临时路径。构建生成的�
 
 共享控制桥覆盖前准备完整新包、可验证回退和有界健康恢复；核当前进程/创建时间及正在使用的连接。已有升级授权不等于可以打断他人工作，只协调实际新增的中断时机。公证后仍须原 ID、实际工具、房间心跳、原授权及真实界面验收，不能从身份声明一致推定权限调用已通过。
 
+Mac覆盖后的“同包与旧权限”分开核：正式ZIP完整CRC/哈希及最终公证回执对上后，可流式比对已装App的文件、符号链接和多余项，不解包复制或只凭版本号；签名/Gatekeeper再单独验。Accessibility用当前已装App的`vibekits.device.ui_inspect`在明确目标App上设`promptPermission=false/maxDepth=1/maxNodes=1`做一次真实低暴露调用，只保留`authorized/ok/nodeCount`，不输出窗口正文或主动弹系统授权。2026-10-26构建Mac804的29,507文件/246符号链接与最终ZIP全相同、当前App对Finder一节点AX实收成功；这**只证明本机包字节与Accessibility**，不代替Screen Recording、Full Disk Access、账号/钥匙串或全舰队GUI。见[原机窄门禁](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G02_MAC155_INSTALLED804_READONLY_20261026.md)。
+
 ## HTTP 资源边界与真实长连接验证
 
 TLS握手槽只限制握手阶段，不能替代完整连接工作线程上限。检查HTTP请求行和头的读取位置：业务Handler内部的正文超时不会保护进入Handler之前的阻塞。按原协议补足I/O超时和全生命周期槽释放，测试空TLS、半头、半正文、溢出、握手失败及恢复；I/O超时不等于整个业务硬截止，保留SSE生命周期及keepalive。
