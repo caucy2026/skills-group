@@ -28,6 +28,14 @@ API个人登录POST /api/v1/account/login；管理登录POST /api/v1/manage/logi
 
 只有admin可通过PUT /api/v1/manage/rooms/{roomId}设置supportRoom布尔值，连同name/description/expectedRevision提交；newlink通用服务由服务端最多8槽容量策略管理，不能创建同名房间代替自动分配。名称不是标记。先读当前房间和修订，保留成员/任务/积分，未知结果核原事务后再决定。管理列表用view=summary，展开读取原完整详情。
 
+## 万人房间的设备目录
+
+管理员页面在原“房间设备列表”内按**首次激活年→月→设备**折叠，年月默认关闭；折叠仍每4秒同步在线/总数，展开某月才读取那个月的最多100台设备。GET `/api/v1/manage/rooms/{roomId}/device-activation-buckets`可带`q`、`status`、`platform`，返回UTC `YYYY-MM`或`unknown`及各桶在线/总数。随后GET `.../devices?activationBucket=YYYY-MM&view=summary&limit=100`，按返回的HMAC游标翻页；历史首次激活没有可信服务端记录时使用`activationBucket=unknown`，不能用加入房间或最近心跳伪造原年月。搜索结果可自动展开所在年月。
+
+月积分页面只对当前页设备使用`GET .../monthly-scores?deviceIds=ID1,ID2`（最多100台）；旧不带`deviceIds`接口仍兼容，但不要在万人房间每4秒全量调用。客户管理员只能查看获授客户的房间；普通售后房成员从自己的设备接口继续只见有效管理员，管理页年月统计不向普通设备开放。HMAC游标绑定月份、筛选与权限范围，换月/换客户/换可见范围必须从第一页重新取。
+
+2026-10-26后端/网页已按上述合同上线，原186…6140客户管理员在真实kemi房看见在线8/总8、历史未知年月两级目录和按需8台；隔离10,106条合成**离线目录**的短时汇总272B、首100条90,002B。生产当时17台仅1台有可信首次激活记录，其余列未知。见[生产回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G07_G09_ACTIVATION_YEAR_MONTH_PRODUCTION_20261026.md)。这些数字不证明真实1万台同时在线、100台以上实机或24/72小时稳定；它们仍按G09独立验收。
+
 ## 房间生命周期
 
 1. 选对客户→“创建房间”→名称、类型、说明、允许客户端发现。类型 general（通用）、pipeline（流水线）、dedicated（指定设备）、synchronized（多机同步）。读取新 roomId/customerId/owner/revision。
