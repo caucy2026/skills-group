@@ -23,3 +23,9 @@ Linux 用真实 XDG 数据目录与 /proc/{pid}/exe、进程出生 tick 核 owne
 先用原ID/登记主机指纹确认目标，**只计数**新旧Harness profile的canonical目录、普通/cluster命名空间、workspace与归档索引；不输出会话ID、标题或正文，不解压/读取JSONL。Mac可用现有Python或系统Ruby，Windows用已准许的只读PowerShell，不为盘点安装开发工具或改执行策略。Mac445的系统`python3`只是xcode-select开发工具安装入口，改用已存在的Ruby；其可见安装工具进程在本轮前已运行约14小时，不擅自关闭。六台在线设备真实计数见[私有只读范围回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/HARNESS_DEBUG_SCOPE_READONLY_20261026.md)：现用profile canonical目录依155/445/529/132/424/619分别为50/8/5/7/9/6，旧profile目录均0。`ownedDebugOnly=0`不等于这些普通/旧会话已清，也不能因目录存在就认定它们全是待删聊天。
 
 本机155仍有共享App和个人账号/签名在途时只读、零删除；其他设备同理先核owner空闲及原事务。到窗口后再按本技能上文用产品SessionStore、完整事件摘要、整批预校验、正常退出和永久删除，复验canonical/工作区/归档/删除账本及原ID房间心跳。617离线不计入六机成果。
+
+## 用户明确要求清空整机旧聊天的Mac132实证（2026-10-26）
+
+普通会话不属于`ownedDebugOnly`；本次用户已单独授权所有入房设备留下干净Harness，Mac132现用profile七条普通会话均无未结束回合，队列无待执行/相关引用，旧profile为零。先用原ID/指纹、App主程序SHA与PID出生绑定；产品SessionStore源码编成目标架构的受限维护入口，整批会话文件SHA与用户/助手/工具事件语义摘要分别在App停机前后核验一致。目标机独立恢复守护负责掉线后重启原路径；实际删除仅在主进程及旧SDK全退出、整批清单通过后一次执行，并以永久删除账本、canonical、工作区/归档、投影、continuation和队列各自读回。重启后的**新空白默认会话**没有用户/助手/工具消息，不算旧聊天复活；原ID/MCP/两房实时心跳另验。
+
+三个停机首败均在删除前停止：SDK子进程退出超时，以及Mac `app_control stop` 内层`ok=false/exitCode=1`。该工具的Mac实现使用`pkill -x`；**外层MCP成功不能代替内层结果或原PID退出**。定位实际唯一原PID/出生/签名后，目标守护用同类SIGTERM绑定精确PID完成最终停机，停机后语义不变才删除。不要重放案例的PID、二进制、旧manifest或守护脚本；其他设备的当前会话和617离线仍待清。完整验收及未清范围见[Mac132全聊天清理回执](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/HARNESS_MAC132_ALL_CHAT_CLEAN_20261026.md)。这次计划停机不能被15分钟心跳采样写成24/72小时无间断在线。
