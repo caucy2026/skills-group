@@ -42,6 +42,8 @@ hbbv 部署保留 serverId、私钥、授权/设备、customer/member 和持久�
 
 规模记录区分设备数、逻辑会话数、网络位置、持续时长、采样/重启/断联恢复。已有 300 合成会话 loopback 60 分钟可以复用其范围，不冒充 WAN、100 台实体机器或 24/72 小时。
 
+长期监控把后台房间心跳和设备侧真实工具分成两条证据流。设备侧采样先读原仿真ID的`connection_status`并核原指纹/MCP；有效连接直接复用。新`connect`等待超时后只读对账**同一**连接是否稍迟完成，不因观察超时重新发起连接，也不把目标判离线；仅在确证本次创建且无人接管时回收连接。保留失败的原定时样本，后续手工同工具成功另记`manual`，不能倒填该轮通过。Mac132第6轮曾出现25秒连接等待超时而房间心跳新鲜、连接稍迟就绪，修复后的单机手动复验成功；完整六机定时轮次仍待独立读回。[范围与修复回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_MAC132_OS_SAMPLER_TIMEOUT_RECOVERY_20261026.md)。
+
 ## 备份和交付
 
 使用项目既定独立 GIT_INDEX_FILE backup helper：精确白名单、秘密筛查、最新 remote main 为 parent、三方合并冲突人工核验、正常 push、远端 tree/blob 读回、共享索引前后哈希不变。不要直接执行历史脚本顶层旧任务。源码/文档/skills 仓库分别记录 commit 与实际范围。
