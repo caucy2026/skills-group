@@ -22,6 +22,7 @@ description: 操作和管理 VibeKits 集群：远程仿真、管理后台、客
 
 - 首次接手、环境和连接：读 [连接与身份](references/connect.md)。外部 Mac 控制端附有可用桥接脚本；Harness 内优先原生 MCP。
 - 网页、创建客户/账号/管理员、房间、审批：读 [后台完整操作](references/management.md)。先读[账号与设备管理员模型](references/admin-role-model.md)，区分通用管理员、客户管理员和房间设备管理员，再按当前等级与作用范围执行。
+- Phone作为同账号远程操作界面、需把原生路由接入旧peer/1时，读[手机原生票据与点对点协同](references/phone-native-peer-control.md)。手机没有房间或Host权限，后端能力开启不等于真机业务已通。
 - 设备入群、互相仿真、退房、撤销和同步：读 [入房与通信](references/rooms.md)。申请、批准、激活、在线、工具验通是不同状态。
 - 能力声明、任务竞标、唯一分配、消息和验收：读 [协作](references/collaboration.md)。成员资格不是业务执行许可。
 - 模型unknown、显式复验与不依赖目标模型的工具资源：读[模型证明与房间资源](references/model-proof-and-tool-resources.md)，区分证明时效、配置存在、工具可用及业务租约。

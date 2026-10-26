@@ -40,6 +40,8 @@ App拥有唯一HarnessAccountPresenceRuntime，不能把心跳挂到设备面板
 
 v2个人目录按serverId、服务器认证的canonical account、installationId和当前bindingRevision隔离，不按customer筛选同账号设备；不能混入另一服务器或账号。Phone只发起同账号协同，不作为Host、没有集群/房间。原v1来源customer仍用于验证旧设备凭据、原pin和安全策略，不可省略或伪造，但它不是v2个人目录过滤条件。
 
+Phone把当前P256账号安装身份与Root签发的数字Native路由双钥关联、获取原`client-access/1`短票并走peer/1业务时，按[手机原生票据与点对点协同](phone-native-peer-control.md)执行；后台能力开启与真实手机业务通过分开记录。
+
 服务端hostLegacyBootstrap能力出现只说明接口存在，不说明桌面已有Host槽位、实时原生通道或可信presence。旧登录无Host槽位时按[正式Host Bootstrap合同](https://github.com/caucy2026/skills-group/blob/main/docs/development/HOST_BOOTSTRAP_API_20261024.md)以原v1独立设备凭据及原双钥接入；保源绑定/原v1通道，继续原Host MFA，成功后再启动HostQueue/presence。普通account、remembered、device与management令牌用途分开，不能互换；失败不清旧登录、会话或草稿。
 
 目录为空先按原生生产者→Host槽位→队列→可信presence/12秒租约→客户端过滤逐层核对，不移除Phone安全过滤或把原仿真在线投影成v2在线。新版App版本、后端ready、旧原生签名IPC都不证明包内有v2通道/host descriptor；冻结实际relay的原生Git ref、完整输入和签前/签后SHA，复用受限正文验证解释正常签名差异。实际包的旧来源与新开发的最新main分别记录，不能把兼容对照ref当降级指令；增量须保留PEM链、原v1、原签名IPC及权限，走独立完整构建和最终GUI门禁。
