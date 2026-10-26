@@ -23,6 +23,8 @@
 
 配置后首个rooms可能为空且“发现中”，等原同步推进再读。必须同时证明客户端customer=kemi、目标成员approved、roomsAreLive/connected、原ID以及后台新心跳。旧token/安装钥保持不变，不复制原生pin或伪造账号绑定。账号跨客户登录延续另行验收，不把设备凭据不变等同登录已验。当前处于用户暂缓或离线保护的设备从最新台账获取，不能因该机后台仍有记录而自动解除暂缓。
 
+原七台的617由用户确认关机/断网时保持不连接。2026-10-26后台只读核其业务customer仍是newlink、Kemi测试房属于kemi且无pending邀请；同owner不跳过客户隔离，普通邀请/自动服务resolve不能代替既有设备customer迁移，原`migrate_kemi_device.py`还明确把617列为`DEVICE_ON_HOLD`。待原机恢复后再核原签名身份、当前包与客户端持久配置，按已授权正式迁移/申请路径入Kemi房；不得预先SQL改customer、造批准或拿另一台Linux替代。见[617离线作用域回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G01_OFFLINE617_KEMI_CUSTOMER_SCOPE_20261026.md)。
+
 维护脚本tool/migrate_kemi_rooms.py和migrate_kemi_device.py只用于本次经批准的既有登记身份迁移，不能用于未知ID、首次consent_pending、黑名单或撤销设备，也不是普通入房的数据库审批绕过方法。只读SSH回执和SFTP具备时复用受信保存档案；不取出密码/Key写进文档。
 
 ## 重复房与数据保护
