@@ -42,6 +42,8 @@ macOS SSH 可连接但不能访问受保护文件时，在获授权设备打开�
 
 须有明确清理授权。先读所有相关新旧 profile、普通/归档/工作区投影/continuation 关联，按内容/来源确认本任务调试会话白名单，业务、未知、其他聊天保留。不能整目录 rm。冻结所有待删条目的语义/文件 SHA，整批全部验证后才开始删除；通过产品 SessionStore 永久删除及关联清理，不只验证自动描述员为零。先核无运行请求、无审批/模型/外部事务，必要时正常停止本任务 App并由独立守护恢复。删除后逐 profile 验 canonical/projection/pin/archive/workspace 引用消失，并原 ID/MCP/心跳复验。详见随包 harness-debug-reset 文档。
 
+用户明确授权“全部旧聊天”时也须分别核产品当前canonical目录、workspace索引与正式`session_status`，不能把旧台账数量或`ownedDebugOnly=0`当当前全量。Mac529实测4条目录仅3条在workspace，Mac132模板于`WORKSPACE_INDEX_MISMATCH`在删除前拒绝；一条未索引的孤立会话必须独立核来源、仍需对账的使用情况及产品删除/恢复语义，不改索引凑通过，也不因inactive或队列空就停共享App。见[529孤立会话首败](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G10_MAC529_HARNESS_ORPHAN_SESSION_PREFLIGHT_20261026.md)。
+
 磁盘清理只清已核用途/可再生性/无占用的本任务旧 build/cache/重复包，保留源码、Git、签名材料、配置、正式最新包和一个合格回滚；不能按目录名/年龄批删。云构建后执行 cloud-build-cleanup 的已交付验证和回读收尾。
 
 ## 代码与交接
