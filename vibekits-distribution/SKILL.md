@@ -19,7 +19,7 @@ description: 维护和部署 VibeKits 四端下载与使用门户，核对商城
 
 ## 更新下载记录
 
-1. 读取实时 `/vibekits/downloads.json` 和官方不带类别筛选的商城列表，按平台与包名查唯一记录。Mac/Windows/Linux 为 `com.caucy.vibekits`，Android PAD 为 `com.vibekits.vibekits`。
+1. 读取实时 `/vibekits/downloads.json`，分别查询官方商城`/kd-api/api/store/apps?os={macos,windows,linux,android}`，按平台、包名与app ID查唯一正式记录。Mac/Windows/Linux 为 `com.caucy.vibekits`，Android PAD 为 `com.vibekits.vibekits`。无`os`的默认列表可能遗漏桌面条目；2026-10-26实测其两页只检出PAD而四个按平台列表均有记录，不能据默认列表缺失判断桌面版下架。见[四端实时对账](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G10_PORTAL_MARKET_REFRESH_READBACK_20261026.md)。
 2. 下载入口使用稳定商城分享页：`https://kemi.newlinksz.com/kd/s/{package}?os={macos|windows|linux|android}`。二维码编码同一入口，不固化每版 CDN 地址。四个平台都保留扫码入口。
 3. 核版本名、整数版本码、实际架构、最低系统、字节数、SHA-256和可信 HTTPS CDN。测试候选不冒充商城发布。Linux amd64 不等于 arm64；ARM64包未实际发布时明确缺项。
 4. 动态目录按访问刷新，成功缓存60秒，失败显示上次核验及时间，不启动持续后台轮询。用现有 `tool/refresh_public_download_catalog.py` 更新随源码的静态快照；不能只改网页文字或写死最新版本。
