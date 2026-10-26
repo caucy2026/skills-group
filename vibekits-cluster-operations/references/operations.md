@@ -22,6 +22,8 @@ macOS SSH 可连接但不能访问受保护文件时，在获授权设备打开�
 
 计算长期窗口必须用第一/最后样本时间、首尾缺口、内部最大间隔、失败数、服务PID/管理器事件以及逐台真实工具回执。2026-10-26[原七台监控回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/ORIGINAL_SEVEN_MONITOR_SAMPLER_20261025.md)的24条15分钟定时样本首尾只约5.758小时；24条**不等于24小时**，只读24小时审计仍因窗口起点、617缺席、百台真实池及历史PID变化返回BLOCK。即使样本间隔约901秒也不得跳过OS/MCP和服务停启证据。
 
+观察到设备App PID变化时先对账版本、原安装身份、负责人在途升级事务和恢复回执，再分类计划维护或异常；不能只凭PID变化判崩溃，也不能把升级前后两个PID拼成同一App稳定窗口。2026-10-26第五轮六台设备侧工具6/6成功，但构建Mac155因已授权799→800覆盖从PID95968换为52339，其他五台PID不变；额外Linux101编译暂退导致全池新鲜数10→9，与原七台六机连续新鲜分开记录。仍需各自完整24/72小时与服务事件证据。
+
 活跃开发聊天期间若heartbeat没有真实样本，先核其调度状态和来源，再补独立但同范围的有界只读采样，不把手工样本标作调度成功。采样器现支持`--source scheduled_local`与旧manual/heartbeat分开，互斥锁防重叠；2026-10-26本机72小时后台进程前两轮样本成功、间隔901.214秒；完整24/72小时覆盖仍须继续读回。该Mac的LaunchAgent因后台访问外盘被系统拒绝，失败配置已移除；不要为巡检绕过系统磁盘权限，可复用hbbv项目`tool/original_seven_local_monitor_loop.py`，传实际受信profile/桥/输出根/serverId与本机必须挂载的卷；先以独立输出根`--max-runs 1`冒烟，在原监控终止后才对正式根启动，单实例锁会拒绝双开，外盘卸载即停写。当前活跃PID37265仍是先前脚本，整理新入口不等于已切换它。方法及限制见[原七台监控生产回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/ORIGINAL_SEVEN_MONITOR_SAMPLER_20261025.md)。
 
 评估24/72小时定时覆盖时，运行hbbv项目`tool/original_seven_continuity_audit.py --output-root <本机受控目录> --hours 24|72`，它合并raw与较旧小时摘要，分别报告窗口首尾不足、内部漏采、失败、服务PID变化及原七台/真实百台门槛。其`fullG09=BLOCK`刻意保留独立systemd停启日志和逐台OS/MCP长时证据要求；短窗口、六台在线或合成百台不能把总目标改判PASS。当前八条真样本只得到窗口未覆盖、6/7和10/100的BLOCK回执；参见上述监控生产回执。
