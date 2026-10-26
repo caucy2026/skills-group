@@ -7,6 +7,7 @@
 - credentialPresent 仅证明存在配置，不证明模型可调用；modelReady=false 也不能单独证明没安装模型或凭据失效。
 - 当前 VerifiedModelGeneration 的健康证明有效期为5分钟，绑定runtime、模型选择和凭据标识；变更或到期会失去ready证明。核对目标版本的实际规则，不能把一次成功外推为永久健康，也不能因过期直接诊断为故障。
 - 普通心跳不自动调用模型。需要复验时显式调用一次 `vibekits.cluster.model.verify`，保存原请求，随后读同一状态和新鲜心跳的modelReady/checkedAt。request_started不是通过；没有新checkedAt不能把描述ready当模型通过。不要循环请求来维持绿灯，失败、冷却和需明确恢复的门禁保留。
+- 对有副作用的`model.verify`，一次调用后保留**同一原回复**供字段检查；调用脚本只打印键名或漏字段时，从已收到的回包解析，不能为查看`state`再调用入口。2026-10-26 Mac155/804的一轮验收曾误发第二次工具入口，后续心跳虽形成ready/valid新证明，底层究竟生成几次请求未知，不能用单飞设计臆断一次，见[如实记录](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G04_MAC155_804_MODEL_REVERIFY_20261026.md)。
 - ready证明不授予工具、成员资格或业务任务租约；这些仍分别核验。
 
 ## 使用房间确定性工具
