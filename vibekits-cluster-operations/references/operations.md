@@ -354,6 +354,8 @@ Phone↔Mac同账号只要求原Harness会话、消息和文件协同，不进�
 
 桌面↔桌面同账号免逐台白名单仿真使用独立`/api/v2/account/host/simulator/{trust,challenge,issue,validate,revoke}`：服务端验双方当前同账号、在线租约、原生双证明、非Phone身份及指定目标端口22/32147/32148/5555/51839。其`client-simulation/1`签名域与旧`client-access/1`的Harness域不同，不能互借票据；服务回执`executionAuthorized=false`，目标原生须另验实际socket/路由/公钥、远程仿真开关、端口和工具/系统权限。20秒短票不能直接支撑持续SSH编译或桌面会话；需保留当前双端身份与撤权检查的安全续期或目标本机任务接管，不能忽略过期或任意加长。隔离原生候选与剩余门禁见[接线记录](https://github.com/caucy2026/vibekits/blob/main/docs/development/ACCOUNT_SIMULATOR_NATIVE_CANDIDATE_20261027.md)。**当前后端已上线，Flutter发起与目标原生接收及双机真实互仿未过，不能宣称桌面免授权仿真已交付。**普通业务房、通用服务房管理员、越级审批、撤权旧票和旧手工授权继续按各自真实正反矩阵验收；房间拒绝不能静默走个人或手工路径。
 
+Android PAD 同账号仿真另有[独立源码候选](https://github.com/caucy2026/vibekits/blob/codex/pad-account-simulator-20261028/docs/development/PAD_ACCOUNT_SIMULATOR_NATIVE_BRIDGE_20261028.md)：VibeKits分支`b979ddfcf0`与RustDesk原生分支`4556dcc4d`，专用MethodChannel/JNI把服务端签名票和确切端口送原生隧道，普通无票PAD隧道不继承同账号权限。原生30项小合同通过且已清生成目标；Android完整编译、签名覆盖、PAD↔Mac真实工具、撤票/续票及Phone拒绝矩阵尚未通过，两个分支均未合main。当前本会话资格暂停时只可源码修复与非交付验证，不能换设备或会话代编译发布。
+
 本次后台切换后单张kemi业务房票由本机155访问Mac132，实际`vibekits.system.info`返回目标macOS/PID11381，服务端领取/完成各1。另行打开的529普通仿真连接没有承载这张票，必须按155→132记录。不要把单个只读工具、后端源码测试或固定端口SSE槽数当成全部权限、最终统一包、24/72小时或100台真实设备验收通过。
 
 ### 原生账号仿真候选：编译前必验正式输入
