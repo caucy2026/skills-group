@@ -38,6 +38,8 @@
 
 2026-10-26旧Windows普通设备619与424的**两方向**实测可复用为正负例：在kemi业务房分别以新请求ID执行单次system.info，明确`authorizationMode=room-delegation`、真实目标PID及服务端同一委派`claimed=1/completed=1`，然后关闭；在newlink售后房分别返回`CUSTOMER_SIMULATION_ACCOUNT_BINDING_REQUIRED`且对应请求ID的服务端票据数为0，不继续调用目标。见[两方向旧端真机矩阵](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G06_G08_OLD_WINDOWS_BUSINESS_SUPPORT_MATRIX_20261026.md)。这只覆盖这对旧版普通设备和一个只读工具；最终统一包、管理员撤权及其他工具仍须各自验收。
 
+2026-10-27在当前服务PID3589257上用原Windows619↔424再次双向实收上述业务房只读工具，目标PID20016/7876，服务端各唯一领取/完成1；相同两方向售后房普通→普通均在前置账号绑定层拒绝、对应新请求委派0。初次本机控制端未连接时只得到`not_connected`，先恢复一次原ID并核登记指纹，再做新请求；不能把此桥错误算成房间政策拒绝。见[当前服务器双向回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G06_G08_CURRENT_SERVER_WINDOWS_ROOM_MATRIX_20261027.md)。仍非最终统一包、全工具或等级撤权矩阵。
+
 售后房管理员正向例：原Mac155的kemi业务身份有当前Native账号会话、原房间服务链接与newlink一级客户管理员等级；在newlink通用服务1通过一次`room_connect→room_call(vibekits.system.info)→room_disconnect`实际读取普通Mac132，服务端同一请求委派/领取/完成各1，不增加旧白名单。普通Mac132同房目录只见155、445两名一级管理员，管理员155看全部16名成员；业务房目录仍8/8。跨客户售后权限按**设备业务customer的有效身份会话 + 售后房目标customer等级**验证，不能因newlink本身缺登录会话就判无权。见[当前原设备验收](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G08_SUPPORT_ADMIN_155_TO_132_REAL_TOOL_20261026.md)。单工具成功不等于任意工具、撤权旧票或所有成员都已验通。
 
 同一155→132售后房另用**新请求ID**真实验通有界`vibekits.system.resources(samples=1,intervalMs=250)`，目标内层CPU/内存/存储结构化数据成功，服务端同请求领取/完成各1、通道关闭、两机后续心跳和双房批准保持。见[第二项资源工具回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G08_SUPPORT_ADMIN_RESOURCES_155_TO_132_20261026.md)；不要复用已完成的`system.info`票据或把两项只读工具扩写成所有资源/签名工具已通过。
