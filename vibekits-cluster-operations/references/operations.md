@@ -371,3 +371,10 @@ Phone↔Mac同账号只要求原Harness会话、消息和文件协同，不进�
 ## Phone多设备Peer票额：先核实际运行版
 
 [票额回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/PHONE_PEER_TICKET_PHASE_CAPACITY_20261027.md)：原生产进程按customer+source把未签发与已签发合计限4；私有main待部署源码沿原表`envelope`状态拆为pending最多4、issued最多16，并在issue转签复核，全局4096及双方签名/身份/短到期/撤销不变。客户端ACK后回收旧票、关闭与未知结果对账仍是独立责任；Native消费本身不释放服务额度。后端聚焦45项和全套1,233项通过不等于生产新额度或Phone55/809八Host业务通过。共享hbbv/server是历史快照，不能单文件拷贝到旧树部署；正式候选从完整私有main冻结。
+
+
+## 两台Mac同包：安装树与正式ZIP分别核
+
+[809跨机完整树验收](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/G02_MAC155_445_INSTALLED809_SAME_TREE_20261027.md)的成熟路线：先读每台**实际运行**App路径/PID、原仿真ID、Bundle/Team、严格签名与Gatekeeper，再用[系统Ruby树摘要](https://github.com/caucy2026/vibekits/blob/main/tool/verify_installed_mac_app_tree.rb)逐项核普通文件内容/长度、目录、链接目标与模式；Mac没有可用Python时不要因此安装Xcode命令行工具。只用版本号、Team或主程序SHA不能证明整包同字节。
+
+取得原负责人冻结的最终签名公证ZIP后，先核原SHA/CRC/单一App根与稳定文件身份，再以[不解包流式比对](https://github.com/caucy2026/vibekits/blob/main/tool/verify_formal_mac_zip_installed.py)对一台现装App逐成员比字节、目录、链接与额外项；另一台仅在独立完整树摘要相同后才通过传递等式关联该ZIP。ZIP工具须拒绝`..`与已装App符号链接父目录逃逸，不读取用户工作区。该证明不包括xattr/ACL、旧账号/钥匙串/系统权限、会话数据及全部功能；发布前仍按fleet-compatibility独立验收。首败与修复后回执分开，连接非自建时只读复用、不替他人断开。
