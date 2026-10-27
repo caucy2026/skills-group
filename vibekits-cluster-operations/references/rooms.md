@@ -14,7 +14,9 @@
 
 ## 成员互相仿真
 
-普通协作房的有效成员使用room-members委托；售后房仅接受有效客户管理员，成员身份不授予互访。普通房有效成员不新增逐设备白名单。管理员另外显示独立标识。真实授权仍要求当前房间/身份、目标有效 consent、原生 P256 签名 envelope、原连接 generation、单次票据、工具范围及本机权限；没有同意时不造授权。
+普通协作房的有效成员使用room-members委托；售后房成员身份本身不授予互访，只有经服务端核验的默认admin超级管理员、当前客户/通用管理员或该房显式设备管理员可按等级维护目标。无账号的显式设备管理员仍须受信原生broker、安装指纹及当前成员修订。普通房有效成员不新增逐设备白名单。管理员另外显示独立标识。真实授权仍要求当前房间/身份、目标有效 consent、原生 P256 签名 envelope、原连接 generation、单次票据、工具范围及本机权限；没有同意时不造授权。
+
+同账号访问另走`client-access/1`短票据：两端必须是当前同账号在线绑定、原安装/Native身份和服务端签名，目标仍核本机远程开关。2026-10-27用户明确**Phone与Mac同账号只需协同，Phone不要求仿真**；Phone的Harness会话/消息/文件须真实收发，不参与房间或被控Host。当前已审原生候选仅把该票据接到固定`127.0.0.1:32147`的Harness SDK业务入口（`purpose=harness`、`executionAuthorized=false`），它免该入口的逐台手工同意，**不证明桌面同账号的普通仿真、SSH或全部系统工具已放行**；其他房间/管理员/桌面权限范围的仿真仍必须逐项完成。IP网络策略和系统权限不因同账号被取消。高等级房间目标当前会返回`ROOM_SIMULATION_HIGHER_LEVEL_APPROVAL_REQUIRED`，不能只凭这个拒绝码宣称申请→批准→原房间重试已完成。按[最新逐项权限审计](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/CLUSTER_PERMISSION_ACCESS_AUDIT_20261027.md)分路径和最终包验收。
 
 2026-10-26[已安装Mac132/799真机目录回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G06_G07_MAC132_799_ROOM_ROSTER_SCOPE_20261026.md)展示普通成员的两种视图：newlink通用服务1后台16台approved，132的`room_devices`仅返在线管理员155一台、不返回自己和其他普通设备；kemi普通业务房后台8台approved，132得到完整8/8（1管理员、7成员，含自己）。先核原serverId、安装身份、房间批准和目录真实结果，再判可见范围。这个目录数据验收不代替最终网页折叠、实时通知、管理员看全体或其他客户房间矩阵。
 
