@@ -356,6 +356,8 @@ Phone↔Mac同账号只要求原Harness会话、消息和文件协同，不进�
 
 Android PAD 同账号仿真另有[独立源码候选](https://github.com/caucy2026/vibekits/blob/codex/pad-account-simulator-20261028/docs/development/PAD_ACCOUNT_SIMULATOR_NATIVE_BRIDGE_20261028.md)：VibeKits分支`b979ddfcf0`与RustDesk原生分支`4556dcc4d`，专用MethodChannel/JNI把服务端签名票和确切端口送原生隧道，普通无票PAD隧道不继承同账号权限。原生30项小合同通过且已清生成目标；Android完整编译、签名覆盖、PAD↔Mac真实工具、撤票/续票及Phone拒绝矩阵尚未通过，两个分支均未合main。当前本会话资格暂停时只可源码修复与非交付验证，不能换设备或会话代编译发布。
 
+PAD候选后续`b881ea2a39`增加打包前动态JNI符号门禁：仓库当前随包的旧arm64 `librustdesk.so` 确实缺 `Java_ffi_FFI_harnessOpenAccountSimulationTunnel`，真实旧库负控返回 `PAD_ACCOUNT_SIMULATOR_NATIVE_SYMBOL_MISSING`。合格构建者须从匹配RustDesk分支构建新库并让Release前置检查通过，再验最终APK内符号、原签名身份和真机工具。人工两符号检查器正控只证明门禁解析，不代表新库或APK已合格；不得删除门禁或把普通 `openTunnel` 当替代。
+
 本次后台切换后单张kemi业务房票由本机155访问Mac132，实际`vibekits.system.info`返回目标macOS/PID11381，服务端领取/完成各1。另行打开的529普通仿真连接没有承载这张票，必须按155→132记录。不要把单个只读工具、后端源码测试或固定端口SSE槽数当成全部权限、最终统一包、24/72小时或100台真实设备验收通过。
 
 ### 原生账号仿真候选：编译前必验正式输入
