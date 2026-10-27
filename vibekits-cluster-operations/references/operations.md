@@ -359,3 +359,5 @@ Phone↔Mac同账号只要求原Harness会话、消息和文件协同，不进�
 ### 禁止访问目录仍需目标OS级全入口约束
 
 用户要求设置中可添加、查看、逐项移除目录，且所有下级目录均禁止远程仿真。当前仍是设计与验收草案，**尚无平台可宣称保护生效**。[白盒入口盘点](https://github.com/caucy2026/vibekits/blob/main/docs/development/REMOTE_PROTECTED_DIRECTORIES_ENTRY_INVENTORY_20261027.md)列出SSH/SCP、文件哈希、房间MCP、同账号短票、浏览器/UI及PAD ADB的真实旁路；Dart字符串路径过滤不能限制Shell/派生进程或已打开的GUI文件。先证明各平台目标OS隔离和真实连接来源，再做设置UI/统一broker；同账号或高级管理员也不能绕过本机规则。按项目PD-A01–A12对祖先、任意深子目录、链接/卷别名、在途操作、旧端和最终包逐项真机验收，缺任一远程入口继续BLOCK。
+
+[官方平台边界核对](https://github.com/caucy2026/vibekits/blob/main/docs/development/REMOTE_PROTECTED_DIRECTORIES_OS_BOUNDARY_20261027.md)进一步记录：Mac全局文件授权拦截需要Apple另行授予Endpoint Security entitlement及相应系统扩展/平台批准，当前正式App只读验签未见该能力；Windows须真正限制进程及桌面，Linux Landlock不作用于旧FD/已有GUI，PAD的ADB由设备端权限域决定。不能在未取得这些平台条件时把普通设置开关标成“已保护”。
