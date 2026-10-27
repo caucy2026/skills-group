@@ -378,3 +378,10 @@ Phone↔Mac同账号只要求原Harness会话、消息和文件协同，不进�
 [809跨机完整树验收](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/G02_MAC155_445_INSTALLED809_SAME_TREE_20261027.md)的成熟路线：先读每台**实际运行**App路径/PID、原仿真ID、Bundle/Team、严格签名与Gatekeeper，再用[系统Ruby树摘要](https://github.com/caucy2026/vibekits/blob/main/tool/verify_installed_mac_app_tree.rb)逐项核普通文件内容/长度、目录、链接目标与模式；Mac没有可用Python时不要因此安装Xcode命令行工具。只用版本号、Team或主程序SHA不能证明整包同字节。
 
 取得原负责人冻结的最终签名公证ZIP后，先核原SHA/CRC/单一App根与稳定文件身份，再以[不解包流式比对](https://github.com/caucy2026/vibekits/blob/main/tool/verify_formal_mac_zip_installed.py)对一台现装App逐成员比字节、目录、链接与额外项；另一台仅在独立完整树摘要相同后才通过传递等式关联该ZIP。ZIP工具须拒绝`..`与已装App符号链接父目录逃逸，不读取用户工作区。该证明不包括xattr/ACL、旧账号/钥匙串/系统权限、会话数据及全部功能；发布前仍按fleet-compatibility独立验收。首败与修复后回执分开，连接非自建时只读复用、不替他人断开。
+
+
+## 同Bundle旧入口接管：先核运行路径，再决定恢复
+
+[Mac529现场](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G02_MAC529_OLD_APP_RELAUNCH_20261027.md)证明：较新已签2799仍在缓存路径时，旧正式`/Applications/Vibekits.app` build2723也能重新运行并以同一原ID报新鲜心跳。设备显示“在线”、签名有效、另一份新App仍存在，都不能证明**当前进程**是新版。发现版本倒退时，按当前PID出生时间与完整可执行路径、两个App的Info.plist/签名、服务器新鲜版本与工具目录交叉核验；旧模型ready在进程更换后标为历史，不继续当当前证明。LaunchServices的`launch job demand`不能唯一证明用户、登录项或更新器是发起者，缺原始日志就保留未知。
+
+恢复前与设备原负责人核在途操作和用户数据/授权快照；合格同签候选应覆盖被普通入口启动的**正式路径**，而非只把缓存新版重新打开。结束后分别从普通入口和冷启动验实际路径/PID/版本、原ID/主机指纹、账号/会话/系统权限、两房心跳及真实工具，并在下一次重启确认不会回到旧包。资格暂停或他人连接在途时只读冻结并协调，不自行停App、清配置或代装。
