@@ -341,3 +341,13 @@ ROOM_SIMULATION_CONSENT_REVOKED同时可能表示active=false、到期、成员r
 跨会话对账先匹配精确operationId摘要、双方installation/binding、时间、原回执及结果清单；只输出必要状态、大小与计数。相同operation并不能让所有派生字段自动通过。依赖命令必须先等待并检查实际退出状态及结构化结果，再生成后续通知；禁止把“检查命令＋预拟成功消息”当作独立并行步骤。false、缺失、截断与未知分别保留，发现错误说明立即更正到原接收方，按项目资格规则处理，不能自己恢复资格。
 
 操作名未以明文持久化时，可在不读取秘密/业务参数的条件下，对已知公开只读请求形状使用原生产canonical编码离线算摘要；引用前端原构造器的匹配时标明证据来源，不能冒称独立重建全部参数。严格限定源/目标、binding和时间窗；“该窗内没有已接收的发送操作”不代表没有HTTP尝试、其他传输或后续副作用，也不是自动重发许可。未知发送始终保留原草稿和operation，先对账原事务。
+
+## 同账号桌面仿真票据与v2设备事件流
+
+2026-10-27后端生产切换的来源主线为`56b62031`；[生产回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/HBBV_HOST_SIM_PRESENCE_PRODUCTION_20261027.md)给出原serverId/PID、三份只在本地的有效数据库快照、3GB占用、门户链接及七台心跳。后续操作必须重新核实时状态，不能照搬该PID。云端临时归档已按`cloud-build-cleanup`核SHA后清掉，正式数据库/WAL、密钥、当前release和旧release回退保留；旧版模板必须保存原`--enable-auto-service`、账号存储密钥与SDK流参数，不再原样重放。
+
+Phone↔Mac同账号只要求原Harness会话、消息和文件协同，不进入房间，也不要求Phone仿真。已上线的Host v2控制入口为`/api/v2/account/host/peer/{devices,access-trust,tickets/validate}`，需当前Host原生连接、安装签名、同账号绑定和原有短票；接口可用及未认证401不等于手机业务成功，仍按真实发送/接收、换号/注销撤销和旧会话继续验收。Phone/Host`GET /api/v2/account/device-events/stream?after=<cursor>`要求完整路径签名，最多25秒/64槽，只发送设备事件元数据；事件只提示重新取目录，不能续授权或将离线设备直接提升为可操作。手机离线可查看旧聊天、禁止新操作需要界面真机验收。
+
+桌面↔桌面同账号免逐台白名单仿真使用独立`/api/v2/account/host/simulator/{trust,challenge,issue,validate,revoke}`：服务端验双方当前同账号、在线租约、原生双证明、非Phone身份及指定目标端口22/32147/32148/5555/51839。其`client-simulation/1`签名域与旧`client-access/1`的Harness域不同，不能互借票据；服务回执`executionAuthorized=false`，目标原生须另验实际socket/路由/公钥、远程仿真开关、端口和工具/系统权限。**当前后端已上线，Flutter发起与目标原生接收及双机真实互仿未过，不能宣称桌面免授权仿真已交付。**普通业务房、通用服务房管理员、越级审批、撤权旧票和旧手工授权继续按各自真实正反矩阵验收；房间拒绝不能静默走个人或手工路径。
+
+本次后台切换后单张kemi业务房票由本机155访问Mac132，实际`vibekits.system.info`返回目标macOS/PID11381，服务端领取/完成各1。另行打开的529普通仿真连接没有承载这张票，必须按155→132记录。不要把单个只读工具、后端源码测试或固定端口SSE槽数当成全部权限、最终统一包、24/72小时或100台真实设备验收通过。
