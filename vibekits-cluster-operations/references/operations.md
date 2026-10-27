@@ -355,3 +355,7 @@ Phone↔Mac同账号只要求原Harness会话、消息和文件协同，不进�
 ### 原生账号仿真候选：编译前必验正式输入
 
 本会话曾在隔离RustDesk源码中直接运行Cargo，漏做项目已知的pinned`hbb_common` KEMI补丁与官方协议生成，首轮155个缺符号、次轮18个协议字段错误；修正后Mac arm64 RustDesk lib及36项聚焦测试通过，但按全局AGENTS第11条该执行会话新编译/签名/部署资格仍暂停，不能用后续绿测自我恢复。[原事故](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/ACCOUNT_SIMULATOR_NATIVE_INPUT_GATE_INCIDENT_20261027.md)与[修复证据](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/ACCOUNT_SIMULATOR_NATIVE_INPUT_GATE_REPAIR_20261027.md)分开保存。新同事使用正式Mac发布脚本可复用其原补丁/生成步骤；**若直接运行Cargo合同编译**，先在隔离工作树调用分支`codex/account-simulator-native-20261027`中的`client/res/verify-account-simulator-native-inputs.py`，其负控须拒绝无补丁与缺协议，完全准备后返回PASS，再启动Cargo。检查器只确认输入，不证明候选已签名、安装或G08真机通过；不改共享submodule或借别的会话规避暂停。
+
+### 禁止访问目录仍需目标OS级全入口约束
+
+用户要求设置中可添加、查看、逐项移除目录，且所有下级目录均禁止远程仿真。当前仍是设计与验收草案，**尚无平台可宣称保护生效**。[白盒入口盘点](https://github.com/caucy2026/vibekits/blob/main/docs/development/REMOTE_PROTECTED_DIRECTORIES_ENTRY_INVENTORY_20261027.md)列出SSH/SCP、文件哈希、房间MCP、同账号短票、浏览器/UI及PAD ADB的真实旁路；Dart字符串路径过滤不能限制Shell/派生进程或已打开的GUI文件。先证明各平台目标OS隔离和真实连接来源，再做设置UI/统一broker；同账号或高级管理员也不能绕过本机规则。按项目PD-A01–A12对祖先、任意深子目录、链接/卷别名、在途操作、旧端和最终包逐项真机验收，缺任一远程入口继续BLOCK。
