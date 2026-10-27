@@ -20,6 +20,8 @@
 
 高等级真实首败：Mac132当前0级向同房Mac529当前继承1级申请一次`system.info`，服务器按规则拒绝；随后普通`simulator.connect`仅返回`ROOM_MEMBER_SCOPE_NOT_READY`，没有目标可审批请求。客户端现有测试明确保护“房间失败不可静默改走旧手工授权”。应新增只针对服务端明确`approvalRequired`的**显式申请入口**，由目标本人批准后以新的有界权限重试；售后不可见普通目标、跨客户、撤权、离线和其他房间错误都不得借此回退。不得为测试降级目标或直接改库。见[原机与当前等级回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G08_MAC132_HIGHER_LEVEL_APPROVAL_BLOCK_20261027.md)。
 
+相反方向的实收须另计：Mac529当前账号在kemi及newlink均解析为有效1级，目标Mac132为0级；529→132在kemi普通业务房和newlink通用服务房分别用新短票真实调用一次`system.info`，目标PID11381、服务端各领取/完成1。第一次售后短票仅准备未调用、领取/完成0并明确关闭，不能算目标通过。此例证明**有权管理员**访问服务普通成员，不能拿来证明售后普通成员互访；当前数字等级汇总未唯一判定客户授予或通用授予来源。见[双房独立回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G08_MAC529_GRADE_AND_SUPPORT_ADMIN_REAL_20261027.md)。
+
 2026-10-26[已安装Mac132/799真机目录回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G06_G07_MAC132_799_ROOM_ROSTER_SCOPE_20261026.md)展示普通成员的两种视图：newlink通用服务1后台16台approved，132的`room_devices`仅返在线管理员155一台、不返回自己和其他普通设备；kemi普通业务房后台8台approved，132得到完整8/8（1管理员、7成员，含自己）。先核原serverId、安装身份、房间批准和目录真实结果，再判可见范围。这个目录数据验收不代替最终网页折叠、实时通知、管理员看全体或其他客户房间矩阵。
 
 **覆盖升级数据冻结期间的调用边界**：800冻结源码的`harness_tool_bridge.dart`中`cluster.rooms`和`room_devices`均先调用`ClusterRoomAgent.start()/sync()`；`sync()`在修订变化时可能`_persistProfile()`写本地房间快照。因此工具被标为只读、HTTP使用GET，不等于本机配置文件绝对不变。做升级前后文件SHA比对时，先与负责会话协调并冻结读房间调用；确需调用则记录准确时间/工具/目标，将可能的正常缓存刷新与异常数据变化按具体文件对账。2026-10-26共享800原负责会话后来把**已测保护文件差异**定位为自建QA791恢复时追加空结束标记，原记录完整；该具体差异不能归因房间读取，但源码潜在写入边界仍须防重复。[归因记录](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/MAC800_ROOM_READ_SYNC_DATA_PROTECTION_SCOPE_20261026.md)。
