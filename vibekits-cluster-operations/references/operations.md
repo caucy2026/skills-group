@@ -32,6 +32,8 @@ macOS SSH 可连接但不能访问受保护文件时，在获授权设备打开�
 
 2026-10-27旧15分钟PID37265与小时OS/MCP PID17181均于原截止前停止，不能再写成当前运行；新15分钟PID55268已实收连续三轮`scheduled_local/ok=true`。接班时必须先查**当前**PID、状态文件、原始样本来源和最后定时起点；进程消失且状态终止后，才沿项目同一 runner/锁恢复，保留空白与失败样本，从新进程的真实连续回执另起窗口。手工补采仍单列`manual`，不能倒填中断区间。小时探针会连接原六台；529由其他会话独占升级期间，不擅自重启这条会触碰529的探针，待执行归属释放后再恢复并核至少两轮。该次[断档、恢复及滚动窗口审计](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_LOCAL_MONITOR_RECOVERY_20261027.md)同时保留445失联、两轮采样失败和服务PID换代，不因新绿样本抹去旧失败。
 
+某台设备被其他会话独占维护时，项目 OS 采样器可显式传 `--exclude-id <原ID> --exclude-reason other_session_maintenance`；项目 runner 的对应参数为 `--maintenance-exclude-id`/`--maintenance-reason`，只转给原 OS 采样器。被排除设备在任何连接前记为 `not_contacted`，原完整六台 `ok/lastOk=false`，其余五台全实收才单列 `lastMaintenanceSubsetOk=true`。维护态输出必须使用独立根与有界运行期，不能把维护态样本拼进完整六台 24/72 小时；责任会话释放设备后再切回无排除的原六台探针。真实五台首轮与限制验证见[维护态回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_FIVE_DEVICE_MAINTENANCE_OS_SAMPLE_20261027.md)。
+
 观察到设备App PID变化时先对账版本、原安装身份、负责人在途升级事务和恢复回执，再分类计划维护或异常；不能只凭PID变化判崩溃，也不能把升级前后两个PID拼成同一App稳定窗口。2026-10-26第五轮六台设备侧工具6/6成功，但构建Mac155因已授权799→800覆盖从PID95968换为52339，其他五台PID不变；额外Linux101为ARM构建暂退使全池新鲜数10→9，原757恢复后全池回10、该额外ID与两房批准由生产独立读回。它始终不替代617，且新Office包构建完成不等于已安装发布。仍需各自完整24/72小时与服务事件证据。
 
 活跃开发聊天期间若heartbeat没有真实样本，先核其调度状态和来源，再补独立但同范围的有界只读采样，不把手工样本标作调度成功。采样器现支持`--source scheduled_local`与旧manual/heartbeat分开，互斥锁防重叠；2026-10-26本机72小时后台进程前两轮样本成功、间隔901.214秒；完整24/72小时覆盖仍须继续读回。该Mac的LaunchAgent因后台访问外盘被系统拒绝，失败配置已移除；不要为巡检绕过系统磁盘权限，可复用hbbv项目`tool/original_seven_local_monitor_loop.py`，传实际受信profile/桥/输出根/serverId与本机必须挂载的卷；先以独立输出根`--max-runs 1`冒烟，在原监控终止后才对正式根启动，单实例锁会拒绝双开，外盘卸载即停写。当前活跃PID37265仍是先前脚本，整理新入口不等于已切换它。方法及限制见[原七台监控生产回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/ORIGINAL_SEVEN_MONITOR_SAMPLER_20261025.md)。
