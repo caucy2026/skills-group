@@ -361,3 +361,13 @@ Phone↔Mac同账号只要求原Harness会话、消息和文件协同，不进�
 用户要求设置中可添加、查看、逐项移除目录，且所有下级目录均禁止远程仿真。当前仍是设计与验收草案，**尚无平台可宣称保护生效**。[白盒入口盘点](https://github.com/caucy2026/vibekits/blob/main/docs/development/REMOTE_PROTECTED_DIRECTORIES_ENTRY_INVENTORY_20261027.md)列出SSH/SCP、文件哈希、房间MCP、同账号短票、浏览器/UI及PAD ADB的真实旁路；Dart字符串路径过滤不能限制Shell/派生进程或已打开的GUI文件。先证明各平台目标OS隔离和真实连接来源，再做设置UI/统一broker；同账号或高级管理员也不能绕过本机规则。按项目PD-A01–A12对祖先、任意深子目录、链接/卷别名、在途操作、旧端和最终包逐项真机验收，缺任一远程入口继续BLOCK。
 
 [官方平台边界核对](https://github.com/caucy2026/vibekits/blob/main/docs/development/REMOTE_PROTECTED_DIRECTORIES_OS_BOUNDARY_20261027.md)进一步记录：Mac全局文件授权拦截需要Apple另行授予Endpoint Security entitlement及相应系统扩展/平台批准，当前正式App只读验签未见该能力；Windows须真正限制进程及桌面，Linux Landlock不作用于旧FD/已有GUI，PAD的ADB由设备端权限域决定。不能在未取得这些平台条件时把普通设置开关标成“已保护”。
+
+## 万级房间心跳与持久连接：两类容量分别验收
+
+[隔离容量回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_SYNTHETIC_10000_SERVICE_HEARTBEAT_20261027.md)与[回执窗口及4秒负控](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_HEARTBEAT_RECEIPT_WINDOW_AND_4S_GATE_20261027.md)须分开解读：1万合成设备按10秒节奏的短连接心跳/重注册通过，现桌面客户端约4秒节奏在同项负载中超期；200条独立保留的TLS连接使当前`ThreadingHTTPServer`线程2→203、FD9→409。末尾“全部在线”、短连接PASS和源测试均不能冒称1万持久连接、真实设备或24/72小时通过。接入层须有界异步处理与背压，不靠调大线程/FD上限；房间在线TTL/同步节奏不能擅自放宽同账号presence、Native证明、撤权和任务租约。
+
+当前私有hbbv主线的[心跳回执修复](https://github.com/caucy2026/priv/blob/main/hbbv/server/device_receipt_retention.py)仅保留每设备同epoch最近16个精确重试，旧序号由healthSeq单调拒绝，其它回执不动；**尚未生产部署**。正式数据库内部freelist空页不是云卷释放量；下次部署仍须本地三份有效一致性备份、云端项目<3GB及`cloud-build-cleanup`。本聊天资格暂停时不自行切换服务或VACUUM。
+
+## Phone多设备Peer票额：先核实际运行版
+
+[票额回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/PHONE_PEER_TICKET_PHASE_CAPACITY_20261027.md)：原生产进程按customer+source把未签发与已签发合计限4；私有main待部署源码沿原表`envelope`状态拆为pending最多4、issued最多16，并在issue转签复核，全局4096及双方签名/身份/短到期/撤销不变。客户端ACK后回收旧票、关闭与未知结果对账仍是独立责任；Native消费本身不释放服务额度。后端聚焦45项和全套1,233项通过不等于生产新额度或Phone55/809八Host业务通过。共享hbbv/server是历史快照，不能单文件拷贝到旧树部署；正式候选从完整私有main冻结。
