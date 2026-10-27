@@ -385,3 +385,10 @@ Phone↔Mac同账号只要求原Harness会话、消息和文件协同，不进�
 [Mac529现场](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G02_MAC529_OLD_APP_RELAUNCH_20261027.md)证明：较新已签2799仍在缓存路径时，旧正式`/Applications/Vibekits.app` build2723也能重新运行并以同一原ID报新鲜心跳。设备显示“在线”、签名有效、另一份新App仍存在，都不能证明**当前进程**是新版。发现版本倒退时，按当前PID出生时间与完整可执行路径、两个App的Info.plist/签名、服务器新鲜版本与工具目录交叉核验；旧模型ready在进程更换后标为历史，不继续当当前证明。LaunchServices的`launch job demand`不能唯一证明用户、登录项或更新器是发起者，缺原始日志就保留未知。
 
 恢复前与设备原负责人核在途操作和用户数据/授权快照；合格同签候选应覆盖被普通入口启动的**正式路径**，而非只把缓存新版重新打开。结束后分别从普通入口和冷启动验实际路径/PID/版本、原ID/主机指纹、账号/会话/系统权限、两房心跳及真实工具，并在下一次重启确认不会回到旧包。资格暂停或他人连接在途时只读冻结并协调，不自行停App、清配置或代装。
+
+
+## 加入房间后申请中不被旧left快照抹掉
+
+[当前源码修复与负控](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/ROOM_APPLY_STALE_LEFT_UI_SOURCE_20261027.md)：客户端已持久记住`checking/pending`申请回执时，随后房间列表短暂返回旧`membership=left`或关闭公开入口，面板仍应显示“申请中”并禁重复申请；服务器新`approved/rejected/revoked`终态优先。UI回执只是显示/防重，不是设备或房间仿真授权。验收要在最终签名客户端真实执行申请→刷新/重开→审批或拒绝→两端设备列表/权限更新，并独立核服务端无第二条重复申请；现装811未包含此后加源码，不可把14项组件绿测写成已交付。
+
+本次隔离测试曾两次因漏检输入闭包失败，详见[事故](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/ROOM_APPLY_SPARSE_INPUT_INCIDENT_20261027.md)。后续源码合同测试先核完整`lib`、本地path包和pubspec资源均存在，再运行锁定依赖；0项用例执行的求解/导入失败不是产品回归，也不能以补测绿灯自行恢复执行资格。
