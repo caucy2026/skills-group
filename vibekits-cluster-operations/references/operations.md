@@ -386,7 +386,7 @@ PAD候选后续`b881ea2a39`增加打包前动态JNI符号门禁：仓库当前�
 
 [票额回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/PHONE_PEER_TICKET_PHASE_CAPACITY_20261027.md)：原生产进程按customer+source把未签发与已签发合计限4；私有main待部署源码沿原表`envelope`状态拆为pending最多4、issued最多16，并在issue转签复核，全局4096及双方签名/身份/短到期/撤销不变。客户端ACK后回收旧票、关闭与未知结果对账仍是独立责任；Native消费本身不释放服务额度。后端聚焦45项和全套1,233项通过不等于生产新额度或Phone55/809八Host业务通过。共享hbbv/server是历史快照，不能单文件拷贝到旧树部署；正式候选从完整私有main冻结。
 
-现生产新PID`3169264`仍运行合计4的旧issuer，公开`/api/v2/account/capabilities`没有`peerAccessTicketLimits`字段；私有main`74d3b48`仅新增版本化声明和44项HTTP/HTTPS合同，未切生产。Phone遇缺字段/null/非法值按legacy4保守；未来phased字段必须从**实际运行issuer**的pending/issued/global常量回报，combined只回combinedPerSource总额，不能把combined4解释为两组各4。服务每次challenge/issue仍是最终权威；部署后重核PID/cwd/源码SHA、能力字段和真实429，不能凭main提交或feature布尔值推断新额度已生效。
+2026-10-29 05:14 CST[独立生产回读](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G05_PHONE_TICKET_PHASED_PRODUCTION_INDEPENDENT_READBACK_20261029.md)：当前PID`3602076`运行完整新release，原serverId保持，公开`/api/v2/account/capabilities`返回`peerAccessTicketLimits={version:1,accounting:phased,pendingPerSource:4,issuedPerSource:16,globalTickets:4096}`，运行issuer源码SHA与冻结候选匹配；旧PID`3169264`的combined4仅是切换前历史。Phone只在同serverId且字段版本/整数有效时按phased协商，缺字段/null/非法值仍保守legacy；combined仅回combinedPerSource总额，不能解释成两组各4。服务每次challenge/issue仍是最终权威，`fullHarnessCollaborationReady=false`未变化；后台票额上线不等于Phone消息/文件/审批及多机续期通过。进程再换代须重新核PID/cwd/能力字段和真实429，不凭main提交或feature布尔值推当前额度。
 
 
 ## 两台Mac同包：安装树与正式ZIP分别核
