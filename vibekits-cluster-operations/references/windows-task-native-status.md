@@ -23,6 +23,8 @@ TaskScheduler导出的XML会省略默认RunLevel。缺字段不能推出权限�
 
 遇command_requires_uploaded_script等长度保护，按接口要求上传固定脚本后用已有合格执行器运行；不切分、换编码或改策略绕过被拒脚本。注册后核实际任务上下文，再用目标端PID/birth和终态核执行，不能把Run请求成功当安装完成。
 
+Windows58的D盘专用清理曾遇到此门禁：短内联只读/精确单件操作通过，较长的17件批处理被拒为`ssh_command_requires_uploaded_script`。当时`simulator.upload_file`只收`localPath`，默认落用户目录，不满足该机D盘专用约束；原指纹绑定的直接SFTP返回`Connection closed`，旧SCP返回`lost connection`，远端脚本与候选文件回读均无部分写入/删除。此时保留冻结清单、解除自建空暂存，停止该批；不能缩短内联命令、转C盘暂存或把已准备脚本记作已执行。若后来取得合规D盘上传能力，先核同一原ID/指纹、脚本SHA、执行策略和目标身份，再启动新事务。这个案例不意味着所有Windows设备的SFTP均不可用。[原回执与保留范围](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G10_WINDOWS58_OLD_PDB_COPY_CLEANUP_20261028.md)。
+
 退出App前封存新鲜、私有DACL的数据见证，两轮核集合及SHA；受管依赖链接记录目标而不跟随。独立观察器同时绑定PID/birth和日志更新时间，未知/部分写入的安装终态不能让监控提前结束；未知活跃安装器也不能被重复安装或覆盖回退。成功安装后须清除等待计时器；旧包仍在且只剩辅助进程时，按GUI实际存在性恢复界面，不能按“进程族非空”误判GUI正常。
 
 健康提交以前，从原ID重连，核主机指纹、实际新PID/版本/路径/签名、真实MCP和受保护命令、双向文件SHA、房间实时身份及实际界面。控制端自身重启导致not_connected时，先对账控制端进程/桥，再按原ID重连核同一目标事务，不把目标重新安装一遍。
