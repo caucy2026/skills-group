@@ -48,6 +48,8 @@ macOS SSH 可连接但不能访问受保护文件时，在获授权设备打开�
 
 冻结最新主线及依赖，记录版本整数/包 SHA/大小/签名/公证/生产来源。先构建 Mac 真实启动验原身份和原授权，再按机型覆盖；共享桥被别人更新时先比较实际候选与源码/签名，采用已合格相同或更新包，不降级覆盖。Win 构建/签名在本机规定数据盘，交互 Session1；保留内外签名及时间戳证据，PIN只由人在设备输入。签名结果未知先追原 PID/事务，不能重签。
 
+当前主线若要求随 Windows Release 携带 NLRemoteAdb，必须在完整 Flutter 编译**之前**沿用 `tool/stage_nlremote_runtime.py --source <已构建的NLRemoteAdb源码根目录>`。核 `native/nlremote/windows/runtime/` 的 `runtime.json`、`nlremote.exe`、`libunwind.dll`、`LICENSE`、`HBBS_CRYPTO_NOTICES.txt`，清单中的文件哈希与实际字节一致，控制器真实 `--help` 声明当前所需的 `managed-relay-v7`。缺源码或任一输入时停在输入门禁，保留旧版运行，不先完整编译再等 CMake 安装阶段失败；不能用旧 v5/v6、改清单标记或删除必需项凑包。2026-10-29 Windows58 的 816 编译已完成而组装因这五项缺失失败，见[首败与精确缺项](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/WINDOWS816_TRANSPARENT_INPUT_RELEASE_STATUS_20261029.md)。前置通过仅证明输入齐备，最终包仍须签名、覆盖和真实协议/界面验收。
+
 安装前保存精确原路径/ID/指纹/授权配置摘要及回滚；独立守护核 PID birth、原身份 MCP、目标版本、房间心跳后 ACK。scheduled/脚本 exit0 不是安装通过。失败恢复原包/原数据，不卸载清数据。Mac Universal/Intel老系统与Windows现有舰队分别验证。商城只发布最终已签验收同一字节包，公开元数据/下载SHA/版本及更新行为核验后称完成；内部商城不等于 Apple/Microsoft Store。
 
 ## Harness 调试记录清理
