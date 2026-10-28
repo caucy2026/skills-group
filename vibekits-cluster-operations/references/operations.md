@@ -378,11 +378,15 @@ PAD候选后续`b881ea2a39`增加打包前动态JNI符号门禁：仓库当前�
 
 [隔离容量回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_SYNTHETIC_10000_SERVICE_HEARTBEAT_20261027.md)与[回执窗口及4秒负控](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_HEARTBEAT_RECEIPT_WINDOW_AND_4S_GATE_20261027.md)须分开解读：1万合成设备按10秒节奏的短连接心跳/重注册通过，现桌面客户端约4秒节奏在同项负载中超期；200条独立保留的TLS连接使当前`ThreadingHTTPServer`线程2→203、FD9→409。末尾“全部在线”、短连接PASS和源测试均不能冒称1万持久连接、真实设备或24/72小时通过。接入层须有界异步处理与背压，不靠调大线程/FD上限；房间在线TTL/同步节奏不能擅自放宽同账号presence、Native证明、撤权和任务租约。
 
+2026-10-29[混合负载与误差纠正](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_MIXED_READ_HEARTBEAT_INSTRUMENT_20261029.md)：正式`ClusterRoomAgent`缓存同一Dart`HttpClient`，仿真隧道还限制单主机一连接；短连接发压只是一类压力，不是正式客户端持续连接模型。合成10,000身份两轮共20,000心跳虽最终全在线，4秒节拍仍约18秒FAIL；管理GET与心跳共用**客户端**线程池时数秒长尾主要是本机排队，独立管理池后GET P95约77–129毫秒，TLS单次建连P95约1.20毫秒，不能据此唯一归因服务端锁。32→64心跳工作线程仍未过；现服务默认最多1,024活动连接，万人持久在线须另测有界接入。生产服务PID于03:25:26 CST正常停启换代，见[连续性回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_MONITOR_SCOPE_RECOVERY_20261028.md)；成功的新样本不能接上旧PID的24/72小时窗口。
+
 当前私有hbbv主线的[心跳回执修复](https://github.com/caucy2026/priv/blob/main/hbbv/server/device_receipt_retention.py)仅保留每设备同epoch最近16个精确重试，旧序号由healthSeq单调拒绝，其它回执不动；**尚未生产部署**。正式数据库内部freelist空页不是云卷释放量；下次部署仍须本地三份有效一致性备份、云端项目<3GB及`cloud-build-cleanup`。本聊天资格暂停时不自行切换服务或VACUUM。
 
 ## Phone多设备Peer票额：先核实际运行版
 
 [票额回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/PHONE_PEER_TICKET_PHASE_CAPACITY_20261027.md)：原生产进程按customer+source把未签发与已签发合计限4；私有main待部署源码沿原表`envelope`状态拆为pending最多4、issued最多16，并在issue转签复核，全局4096及双方签名/身份/短到期/撤销不变。客户端ACK后回收旧票、关闭与未知结果对账仍是独立责任；Native消费本身不释放服务额度。后端聚焦45项和全套1,233项通过不等于生产新额度或Phone55/809八Host业务通过。共享hbbv/server是历史快照，不能单文件拷贝到旧树部署；正式候选从完整私有main冻结。
+
+现生产新PID`3169264`仍运行合计4的旧issuer，公开`/api/v2/account/capabilities`没有`peerAccessTicketLimits`字段；私有main`74d3b48`仅新增版本化声明和44项HTTP/HTTPS合同，未切生产。Phone遇缺字段/null/非法值按legacy4保守；未来phased字段必须从**实际运行issuer**的pending/issued/global常量回报，combined只回combinedPerSource总额，不能把combined4解释为两组各4。服务每次challenge/issue仍是最终权威；部署后重核PID/cwd/源码SHA、能力字段和真实429，不能凭main提交或feature布尔值推断新额度已生效。
 
 
 ## 两台Mac同包：安装树与正式ZIP分别核
