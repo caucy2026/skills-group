@@ -30,6 +30,8 @@
 
 必须区分：后台设备在线、MCP connected、SSH ready、模型 ready、任务执行授权。委托按需模式 SSH=false 可以正常调用 MCP。旧逻辑会话 expiry 显示离线但实际新票调用成功，需修复状态刷新，不放宽票据 TTL 或用永久白名单掩盖。
 
+待审申请的安全负例见[2026-10-30原QA房真机回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G08_PENDING_MEMBER_ROOM_DENIAL_20261030.md)：原Mac132仍为`pending/rev3`时，同房已批准Mac155以新请求尝试唯一`vibekits.system.info`的`room_connect`，真实返回`MEMBERSHIP_NOT_APPROVED`，服务端该requestId委派记录0、申请状态不变。此例只证明**待审不可拿票**；批准后目标工具成功、后续撤销与旧票拒绝仍须分开的同事务回执，不得用SQL改申请或拿其他房间票代替。管理页读取失败时保留待审状态，继续可独立完成的检查。
+
 同步验收包括新成员、管理员新增/降级、电脑名、掉线/恢复、退出、撤销。收到变更刷新当前修订；断网显示最后更新时间和未知状态，不把缓存显示为在线。自动同范围续约不能旋转修订使在途有效票突然失效；显式撤销、降级、退房必须拒绝旧授权。未知执行结果不自动换票重做。
 
 每机入房通过：原 ID+安装身份一致、客户端实时 connected/approved、正确服务新鲜心跳、真实只读 MCP、角色/名称同步。稳定性另按持续观察证明。
