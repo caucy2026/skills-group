@@ -433,3 +433,5 @@ PAD候选后续`b881ea2a39`增加打包前动态JNI符号门禁：仓库当前�
 客户端恢复也须严格使用更高事件游标、完整权威DTO和明确`canSelect`授权；旧/相同游标、缺行、单`changed`通知或权限否不能复活旧绑定。持续多目标观察要同时核目录项、绑定修订、实际协同操作与撤权负控，且不延长原票据期限、不复用仿真票。
 
 [同账号Native重新激活的生产元数据](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/SAME_ACCOUNT_NATIVE_REBIND_REVISION_20261030.md)说明另一条易混淆路径：**新**已验证登录operation会使绑定修订递增，即使账号和Native指纹未变；同一个operationId重试才幂等。155在两个客户作用域分别出现旧修订移除与同账号新修订建立，这是真实换绑，旧关系必须`device_removed`，不可被临时broker不可达修复改成offline。服务端事件无时间戳/操作发起者，不能从同账号、同进程推断“用户手动重登”或“客户端自动恢复”的具体上游触发；先核受限登录/恢复操作回执和设备时间线，不擅自跳过服务端修订轮换使旧票继续有效。源码聚焦34项通过，Phone实际持续同步另验。
+
+最新生产状态见[2026-10-30目录精确范围交付报告](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/PHONE_NATIVE_DIRECTORY_SCOPE_PRODUCTION_20261030.md)：源`08c77da`的修正已在新release`20261030-native-directory-scope-v1`运行，PID`1435415`；700/700交付文件逐SHA、原serverId/密钥/门户链接、其它服务PID和原六台两房心跳均核。部署前新数据库快照只落本地并轮转为最近三份，云端项目清理后低于3GB且无库副本。上述只证明**后端源码上线与当前状态连续**；Phone三目标经历真实Native短断→同绑定恢复、真实换绑撤权及消息/文件/会话持续同步还要由手机执行端实测。后续先读实时PID/模块SHA，不能把本节历史PID当当前值或把`fullHarnessCollaborationReady=false`改成通过。
