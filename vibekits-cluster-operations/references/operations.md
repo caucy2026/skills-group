@@ -384,6 +384,8 @@ PAD候选后续`b881ea2a39`增加打包前动态JNI符号门禁：仓库当前�
 
 2026-10-29[混合负载与误差纠正](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_MIXED_READ_HEARTBEAT_INSTRUMENT_20261029.md)：正式`ClusterRoomAgent`缓存同一Dart`HttpClient`，仿真隧道还限制单主机一连接；短连接发压只是一类压力，不是正式客户端持续连接模型。合成10,000身份两轮共20,000心跳虽最终全在线，4秒节拍仍约18秒FAIL；管理GET与心跳共用**客户端**线程池时数秒长尾主要是本机排队，独立管理池后GET P95约77–129毫秒，TLS单次建连P95约1.20毫秒，不能据此唯一归因服务端锁。32→64心跳工作线程仍未过；现服务默认最多1,024活动连接，万人持久在线须另测有界接入。生产服务PID于03:25:26 CST正常停启换代，见[连续性回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_MONITOR_SCOPE_RECOVERY_20261028.md)；成功的新样本不能接上旧PID的24/72小时窗口。
 
+新增[500连接对照](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_PERSISTENT_500_CONNECTION_COMPARISON_20261029.md)：同一源码/合成售后房/两次4秒tick，持久与短连接均各收1000 ACK且500在线；持久连接采样时约505线程、1009 FD、117.5MB RSS，短连接采样时3线程、9 FD、53.8MB RSS。这里的线程/FD是两次隔离运行的采样，**不能线性外推为万人实测内存**；它进一步证明旧`ThreadingHTTPServer`一连接一线程的接入边界。测试私有库/证书已随临时目录清理，生产未改。
+
 后续[锁外准备批量候选负控](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_PREPARED_HEARTBEAT_BATCH_NEGATIVE_20261029.md)在隔离源码中先认证、锁外Schema/规范化、提交时重验，6项安全/回执合同及1,000合成身份正控通过；10,000身份两轮20,000心跳仍约22.5秒、两tick排空约7秒，明确节拍FAIL，未合main或部署。不能用最终在线10,000或小规模绿测替代4秒节拍；也不能从不同主机负载的两次实验推出确定性能回退。下一候选按[万人在线实现开发单](https://github.com/caucy2026/priv/blob/main/hbbv/docs/development/G09_TEN_THOUSAND_ONLINE_IMPLEMENTATION_PLAN_20261029.md)同时解决有界持久接入与逐请求耐久ACK，并做100台以上真机及24/72小时验收。
 
 当前私有hbbv主线的[心跳回执修复](https://github.com/caucy2026/priv/blob/main/hbbv/server/device_receipt_retention.py)仅保留每设备同epoch最近16个精确重试，旧序号由healthSeq单调拒绝，其它回执不动；**尚未生产部署**。正式数据库内部freelist空页不是云卷释放量；下次部署仍须本地三份有效一致性备份、云端项目<3GB及`cloud-build-cleanup`。本聊天资格暂停时不自行切换服务或VACUUM。
