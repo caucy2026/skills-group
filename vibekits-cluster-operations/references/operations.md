@@ -422,3 +422,12 @@ PAD候选后续`b881ea2a39`增加打包前动态JNI符号门禁：仓库当前�
 [当前源码修复与负控](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/ROOM_APPLY_STALE_LEFT_UI_SOURCE_20261027.md)：客户端已持久记住`checking/pending`申请回执时，随后房间列表短暂返回旧`membership=left`或关闭公开入口，面板仍应显示“申请中”并禁重复申请；服务器新`approved/rejected/revoked`终态优先。UI回执只是显示/防重，不是设备或房间仿真授权。验收要在最终签名客户端真实执行申请→刷新/重开→审批或拒绝→两端设备列表/权限更新，并独立核服务端无第二条重复申请；现装811未包含此后加源码，不可把14项组件绿测写成已交付。
 
 本次隔离测试曾两次因漏检输入闭包失败，详见[事故](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/ROOM_APPLY_SPARSE_INPUT_INCIDENT_20261027.md)。后续源码合同测试先核完整`lib`、本地path包和pubspec资源均存在，再运行锁定依赖；0项用例执行的求解/导入失败不是产品回归，也不能以补测绿灯自行恢复执行资格。
+
+
+## Phone目录误删：先区分Native临时不可达与真实撤权（2026-10-30）
+
+同账号Phone目录突然少设备、加密目录消失或locator被撤销时，先核**实际生产PID/cwd/模块SHA**和同一账号三目标的事件号、`kind`、绑定版本；不要拿本地源码快照或单个`device_removed`当云端根因。生产事件表没有时间戳/内部原因，不能仅凭连续的`removed→changed`唯一归因手机某轮安装。不得读取聊天、票据、密文或数据库正文；只输出脱敏事件元数据，并与手机原保护样本/服务器真实事务时间对账。
+
+2026-10-30[真实生产读回及修正报告](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/PHONE_NATIVE_TRANSIENT_REMOVAL_FIX_20261030.md)证实旧生产运行模块把Native broker的`NATIVE_BROKER_UNAVAILABLE`折叠为`None`，目录默认把`None`发成`device_removed`；三个原目标曾出现同绑定`removed`后紧接`changed`，但具体事件与手机105→106没有可证明的时间关联。私有main`0ae63d5`已加入**仅内部**的目录探针：先确认持久会话、当前绑定、安全修订、active登录和host信任仍有效，才将broker临时不可达发成已有的`device_offline`；普通操作仍拒绝，broker恢复同绑定才`device_changed`。真实登出、换账号/绑定、安全或信任撤销仍`device_removed`，不能一概把`None`降为offline。源码聚焦122项通过，**当时生产尚未部署，Phone持续目录/消息/文件真机验收未通过**；后续先读实时发布回执，不把主线提交冒充云端修复。
+
+客户端恢复也须严格使用更高事件游标、完整权威DTO和明确`canSelect`授权；旧/相同游标、缺行、单`changed`通知或权限否不能复活旧绑定。持续多目标观察要同时核目录项、绑定修订、实际协同操作与撤权负控，且不延长原票据期限、不复用仿真票。
