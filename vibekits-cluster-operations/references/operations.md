@@ -52,6 +52,8 @@ macOS SSH 可连接但不能访问受保护文件时，在获授权设备打开�
 
 Windows58随后出现另一类原生回退：已签817包中的`vibekits-harness-relay.exe`来自10月17日的旧缓存二进制，而原可用789带有后来重建的relay；同一服务上789探测返回`protocol_v4`，817返回`control_response_invalid`。**每次同源Flutter重编也须单独核最终包内relay的源码/构建回执、SHA与真实协议**，不能只验主程序版本、签名或旧stage文件存在。817覆盖守护因两房心跳未恢复而按`HEALTH_COMMIT_DEADLINE`自动回退；不要重复安装这份失败包，也不要通过放松服务鉴权或清配置凑通过。回退后还须看真实界面：58旧789虽恢复原ID、SSH和房间心跳，输入框/对话区布局仍有故障，故“进程与心跳恢复”不能写成“运行正常”。保留回退事务与用户数据，修复同源原生候选后再做真实协议、房间MCP、界面、权限及数据连续验收。见[精确失败与回退](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G02_WINDOWS58_817_ROLLBACK_20261029.md)。
 
+Mac覆盖入口返回`scheduled=true`时还须读**守护终态**。445的817原事务最终`CONCURRENT_OWNER_REJECTED`：旧进程退出后、原子目录交换前，守护发现另一个进程已映射正式App路径而安全退出；正式路径实读仍为811/build2811，回退未尝试。随后目标GUI进程虽在，未显示窗口，工具桥还指向已退出旧PID；普通打开正式App仍需核实际初始化与桥重建。沿登记的同机远程办公终端读取原事务、PID出生时间/完整路径、启动日志及原ID心跳；**不以调度、进程存活或另一台529的界面推断445已升级**，不复用旧桥令牌、清数据、结束来源未明进程或盲重放安装。具体并发进程来源仍待现场核实，见[集群当前交接](https://github.com/caucy2026/priv/blob/main/hbbv/docs/PROJECT_HANDOFF_VIBEKITS_CLUSTER_UPGRADE_ACCEPTANCE_20261011.md)末尾。
+
 安装前保存精确原路径/ID/指纹/授权配置摘要及回滚；独立守护核 PID birth、原身份 MCP、目标版本、房间心跳后 ACK。scheduled/脚本 exit0 不是安装通过。失败恢复原包/原数据，不卸载清数据。Mac Universal/Intel老系统与Windows现有舰队分别验证。商城只发布最终已签验收同一字节包，公开元数据/下载SHA/版本及更新行为核验后称完成；内部商城不等于 Apple/Microsoft Store。
 
 ## Harness 调试记录清理
