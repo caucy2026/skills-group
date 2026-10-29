@@ -35,3 +35,11 @@ When online IDs cannot be called after a network or local App change, read [the 
 For uploading or deploying another application, including an SSH server without VibeKits, read [server file deployment](references/server-file-deployment.md). Use saved SSH/SFTP profile tools for that server; do not require a simulator ID or install VibeKits.
 
 完整中文接手步骤、云端技能来源、连接判定与故障分流见 [references/simulation-workflow.md](references/simulation-workflow.md)。
+
+## 远程浏览器操作
+
+用户要求像本机一样操作远程浏览器时，先从目标实际catalog核对浏览器/控件能力，再真实导航、读页面、交互及读取控制台/网络结果。系统SSH可用、浏览器启动PID或截图均不证明页面可操作。Windows732实测ui_inspect不支持，Edge启动后普通profile二次导航可能发生ProcessSingleton锁32；不得删除锁、杀用户浏览器、改个人profile或绕过证书。缺能力要报告并补实现，不能声称完整可控。项目研发验收沿用 `docs/acceptance/REMOTE_BROWSER_MCP_ACCEPTANCE_20261021.md`；通过原仿真授权访问仅loopback浏览器协议，关闭只回收自建会话，普通日志不记录凭据/cookie/授权头。
+
+源码新增接口的使用路线（仅当目标真实catalog包含 `vibekits.browser.session` 时）：通过 `simulator.call` 调用该toolId；open传用户网址、调用方唯一requestId及已配置临时工作根（58测试使用D盘），记住返回sessionId。open超时先status查询同requestId；重复同requestId只对账，不重新启动。后续snapshot/tabs/select/newTab/closeTab/click/hover/fill/key/scroll/diagnostics/screenshot都使用真实返回的sessionId、targetId和selector；无完整目录时不得猜测参数。截图立即通过download_file取回，目标只留最新3张；close确认自有进程组退出后清理独立临时profile。不得使用个人浏览器profile，密码交安全输入窗口，证书/网络阻断页面只诊断不自动继续。接口源码或合成回归通过不表示旧客户端已部署，也不代替最终签名包在58的真实网页交互及资源验收。
+
+关闭与对账：修复版在closeTab后有界核对目标确实离开列表；若返回BROWSER_TARGET_CLOSE_PENDING，读取原session的tabs对账，不重复启动或关闭别的页。标签公开结果只含页面身份、标题及去查询参数/片段的网址，不应向模型公开内部CDP端点。Windows退出后自建profile可能短时删除失败；修复版仅在确认自有进程树退出后有界重试，不改ACL/属性，超限保留cleanup_pending和原session。此时按原requestId读取status，再对原session执行close；不得另开浏览器掩盖残留。先核实际部署版本，源码修正不表示旧端已导入；58的737首轮真实证据见项目REMOTE_BROWSER_58_REAL737_FINDINGS_20261021.md。
