@@ -8,7 +8,7 @@
 
 ## Phone 同账号协同：试用接入与当前限制
 
-**2026-10-25：后端基础接口已部署，手机版完整历史、消息实收、附件和断线恢复仍在真机验收。** 本网站现有 Android 卡片是 PAD 正式包，不是 Phone 下载入口；Mac/Windows 的商城版本也不能据此认定已经支持新版手机协同。以下流程供获批研发/验收包使用，不把组件回归、公证或设备目录可见当作正式手机版已经交付。
+**2026-10-29：Phone 与 Host 的同账号原生控制面已部署，手机版完整历史、消息实收、附件、审批和断线恢复仍在真机验收；公开能力仍标 `fullHarnessCollaborationReady=false`。** 本网站现有 Android 卡片是 PAD 正式包，不是 Phone 下载入口；Mac/Windows 的商城版本也不能据此认定已经支持新版手机协同。以下流程供获批研发/验收包使用，不把组件回归、公证或设备目录可见当作正式手机版已经交付。
 
 Phone 是同账号电脑的操作界面，设备类型为 `phone`：不需要仿真 ID，不开启集群，不入房，不填写 customerId，不在手机配置目标电脑的模型 Key。它不能作为远程仿真或模型/工具执行宿主；模型、文件和会话操作由选中的电脑/PAD原工作台执行。Android 系统本身不能决定它是 PAD 还是 Phone，应核实际客户端形态。
 
@@ -23,6 +23,8 @@ Phone 是同账号电脑的操作界面，设备类型为 `phone`：不需要仿
 若会话列表能读取而正文中断，应分别核原operation、结果分片清单及接收确认。`completed`不等于手机已显示；`sealed`只说明宿主封装完成，`acknowledged`是源端确认，仍需核GUI。正常快照completion封套不一定带sessionId，缺失字段不能直接推成错会话。保留原草稿和回执，诊断只记错误码、时间、版本、大小与摘要，不复制聊天正文或秘密。
 
 研发同事继续读取[前后端统一协议与M01–M20验收](https://github.com/caucy2026/vibekits/blob/main/docs/development/MOBILE_HARNESS_SAME_ACCOUNT_HANDOFF_20261023.md)、[首次接入及Host Bootstrap后续合同](https://github.com/caucy2026/vibekits/blob/main/docs/development/MOBILE_ACCOUNT_DISCOVERY_SERVER_REPLY_20261024.md)和[可信恢复实测边界](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/PHONE_TRUSTED_RECOVERY_ACCEPTANCE_20261025.md)。这些文档含历史阶段，按文内后续状态、当前服务capabilities和最终包证据判断，不照搬旧“生产未开放”或“全部已通”的描述。
+
+需要由智能体逐步排查双钥关联、同账号票据和原`peer/1`业务时，使用[手机与电脑同账号协同技能](https://github.com/caucy2026/skills-group/blob/main/vibekits-cluster-operations/references/phone-native-peer-control.md)。后端Host三条精确签名控制路由的独立预算现已上线；它与Phone额度分别计数，也不授予手机房间仿真或证明聊天/文件已经送达。上线回执及当前缺项以[集群交接末尾](https://github.com/caucy2026/priv/blob/main/hbbv/docs/PROJECT_HANDOFF_VIBEKITS_CLUSTER_UPGRADE_ACCEPTANCE_20261011.md)为准。
 
 ## kemi业务与newlink通用服务
 
