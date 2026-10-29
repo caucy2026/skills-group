@@ -35,3 +35,7 @@ When online IDs cannot be called after a network or local App change, read [the 
 For uploading or deploying another application, including an SSH server without VibeKits, read [server file deployment](references/server-file-deployment.md). Use saved SSH/SFTP profile tools for that server; do not require a simulator ID or install VibeKits.
 
 完整中文接手步骤、云端技能来源、连接判定与故障分流见 [references/simulation-workflow.md](references/simulation-workflow.md)。
+
+## 远程浏览器
+
+需要像本机一样操作被控电脑浏览器时，先按原仿真ID核连接与实时catalog，再复用[真实远程浏览器操作指南](references/remote-browser.md)的`open→snapshot→click/输入/标签→诊断/截图→close`流程。历史Windows58真实交互证据不能替代当前最终包；目前专用被控浏览器入口只在Windows实现，Mac/Linux被控端不能冒称已验。只操作获授权页面及本任务自建profile，超时先查原requestId/sessionId，关闭后核资源回收。
