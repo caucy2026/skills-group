@@ -416,6 +416,8 @@ PAD候选后续`b881ea2a39`增加打包前动态JNI符号门禁：仓库当前�
 
 恢复前与设备原负责人核在途操作和用户数据/授权快照；合格同签候选应覆盖被普通入口启动的**正式路径**，而非只把缓存新版重新打开。结束后分别从普通入口和冷启动验实际路径/PID/版本、原ID/主机指纹、账号/会话/系统权限、两房心跳及真实工具，并在下一次重启确认不会回到旧包。资格暂停或他人连接在途时只读冻结并协调，不自行停App、清配置或代装。
 
+2026-10-30原Mac132和Windows619的[真实运行路径对账](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G02_MAC132_CURRENT799_SIGNED_PATH_20261030.md)、[Windows进程证据](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G02_WINDOWS619_CURRENT732_SIGNED_PATH_20261030.md)补充两种容易误判的情况：Mac132签名/Gatekeeper有效的2799实际在用户`Library/Caches/Vibekits 2.app`运行；Windows619的`device.applications`返回空，但`device.processes`真实见签名有效的2732在用户`KEMI-Test/installed-test`目录运行。因此应用列表空不等于未运行，版本自报或另一位置存在新App也不等于当前进程已升级。先以原ID和当前目录核实际PID/可执行路径及签名，再冻结那个路径的数据/授权并验覆盖后的**实际进程**；只读对账不得擅自清理或迁移这些用户路径。
+
 
 ## 加入房间后申请中不被旧left快照抹掉
 
@@ -428,7 +430,7 @@ PAD候选后续`b881ea2a39`增加打包前动态JNI符号门禁：仓库当前�
 
 同账号Phone目录突然少设备、加密目录消失或locator被撤销时，先核**实际生产PID/cwd/模块SHA**和同一账号三目标的事件号、`kind`、绑定版本；不要拿本地源码快照或单个`device_removed`当云端根因。生产事件表没有时间戳/内部原因，不能仅凭连续的`removed→changed`唯一归因手机某轮安装。不得读取聊天、票据、密文或数据库正文；只输出脱敏事件元数据，并与手机原保护样本/服务器真实事务时间对账。
 
-2026-10-30[真实生产读回及修正报告](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/PHONE_NATIVE_TRANSIENT_REMOVAL_FIX_20261030.md)证实旧生产运行模块把Native broker的`NATIVE_BROKER_UNAVAILABLE`折叠为`None`，目录默认把`None`发成`device_removed`；三个原目标曾出现同绑定`removed`后紧接`changed`，但具体事件与手机105→106没有可证明的时间关联。**初版**私有main`0ae63d5`只检查当前有效持久绑定，漏了“旧目录关系与新账号/新修订并存”的场景：真实Native/P256负控证明会误发`device_offline`。独立[精确范围修正](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/NATIVE_DIRECTORY_OUTAGE_EXACT_SCOPE_REVIEW_20261030.md)已入私有main`304053e`：仅当服务端导出的`server/account/installation/bindingRevision`与**该目录行完全一致**，broker临时不可达才发已有的`device_offline`；否则真实登出、换账号/绑定、安全或信任撤销仍为`device_removed`。没有范围的普通broker错误不得伪造离线，普通操作仍拒绝。之前122项绿测**没有覆盖旧关系并存负控**，不能作初版安全完整性证据；修正后本聊天重跑聚焦79项通过。**生产仍未部署，Phone持续目录/消息/文件真机验收未通过**；先读实时发布回执，不把主线提交冒充云端修复。
+2026-10-30[真实生产读回及修正报告](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/PHONE_NATIVE_TRANSIENT_REMOVAL_FIX_20261030.md)证实旧生产运行模块把Native broker的`NATIVE_BROKER_UNAVAILABLE`折叠为`None`，目录默认把`None`发成`device_removed`；三个原目标曾出现同绑定`removed`后紧接`changed`，但具体事件与手机105→106没有可证明的时间关联。**初版**私有main`0ae63d5`只检查当前有效持久绑定，漏了“旧目录关系与新账号/新修订并存”的场景：真实Native/P256负控证明会误发`device_offline`。独立[精确范围修正](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/NATIVE_DIRECTORY_OUTAGE_EXACT_SCOPE_REVIEW_20261030.md)已入私有main`304053e`：仅当服务端导出的`server/account/installation/bindingRevision`与**该目录行完全一致**，broker临时不可达才发已有的`device_offline`；否则真实登出、换账号/绑定、安全或信任撤销仍为`device_removed`。没有范围的普通broker错误不得伪造离线，普通操作仍拒绝。之前122项绿测**没有覆盖旧关系并存负控**，不能作初版安全完整性证据；修正后本聊天重跑聚焦79项通过。此段最初撰写时**生产尚未部署**；后续已按下方交付报告部署，Phone持续目录/消息/文件真机验收仍未通过。接手先读实时发布回执，不把主线提交冒充云端修复。
 
 客户端恢复也须严格使用更高事件游标、完整权威DTO和明确`canSelect`授权；旧/相同游标、缺行、单`changed`通知或权限否不能复活旧绑定。持续多目标观察要同时核目录项、绑定修订、实际协同操作与撤权负控，且不延长原票据期限、不复用仿真票。
 
