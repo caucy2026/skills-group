@@ -22,4 +22,10 @@
 - 负控至少覆盖：只有Bearer/只有Phone P256/只有Native key、错账号/服务器/安装ID/路由/证书/绑定revision、过期或重放link、Phone当Host或target、目标断联、改密/换号与撤销。真实正向需在最终签名包上验证Phone→Host会话读取/继续、消息、审批、文件及已建连接退场；iOS和Harmony分开验收。跨客户房间隔离与旧Host登录不因手机同账号而降级。
 - 2026-10-26后端源码已在私有 `priv/hbbv` 主线实现并生产启用：12项Phone专项、99项Phone/Host/Native/票据/HTTP组合、全套1206项通过（3项跳过）；公网能力、原serverId和匿名401已读回。**当时真实已登录Phone与原peer/1正向仍未完成**，故不可把此历史记录写成手机版正式验收通过。按最新现场证据更新判断。
 
+### 2026-10-29 Host控制预算生产状态与边界
+
+原账号Host的精确三条签名控制路由：`GET /api/v2/account/host/peer/devices`、`POST .../access-trust`、`POST .../tickets/validate`，已在hbbv生产加载独立预算，每token最近60秒最多2048、全局最多12288；原普通Host签名请求128、结果分块POST96和全部nonce全局16384仍分别保留。先验当前账号/安装绑定、原Native连接代次、签名、时钟及全局nonce重放，之后才按**精确方法+路径**分类，查询串或换方法不能借控制预算。Phone P256控制预算在另一模块，不能把Host128或Host2048误写成Phone额度。预算拒绝码为`HOST_REQUEST_RATE_LIMIT`；只读公网`/api/v2/account/capabilities`不提供这项Host内部额度，不能靠该端点猜真实429归因。
+
+具资格会话已按原服务身份一次切换到`20261029-host-native-control-budget-r1`，本次独立核运行`account_native_identity.py`SHA-256为`6003ce74614b40475bd417cd70d7ade20434e098d56659c236aa95b2f86d1949`、原`serverId`不变，项目分配量低于3GB、云端临时传输包已清；后续以**实时**PID、模块SHA及签名请求回执重新核。`fullHarnessCollaborationReady=false`仍表示手机真实会话、消息、文件、审批、撤权与断线恢复未完整验收，不能把额度上线当作业务完成。最新生产与真机缺项见[集群接续末尾](https://github.com/caucy2026/priv/blob/main/hbbv/docs/PROJECT_HANDOFF_VIBEKITS_CLUSTER_UPGRADE_ACCEPTANCE_20261011.md)。
+
 完整字段与当次生产回执分别见[后端协议合同](https://github.com/caucy2026/priv/blob/main/hbbv/docs/development/ACCOUNT_PHONE_NATIVE_PEER_CONTROL_20261026.md)和[生产验收记录](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/PHONE_NATIVE_PEER_CONTROL_PRODUCTION_20261026.md)；有私有仓库权限时读取，无法访问时以上流程足以定位控制面，具体当前API仍以实时schema为准。
