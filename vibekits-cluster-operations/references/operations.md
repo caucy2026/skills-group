@@ -56,6 +56,10 @@ Windows58随后出现另一类原生回退：已签817包中的`vibekits-harness
 
 Mac覆盖入口返回`scheduled=true`时还须读**守护终态**。445的817原事务最终`CONCURRENT_OWNER_REJECTED`：旧进程退出后、原子目录交换前，守护发现另一个进程已映射正式App路径而安全退出；正式路径实读仍为811/build2811，回退未尝试。随后目标GUI进程虽在，未显示窗口，工具桥还指向已退出旧PID；普通打开正式App仍需核实际初始化与桥重建。沿登记的同机远程办公终端读取原事务、PID出生时间/完整路径、启动日志及原ID心跳；**不以调度、进程存活或另一台529的界面推断445已升级**，不复用旧桥令牌、清数据、结束来源未明进程或盲重放安装。具体并发进程来源仍待现场核实，见[集群当前交接](https://github.com/caucy2026/priv/blob/main/hbbv/docs/PROJECT_HANDOFF_VIBEKITS_CLUSTER_UPGRADE_ACCEPTANCE_20261011.md)末尾。
 
+2026-10-30同机823再次给出完整恢复范例：原仿真连接观察超时且房间心跳停止，Rendezvous上仿真与Office两个ID却均在线。经登记Office远程桌面只读见VibeKits主进程存在；Office菜单的**终端 (beta)**可在其自身授权连接中执行有界只读命令（如`hostname`、精确PID的`ps`、原安装Helper的`--vibekits-harness-status`、`lsof -nP -a -p <PID> -iTCP`），但它**不是SSH**，不能把其结果冒作固定SSH指纹或系统认证。先核精确目标窗口标题和主机；共享控制端多窗口可能抢焦点，输入后必须读回当前窗口及命令输出，发现别的会话在同机安装/诊断立即停止输入并对账归属。命令输出只取进程、端口、错误码等必要字段，不读取聊天、凭据或数据库正文。此轮445原生状态仍`registered/callable`，主进程至hbbv的多条`CLOSE_WAIT`与房间心跳中断并存；这些只定位层次，不能单独断言网络代理或客户端具体根因。见[双路由与心跳断点](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_MAC445_HEARTBEAT_LAPSE_WITH_DUAL_ONLINE_ROUTES_20261030.md)。
+
+同一823原更新先因`CONCURRENT_OWNER_REJECTED`在替换前安全退出，保护文件不变；负责会话独占对账旧PID/桥归属和卡住的GUI启动，恢复原ID真实工具与房间心跳后，才在无在途任务的围栏下重试已批准同包。第二次事务`COMMITTED/PASS`、实装2823、包哈希/主辅签名身份/原ID工具/90份保护文件通过；同账号协同仍须另测，不能由房间心跳或包级成功代替。跨会话时只由原升级会话操作目标，本会话可从服务器只读巡检，避免共享Office终端输入交叉。详见[逐机台账](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G02_G05_SERVICE_ROOM_ALL_DEVICE_UPGRADE_INVENTORY_20261030.md)。
+
 安装前保存精确原路径/ID/指纹/授权配置摘要及回滚；独立守护核 PID birth、原身份 MCP、目标版本、房间心跳后 ACK。scheduled/脚本 exit0 不是安装通过。失败恢复原包/原数据，不卸载清数据。Mac Universal/Intel老系统与Windows现有舰队分别验证。商城只发布最终已签验收同一字节包，公开元数据/下载SHA/版本及更新行为核验后称完成；内部商城不等于 Apple/Microsoft Store。
 
 ## Harness 调试记录清理
