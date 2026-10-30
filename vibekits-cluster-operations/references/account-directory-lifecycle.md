@@ -54,3 +54,9 @@ Phone把当前P256账号安装身份与Root签发的数字Native路由双钥关�
 `host-bootstrap-v1.`加64hex是专用票据，不改成普通账号/Phone token；只能给规定Host认证/验证路径。服务上线、bootstrap ready或信任状态为true均不等于Host已激活、更不等于原SDK业务通过。需要最终客户端实际Host目录、中文消息、工具/审批、附件和注销隔离证据。不要手工修改信任表或更改旧SDK DataOwner来修客户端接线。
 
 操作依据：`docs/development/HOST_EXISTING_TRUST_INHERITANCE_20261024.md`。当次运行代码priv/main452eeb5，原serverId及密钥保持；本次135个不同Linux合同覆盖、生产能力和清理已核验，真实788/Phone业务仍待客户端验收。此版本号仅是当次证据，不代替下次现场核对。
+
+## 关联设备的目标目录选择：安全范围与真机负例
+
+2026-10-30原Mac445覆盖823后，APP“关联设备”已能进入第二台、载入目标工作区/历史，退出与重入保持本机位置及目标未发送草稿；但协同模式“添加工作区”真实报`directoryPicker/list: ACCOUNT_UI_REQUEST_FAILED`，823不能因此宣称完整协同通过。当前源码`harness_account_original_sdk_gateway.dart`将`directoryPicker/list/pick/createDirectory`列为本地GUI操作，远端Native peer的`_proveLocal==null`会被`ACCOUNT_LOCAL_GUI_REQUIRED`拒绝，`harness_account_ui_host.dart`随后可把根错误折为通用`ACCOUNT_UI_REQUEST_FAILED`。这与现场现象吻合，仍须由目标有限诊断核真正异常阶段；不要从泛化UI码单独断言根因。
+
+现有`test/support/account_original_sdk_gateway_checks.dart`明确要求远端原生peer的上述目录操作和`workspace/create`被拒且原SDK不执行；正向`harness_account_workspace_picker_actual_sdk_test.dart`只覆盖可信本机GUI。修复不能删除这个旧拒绝负控、把任意路径交给远端，或把同账号目录发现当文件系统许可。应另设经当前同账号绑定、原生身份和目标设备会话代次核验的**有界目标目录读取/选择**，在目标侧应用禁止访问目录及其子树、路径规范化/符号链接防逃逸、最小字段与分页/容量、授权撤销及连接代次校验；创建工作区需独立确认目标路径和归属。新增安全正控与跨账号、旧票、禁入目录、越界路径、撤权负控之后，再用正式签名包同一“添加工作区”入口真实复验，不用本机picker通过冒充远端通过。现场边界见[445协同失败台账](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_MAC445_HEARTBEAT_LAPSE_WITH_DUAL_ONLINE_ROUTES_20261030.md)。
