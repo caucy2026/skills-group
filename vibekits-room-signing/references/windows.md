@@ -32,6 +32,8 @@ VibeKits app_control（活动登录桌面）
 
 SSH只检查、暂存、核哈希和读结果；不能在 Session0 直接运行 BAT 期待出现 PIN，也不把签名改成 ScheduledTask。按当前 catalog Schema 启动获批准且哈希绑定的 GUI 启动器，不接收任意命令。
 
+固定签名脚本的**同一非签名预检**还要生成最终 `-ReportPath`，规范化为 Windows 反斜杠绝对路径，并验证当前签名助手接受的 D 盘项目根。若将 `D:/...` 直接传给要求 `D:\...` 的旧助手，SignTool 可能已签完而助手才拒绝写报告；发生时先对账原进程、逐件验既有签名字节和原清单，不能盲重签。VibeKits 的[路径负控与修复源码](https://github.com/caucy2026/vibekits/blob/main/tool/windows/test_kemi_signing_report_path.ps1)可用于目标 Windows 预检。
+
 工具或系统明确拒绝时，保留原事务并诊断，不能改执行策略、把被拒脚本改内联、换包装器或身份绕过。
 
 ## PIN 与跟踪

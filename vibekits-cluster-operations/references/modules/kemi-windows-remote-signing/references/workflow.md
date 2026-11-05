@@ -95,6 +95,8 @@ powershell.exe -NoLogo -NoProfile -NonInteractive -EncodedCommand <BASE64>
 
 命令行长度可能使大量文件无法一次传给 SignTool。按路径字符串总长度确定批次，例如把每批控制在约 18,000 字符以内。批次边界必须由脚本确定并写入日志，不能临时手工拼接。
 
+签名前让**实际签名脚本的同一非签名预检**计算最终 `-ReportPath`，转为 Windows 反斜杠绝对路径，并按现有助手接受的 `^[Dd]:\\KEMI-Test\\` 边界校验；正式签名复用这个已验值。`D:/KEMI-Test/...` 会在 SignTool 成功后被旧助手拒绝落盘。先在目标 Windows 运行 VibeKits 的[负控测试](https://github.com/caucy2026/vibekits/blob/main/tool/windows/test_kemi_signing_report_path.ps1)。若签名报告缺失，先核同一事务终态、别名文件及原清单，逐件验签并恢复已签字节，不因退出码失败而盲重签。
+
 ## 4. 使用固定签名实现
 
 优先复用全局 `Invoke-KemiAuthenticode.ps1` 或项目内已验证的等价实现。禁止临时拼接 `signtool` 命令，禁止使用 `/a` 自动选择证书。
