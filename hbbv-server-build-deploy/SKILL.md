@@ -33,6 +33,8 @@ python -B server/app.py --data-dir /private/hbbv-data --database-name integratio
 
 ## 备份、部署与回退
 
+仅修改 `web/` 静态资源且当前服务确实按请求从运行目录读取文件时，先读[静态网页的原子补丁与清场](references/static-web-patch.md)。该路线不替代Python服务部署、数据库迁移或完整客户端发布门禁；先核原服务身份、精确旧字节和共享部署锁，再决定是否适用。
+
 用户已要求只备份main时，沿用项目成熟独立索引备份脚本，普通推送并核验远端树，冲突按双方内容主动解决；不force、不reset、不覆盖共享未提交改动。此项目归档在私有仓库priv的hbbv/前缀。备份源码和说明，不备份数据库、密码、令牌、TLS私钥或设备私钥到Git。
 
 部署前按kemi-server-ports查目标唯一台账，核验listener与已有预留；不得操作hbbc/hbbs/hbbr。冻结通过的源码哈希，私有备份现有SQLite及配置/身份，确认无活跃租约、外部操作或升级事务。沿既有supervisor一次正常部署，记录意图防止重复重载；观察超时不代表进程已停止。

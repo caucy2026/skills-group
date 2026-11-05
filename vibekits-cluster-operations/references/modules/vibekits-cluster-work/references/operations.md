@@ -36,6 +36,8 @@ Windows：真实 D 盘 native Release→输入及核心哈希→G0/权限协议�
 
 ## 服务、任务与规模证据
 
+后台只改静态账号/管理网页时，使用 `hbbv-server-build-deploy/references/static-web-patch.md` 的精确旧字节、共享部署锁、同目录原子替换、发布清单、公网HTTPS及清场门禁；它不适用于Python/API/数据库变更。2026-11-05/06三文件账号文案和正式管理页标题曾在同一PID下按此路线发布，公网字节与原七台心跳分别读回，具体证据在私有主线 `hbbv/docs/acceptance/G05_G07_ACCOUNT_UI_STATIC_PRODUCTION_20261105.md`。零点五台共同短隙见 `G09_MIDNIGHT_FIVE_DEVICE_GAP_20261106.md`，只记录同步现象与时间边界，不能无证据归咎静态补丁或其他同机服务。
+
 hbbv 部署保留 serverId、私钥、授权/设备、customer/member 和持久业务数据；备份后沿原服务路线替换，不碰 hbbc/hbbs/hbbr。SQLite 关闭时后台任务/锁的生命周期与模态关闭 UI 分开验收。公开 service-info 是请求作用域，先核实际鉴权再解释 execution。
 
 原任务记录中 publish/bid/allocation/claim/ack 每步均绑定 task/room/device 和唯一事务；先查已有结果和 lease，不新建替代原任务。Harness 真实执行和后台 API 合成 fixture 分开。原生 delegation proof 必须匹配当前连接代次和在线状态，撤销/退出后补拒绝用例。
