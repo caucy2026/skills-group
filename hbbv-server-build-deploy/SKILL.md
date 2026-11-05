@@ -93,7 +93,7 @@ Rust Linux服务优先按`rust-linux-cross-build`在本地冻结源码、测试�
 
 可复用当前hbbv main的`tool/runtime_release_health.py`；它固定两端点、保持TLS验证、拒绝重定向并限制响应大小。`enabled=true`不等于SDK/Phone全链路就绪，`fullHarnessCollaborationReady=false`也不是服务宕机。2026-10-24已有Mac/Linux各6项检查器回归和8项真实TLS启动合同；这些合同是非交付证据；之后生产已按账号协作关闭配置部署，并补验真实房间文件工具。仍不能将其当作Phone/SDK全链路、统一舰队或完整功能通过。部署编排的原事务、资格及最终功能门禁仍需现场核验。
 
-warning过滤的systemd命名空间须同时核验实际流等级：警告文本不会自动决定journald优先级。hbbv已验证配置为stdout=null、stderr=journal、SyslogLevel=warning，并用真实Python诊断发射器的一次明确标识故障注入确认Priority4落盘，不请求生产业务或新增周期采样。更新日志设置后只对账原重启的PID、目录和健康，不因瞬时观察缺失重复重启。
+取服务日志前先从实时`systemctl show`读取`LogNamespace`、stderr和SyslogLevel；有独立命名空间时必须给`journalctl --namespace=<实际值> -u <原服务>`。默认命名空间零行**不能**证明服务无warning。警告文本不会自动决定journald优先级；hbbv既有配置为stdout=null、stderr=journal、SyslogLevel=warning，真实诊断发射器已核Priority4落盘。限定时间、条数和输出字段，不扫描其他项目日志或输出请求正文。2026-11-06的错误零行判断、正确命名空间慢请求及纠错见私有项目`hbbv/docs/acceptance/G09_JOURNAL_NAMESPACE_EVIDENCE_CORRECTION_20261106.md`。更新日志设置后只对账原重启的PID、目录和健康，不因瞬时观察缺失重复重启。
 
 
 ## systemd进程就绪与原事务对账

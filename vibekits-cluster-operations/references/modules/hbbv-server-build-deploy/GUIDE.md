@@ -9,6 +9,8 @@ description: 整理、测试、打包、备份和部署hbbv房间与能力管理
 
 当前强制容量与备份规则：云端项目目标不超过十进制3GB，**禁止云端创建或保留数据库备份**；一致性备份只在本地保留最近3份已验证有效的副本。下文2026-10-06“云端SQLite备份后上传”是历史迁移做法，不可重放；具体用顶层同名技能的本地一致性备份与清场引用。
 
+服务日志取证先实时核`systemctl show`的`LogNamespace`；若存在，`journalctl`必须指定该命名空间。默认journal零行不能判服务无warning，查询须限定时间/字段、不输出请求正文。2026-11-06误查默认空间的纠错见私有项目`hbbv/docs/acceptance/G09_JOURNAL_NAMESPACE_EVIDENCE_CORRECTION_20261106.md`。
+
 ## 构建与验证
 
 当前服务器是Python/SQLite源码运行项目，无需C/C++或Rust编译。使用Python3.10+专用虚拟环境；现场已验证Python3.12。在机器规定的构建目录创建环境，执行`python -m pip install -r server/requirements.txt`，保留锁定依赖，不顺便升级。当前锁定jsonschema4.26.0、cryptography50.0.1，以实际文件为准。

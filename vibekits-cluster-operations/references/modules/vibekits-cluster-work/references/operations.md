@@ -40,6 +40,8 @@ Windows：真实 D 盘 native Release→输入及核心哈希→G0/权限协议�
 
 hbbv 部署保留 serverId、私钥、授权/设备、customer/member 和持久业务数据；备份后沿原服务路线替换，不碰 hbbc/hbbs/hbbr。SQLite 关闭时后台任务/锁的生命周期与模态关闭 UI 分开验收。公开 service-info 是请求作用域，先核实际鉴权再解释 execution。
 
+G09共同时隙排障先核原serverId/PID/出生时间与设备presence元数据；若查systemd日志，先读实际`LogNamespace`并对同名空间执行有界`journalctl`，默认命名空间零行不是无告警证据。现有慢请求日志只含固定类别和整次dispatch时长，包含锁等待；它可证明同期长尾，不能把被阻塞类别直接当持锁根因。具体纠错见私有项目`hbbv/docs/acceptance/G09_JOURNAL_NAMESPACE_EVIDENCE_CORRECTION_20261106.md`。
+
 原任务记录中 publish/bid/allocation/claim/ack 每步均绑定 task/room/device 和唯一事务；先查已有结果和 lease，不新建替代原任务。Harness 真实执行和后台 API 合成 fixture 分开。原生 delegation proof 必须匹配当前连接代次和在线状态，撤销/退出后补拒绝用例。
 
 规模记录区分设备数、逻辑会话数、网络位置、持续时长、采样/重启/断联恢复。已有 300 合成会话 loopback 60 分钟可以复用其范围，不冒充 WAN、100 台实体机器或 24/72 小时。
