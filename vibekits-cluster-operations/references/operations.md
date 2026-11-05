@@ -22,6 +22,8 @@ macOS SSH 可连接但不能访问受保护文件时，在获授权设备打开�
 
 万人四秒节拍先核**最后一个请求何时真正开始发送**，再看全ACK与排空：云端128并发原实验虽10,000/10,000 ACK，两轮最后发起为6.149/7.479秒，已经超过四秒，P95发起端信号量等待2.283/3.728秒，不能把整轮6.280/7.762秒单归因服务端收据或SQLite。私有main的分进程工具已补父时钟相对最后发起、每分片等待与计划迟到字段，20合成设备双进程回环TLS只证明计时接线；后续须足够独立的发起端与同轮服务队列/提交证据，原四秒、百台真实和24/72小时门禁不变。见[发起端归因纠错](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_CLOUD_10000_GENERATOR_LAUNCH_CORRECTION_20261106.md)和[分进程计时接线](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_DISTRIBUTED_LAUNCH_TIMING_20261106.md)。
 
+生产hbbv服务使用独立`LogNamespace=vibekits-cluster`；查服务warning必须指定`journalctl --namespace=vibekits-cluster -u vibekits-cluster.service`和窄时间窗，默认命名空间0行**不是**无warning证明。私有源码`1a8293c`仅给已有≥1秒、30秒限频的同步业务慢请求加固定数值`lockWaitMilliseconds`与`elapsedExcludingLockWaitMilliseconds`；后者含业务/SQLite/外部依赖，**不是持锁时长**，异步或未测锁路径缺字段也不是等待0。47项隔离合同通过，但生产未部署；旧日志只有总耗时和固定类别，不能因`personal_account`与五台间隙重叠就指认它是持锁者。先核实际运行版本，再把同时间窗的锁等待、写入队列和presence对齐，详见[候选与门禁](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_LOCK_WAIT_SPLIT_SOURCE_20261106.md)。
+
 售后房管理员名单可能随账号绑定即时变化。真实退出账号后，普通成员445在通用服务1房看到0名管理员，而kemi业务房仍可见原8名成员；155的kemi绑定恢复后，445在售后房仅看到155这一名在线一级管理员，其他普通成员继续隐藏。必须以同一普通设备分别读`room_devices`、`cluster.rooms`，并用只读后台绑定状态核对前后，不把名单恢复等同实际委派仿真通过。见[售后房登录可见性续验](https://github.com/caucy2026/skills-group/blob/main/docs/acceptance/SUPPORT_ROOM_LOGIN_VISIBILITY_TRANSITION_20261025.md)。
 
 每台记录采样时间、设备原 ID/电脑名、进程路径/PID/出生时间、版本、房间心跳 age、真实 MCP 成败、模型/负载/磁盘/内存及错误。房间 HB 监控、实际工具健康和 OS 工作状态分别呈现。轮询使用有界、单飞、退避；页面隐藏/编辑/提交暂停，失败显示未知，不清零或伪造在线。只有 HB 的24小时记录不能称 OS/MCP 全稳定；5分钟空闲CPU验收包含 App/WebKit/helpers，先确认真实空闲而不是正在构建/模型请求。
