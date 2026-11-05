@@ -15,8 +15,10 @@
 无新鲜模型证明时，已授权设备仍可能提供文件、编译、系统等确定性能力。先读当前catalog和任务requiresModel合同；不把普通仿真工具成功冒充Harness竞标/执行租约通过，也不为测试清除真实模型凭据。
 
 1. `vibekits.simulator.connection_status {routingId}` 核对控制端已有连接归属；外部控制器新建的直连只回收自己的连接。先核双方原ID/指纹、当前同房批准成员和目标实际catalog。
+   共享控制端/目标还须核同事当前在途工具或桌面任务；`connection_status=false`只说明本控制端没有普通连接，**不能证明目标空闲**。有正在使用目标的同事时先避开其窗口，不用新房间握手抢占。一次房间调用失败后若普通连接稍后上线且归属不明，不断开它。
 2. 按**当前schema**显式使用 `vibekits.simulator.room_connect {routingId:目标,roomId,toolId,requestId:新唯一ID}`。普通`simulator.connect`只接受其实际声明的参数，不能自行加`roomId`；不能回退旧白名单掩盖房间失败。准备阶段`tunnelPrepared=true/connected=false`仅表明短票据就绪，room-delegated-on-demand可能无需SSH ready。
 3. 立即以同目标、同唯一工具调用`vibekits.simulator.room_call {routingId,toolId,arguments}`；只读可先用system.info，再用当前schema的`system.resources(samples=1,intervalMs=250)`等小预算工具。编译、写文件、签名另需自身合同/资源预算，不能由只读票据扩权；未知调用结果保留原requestId，不换票重做。
+   原回执必须在**同一次调用**提取外层`ok/code/errorType`、内层状态和原回包SHA（不输出票据/正文）；只保存`ok=false`而丢错误码会让首败无法定位。失败先关本会话房间通道，再按唯一requestId查服务器委派/领取/完成；未领取、过期和目标已执行分别处理，不能因看不到工具结果就重发。
 4. 检查外层、内层、目标结构化ok/isError及真实数值/身份；管理端按精确requestId核同房/controller/target、claimed=1/completed=1。模型健康心跳在调用前后均无可用模型时，只能证明这次确定性工具不依赖新鲜模型证明，不能推断目标没有安装模型。
 5. finally调用`simulator.room_disconnect`并核closed；若外部控制器为了核身份另建直连，再单独关闭那条自建连接，不能断开他人连接。关闭负例不等于服务端退房/撤销负例，后者另验。
 

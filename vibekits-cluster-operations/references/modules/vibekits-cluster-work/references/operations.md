@@ -44,6 +44,8 @@ G09共同时隙排障先核原serverId/PID/出生时间与设备presence元数�
 
 原任务记录中 publish/bid/allocation/claim/ack 每步均绑定 task/room/device 和唯一事务；先查已有结果和 lease，不新建替代原任务。Harness 真实执行和后台 API 合成 fixture 分开。原生 delegation proof 必须匹配当前连接代次和在线状态，撤销/退出后补拒绝用例。
 
+房间短票在共享控制端使用前，先核目标是否正被其他会话占用；普通`connection_status=false`不能证明设备空闲。`room_call`一次性回执须保留脱敏`code/errorType`与原回复SHA，失败后关自己的房间通道、按原requestId核委派领取/完成；新出现但归属不明的普通连接不得断开。详见`vibekits-cluster-operations/references/model-proof-and-tool-resources.md`，2026-11-06未领取首败见私有`G08_WIN58_ROOM_RESOURCE_SHARED_OVERLAP_20261106.md`。
+
 规模记录区分设备数、逻辑会话数、网络位置、持续时长、采样/重启/断联恢复。已有 300 合成会话 loopback 60 分钟可以复用其范围，不冒充 WAN、100 台实体机器或 24/72 小时。
 
 长期监控把后台房间心跳和设备侧真实工具分成两条证据流。设备侧采样先读原仿真ID的`connection_status`并核原指纹/MCP；有效连接直接复用。新`connect`等待超时后只在短预算内重复只读核**同一**连接状态，不发第二次`connect`，也不把目标判离线；迟到连接可能被他人接管，所有权不明时不自动断开。保留失败的原定时样本，手工同工具成功另记`manual`，不能倒填该轮通过。Mac132第6轮/第8轮均在25秒连接边界超时，第7轮定时六台通过；第8轮原连接迟到后目标工具成功，后续有界对账修复仍待下轮六台真机复验。[范围与修复回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_MAC132_OS_SAMPLER_TIMEOUT_RECOVERY_20261026.md)。
