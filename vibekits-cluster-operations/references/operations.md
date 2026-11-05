@@ -24,6 +24,8 @@ macOS SSH 可连接但不能访问受保护文件时，在获授权设备打开�
 
 生产hbbv服务使用独立`LogNamespace=vibekits-cluster`；查服务warning必须指定`journalctl --namespace=vibekits-cluster -u vibekits-cluster.service`和窄时间窗，默认命名空间0行**不是**无warning证明。私有源码`1a8293c`仅给已有≥1秒、30秒限频的同步业务慢请求加固定数值`lockWaitMilliseconds`与`elapsedExcludingLockWaitMilliseconds`；后者含业务/SQLite/外部依赖，**不是持锁时长**，异步或未测锁路径缺字段也不是等待0。47项隔离合同通过，但生产未部署；旧日志只有总耗时和固定类别，不能因`personal_account`与五台间隙重叠就指认它是持锁者。先核实际运行版本，再把同时间窗的锁等待、写入队列和presence对齐，详见[候选与门禁](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_LOCK_WAIT_SPLIT_SOURCE_20261106.md)。
 
+hbbv当前完整后端门禁含Node WebCrypto测试，启动前须在本机规则的外盘独立TMPDIR/锁定Python环境中设置**实际可运行的Node22.19+** `HBBV_WEBCRYPTO_NODE`，先运行私有main的`hbbv/tool/run_full_contracts.py --expected-volume <本机构建卷> --check-only`；预检通过后同入口带独占`--log-file`才启动整套。缺输入立即拒绝，不能等跑十余分钟后把三项环境失败与其余通过拼成“全套PASS”。同源冻结提交`459825f`在先前1,626项3失败后，预检独立整轮1,626项0失败/3既有skip，日志SHA及本人生成物清理回执见[全套纠错](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_FULL_CONTRACT_NODE_INPUT_REPEAT_20261106.md)；此绿测不恢复暂停资格、不代表生产已部署或G09长稳通过。
+
 售后房管理员名单可能随账号绑定即时变化。真实退出账号后，普通成员445在通用服务1房看到0名管理员，而kemi业务房仍可见原8名成员；155的kemi绑定恢复后，445在售后房仅看到155这一名在线一级管理员，其他普通成员继续隐藏。必须以同一普通设备分别读`room_devices`、`cluster.rooms`，并用只读后台绑定状态核对前后，不把名单恢复等同实际委派仿真通过。见[售后房登录可见性续验](https://github.com/caucy2026/skills-group/blob/main/docs/acceptance/SUPPORT_ROOM_LOGIN_VISIBILITY_TRANSITION_20261025.md)。
 
 每台记录采样时间、设备原 ID/电脑名、进程路径/PID/出生时间、版本、房间心跳 age、真实 MCP 成败、模型/负载/磁盘/内存及错误。房间 HB 监控、实际工具健康和 OS 工作状态分别呈现。轮询使用有界、单飞、退避；页面隐藏/编辑/提交暂停，失败显示未知，不清零或伪造在线。只有 HB 的24小时记录不能称 OS/MCP 全稳定；5分钟空闲CPU验收包含 App/WebKit/helpers，先确认真实空闲而不是正在构建/模型请求。
