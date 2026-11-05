@@ -8,6 +8,8 @@
 
 同一设备的VibeKits仿真ID、hbbv心跳和KEMI远程办公备用ID要分别读实时状态。房间中签名上报的`remoteControl.deviceId`只提供备用入口，在线查询为true也尚未独立证明它与原仿真ID是同一物理机；取得不打断共享前台的窗口后正常连接，先核目标主机/安装身份，再查旧App进程与原事务，最后用原仿真ID真实工具和心跳验恢复。2026-10-26 newlink售后Windows784仿真/心跳离线但其登记Office146390118在线，是**待核双通道现场**，不能把额外设备波动冒充原七台故障，见[只读时间线](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_EXTRA_POOL_SPLIT_PRESENCE_20261026.md)。
 
+两个原ID的在线查询都返回有效`offline`时，仍各做一次当前正常连接/备用桌面握手，区分卡片状态滞后与实际握手失败；界面“正在连接”不是可操作桌面。若仿真与办公均报`Device is offline or changing servers`、也没有该机已登记的可信SSH，就记录查询节点和目标注册节点仍未知，向现场只请求恢复电源/网络或打开原办公App；不猜密码、换ID、反复连接或把控制端节点当目标物理位置。见[619双通道实证](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G01_WINDOWS619_DUAL_CHANNEL_OFFLINE_20261105.md)。
+
 KEMI远程办公的WebView输入框不能仅凭AX`setValue`后的可见文字判目标已更新：实测它没有触发输入事件，连接仍指向旧最近设备。用真实键入后核格式化ID，再在连接窗口标题核**精确目标ID**；标题不符立即关闭本轮自建连接，不操作远端。目标弹空密码框时不猜或提交；无已授权保存入口就请持有人直接在窗口输入。观察本机主窗时避免把一次性密码带入截图或工具输出；如已意外暴露，停止使用旧值并请用户本人刷新，凭据变更由人完成，不写入报告。见[当次首败与阻塞](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_EXTRA_POOL_SPLIT_PRESENCE_20261026.md)。
 
 macOS SSH 可连接但不能访问受保护文件时，在获授权设备打开：**系统设置 → 通用 → 共享 → 远程登录旁的 ⓘ → 允许远程用户对磁盘进行完全访问**（文字随系统版本略有不同）。管理员认证由本人正常输入；这是远程登录访问权限，与屏幕录制/辅助功能/App自身文件权限分别验证。不用 chmod -R、删 TCC 或重置钥匙串替代，开启后在原 SSH 会话实际读取获授权目标文件。升级保持 Bundle ID、团队、完整 designated requirement、entitlements/辅助程序身份和 Keychain 标识。
@@ -21,6 +23,8 @@ macOS SSH 可连接但不能访问受保护文件时，在获授权设备打开�
 售后房管理员名单可能随账号绑定即时变化。真实退出账号后，普通成员445在通用服务1房看到0名管理员，而kemi业务房仍可见原8名成员；155的kemi绑定恢复后，445在售后房仅看到155这一名在线一级管理员，其他普通成员继续隐藏。必须以同一普通设备分别读`room_devices`、`cluster.rooms`，并用只读后台绑定状态核对前后，不把名单恢复等同实际委派仿真通过。见[售后房登录可见性续验](https://github.com/caucy2026/skills-group/blob/main/docs/acceptance/SUPPORT_ROOM_LOGIN_VISIBILITY_TRANSITION_20261025.md)。
 
 每台记录采样时间、设备原 ID/电脑名、进程路径/PID/出生时间、版本、房间心跳 age、真实 MCP 成败、模型/负载/磁盘/内存及错误。房间 HB 监控、实际工具健康和 OS 工作状态分别呈现。轮询使用有界、单飞、退避；页面隐藏/编辑/提交暂停，失败显示未知，不清零或伪造在线。只有 HB 的24小时记录不能称 OS/MCP 全稳定；5分钟空闲CPU验收包含 App/WebKit/helpers，先确认真实空闲而不是正在构建/模型请求。
+
+原七台固定只读入口`tool/original_seven_health_sampler_20261025.py`同时读当前`ageSeconds`与滚动一小时`presenceGap1h`。前者表示现在是否失鲜，后者记录两次采样间已恢复的服务端在线租约间隙（count、累计秒、最大秒、超30秒数、最近一次时间）；两者都不单独证明物理断网或App退出。小时汇总只取重叠窗口最大值，不能把每次滚动计数相加。原始样本仍只保留24小时，调度与手工来源分开；新异常按最近事件去重通知，当前心跳已恢复时继续查目标进程代次和脱敏传输错误。2026-11-05 Mac529在近24小时有132段间隙，而稀疏样本仅抓到一段超30秒，见[实证与采样修复](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_PRESENCE_GAP_SAMPLER_UPGRADE_20261105.md)；这仍不是24/72小时验收通过。
 
 若要补设备侧证据，用原ID与固定主机指纹核身份后，逐台只读调用`vibekits.system.info`和有界的`vibekits.system.resources(samples=1,intervalMs=250)`；脱敏只保留平台/PID、CPU测量状态、内存和存储数值，不收Top进程名称、文件或聊天。2026-10-26原在线六机真实工具6/6返回，但Mac155、Mac132、Windows424所报最满卷分别使用98.40%、96.69%、97.43%；高写盘任务前须重新测实际目标卷并清闲置生成物，不能凭单次CPU或HB说系统长期正常。见[六机资源快照](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_SIX_DEVICE_OS_RESOURCE_SNAPSHOT_20261026.md)。
 
