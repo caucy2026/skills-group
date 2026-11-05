@@ -56,7 +56,7 @@ python -B server/app.py --data-dir /private/hbbv-data --database-name integratio
 
 本次实际目标：/opt/vibekits-group，域名kemi-chat.newlinksz.com来自RustDesk部署源码并与服务器hbbc public_base_url及证书SAN一致；21122/TCP由统一台账预留，已检查ss、全部socket与Docker映射无冲突。其他环境从各自台账发现，不照搬此地址。
 
-冻结源码server/web/contracts及逐文件SHA清单；SQLite在线backup生成一致性迁移副本，上传后核对SHA和quick_check。原task-signing-key.pem是服务私钥，迁移前必须满足工具审批对材料与目的地的具体授权；拒绝后不得改名、打包或改工具绕过。授权后限制600，只供原服务身份使用。设备私钥、密码与令牌不打印、不写Git。保存原服务UUID、原成员审批和同一签名公钥；不能让启动入口在缺原私钥时生成新身份冒充迁移。
+冻结源码server/web/contracts及逐文件SHA清单；数据库一致性备份按当前规则只落本地，核SHA和quick_check后最多保留3份，不上传或暂存在云端。原task-signing-key.pem是服务私钥，迁移前必须满足工具审批对材料与目的地的具体授权；拒绝后不得改名、打包或改工具绕过。授权后限制600，只供原服务身份使用。设备私钥、密码与令牌不打印、不写Git。保存原服务UUID、原成员审批和同一签名公钥；不能让启动入口在缺原私钥时生成新身份冒充迁移。
 
 专用venv使用锁定requirements；长安装用后台原PID及限定日志观察，不重复安装。远端27项邀请/管理MCP测试已通过。独立vibekits-cluster.service以通用app.py启动，显式database-name=integration.sqlite3、原数据目录、可信HTTPS域名及原执行范围；使用Umask0077、NoNewPrivileges、PrivateTmp和只读系统保护，仅数据目录允许写。systemctl daemon-reload只登记单元；启动前核对端口，启动后确认原hbbs/hbbr/hbbc的PID及active状态保持。
 

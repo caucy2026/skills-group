@@ -7,6 +7,8 @@ description: 整理、测试、打包、备份和部署hbbv房间与能力管理
 
 先读取目标项目AGENTS和本机环境规则，确认源码、部署目标与当前活动任务。源码包含server/、web/、contracts/、client/、quality/和docs/；运行入口、依赖及部署参数以当前源码为准。不要把网页更新可见当作Python模块已重载。
 
+当前强制容量与备份规则：云端项目目标不超过十进制3GB，**禁止云端创建或保留数据库备份**；一致性备份只在本地保留最近3份已验证有效的副本。下文2026-10-06“云端SQLite备份后上传”是历史迁移做法，不可重放；具体用顶层同名技能的本地一致性备份与清场引用。
+
 ## 构建与验证
 
 当前服务器是Python/SQLite源码运行项目，无需C/C++或Rust编译。使用Python3.10+专用虚拟环境；现场已验证Python3.12。在机器规定的构建目录创建环境，执行`python -m pip install -r server/requirements.txt`，保留锁定依赖，不顺便升级。当前锁定jsonschema4.26.0、cryptography50.0.1，以实际文件为准。
@@ -33,6 +35,8 @@ python -B server/app.py --data-dir /private/hbbv-data --database-name integratio
 
 ## 备份、部署与回退
 
+仅改`web/`静态资源且运行服务已证按请求从磁盘读取时，先按顶层`hbbv-server-build-deploy/references/static-web-patch.md`核旧字节、原PID/身份、部署锁、原子替换、清单、公网验收和清场；不把此路线用于Python/API/数据库变更。2026-11-05/06生产实证在私有项目`hbbv/docs/acceptance/G05_G07_ACCOUNT_UI_STATIC_PRODUCTION_20261105.md`。
+
 用户已要求只备份main时，沿用项目成熟独立索引备份脚本，普通推送并核验远端树，冲突按双方内容主动解决；不force、不reset、不覆盖共享未提交改动。此项目归档在私有仓库priv的hbbv/前缀。备份源码和说明，不备份数据库、密码、令牌、TLS私钥或设备私钥到Git。
 
 部署前按kemi-server-ports查目标唯一台账，核验listener与已有预留；不得操作hbbc/hbbs/hbbr。冻结通过的源码哈希，私有备份现有SQLite及配置/身份，确认无活跃租约、外部操作或升级事务。沿既有supervisor一次正常部署，记录意图防止重复重载；观察超时不代表进程已停止。
@@ -41,7 +45,7 @@ python -B server/app.py --data-dir /private/hbbv-data --database-name integratio
 
 ## 当前项目入口
 
-本机源码/README与远端准备记录位于项目hbbv；具体本机路径和端口通过kemi-server-ports本地索引获取。当前生产21122是设计预留，实时占用和公网部署待核验。参考项目docs/REMOTE_DEPLOYMENT_READINESS_2026-10-06.md与86_SERVER_INITIATED_ROOM_INVITATIONS_2026-10-05.md；源码变更后重新核验相应入口，不照搬历史状态。
+本机源码/README与远端准备记录位于项目hbbv；具体本机路径和端口通过kemi-server-ports本地索引获取。21122已是生产入口，但PID、身份、目录和监听仍须每次实时核验。参考项目docs/REMOTE_DEPLOYMENT_READINESS_2026-10-06.md与86_SERVER_INITIATED_ROOM_INVITATIONS_2026-10-05.md；源码变更后重新核验相应入口，不照搬历史状态。
 
 
 ## 已验证部署路线（2026-10-06）
@@ -50,7 +54,7 @@ python -B server/app.py --data-dir /private/hbbv-data --database-name integratio
 
 本次实际目标：/opt/vibekits-group，域名kemi-chat.newlinksz.com来自RustDesk部署源码并与服务器hbbc public_base_url及证书SAN一致；21122/TCP由统一台账预留，已检查ss、全部socket与Docker映射无冲突。其他环境从各自台账发现，不照搬此地址。
 
-冻结源码server/web/contracts及逐文件SHA清单；SQLite在线backup生成一致性迁移副本，上传后核对SHA和quick_check。原task-signing-key.pem是服务私钥，迁移前必须满足工具审批对材料与目的地的具体授权；拒绝后不得改名、打包或改工具绕过。授权后限制600，只供原服务身份使用。设备私钥、密码与令牌不打印、不写Git。保存原服务UUID、原成员审批和同一签名公钥；不能让启动入口在缺原私钥时生成新身份冒充迁移。
+冻结源码server/web/contracts及逐文件SHA清单；数据库一致性备份按当前规则只落本地，核SHA和quick_check后最多保留3份，不上传或暂存在云端。原task-signing-key.pem是服务私钥，迁移前必须满足工具审批对材料与目的地的具体授权；拒绝后不得改名、打包或改工具绕过。授权后限制600，只供原服务身份使用。设备私钥、密码与令牌不打印、不写Git。保存原服务UUID、原成员审批和同一签名公钥；不能让启动入口在缺原私钥时生成新身份冒充迁移。
 
 专用venv使用锁定requirements；长安装用后台原PID及限定日志观察，不重复安装。远端27项邀请/管理MCP测试已通过。独立vibekits-cluster.service以通用app.py启动，显式database-name=integration.sqlite3、原数据目录、可信HTTPS域名及原执行范围；使用Umask0077、NoNewPrivileges、PrivateTmp和只读系统保护，仅数据目录允许写。systemctl daemon-reload只登记单元；启动前核对端口，启动后确认原hbbs/hbbr/hbbc的PID及active状态保持。
 
