@@ -50,7 +50,7 @@ macOS SSH 可连接但不能访问受保护文件时，在获授权设备打开�
 
 评估24/72小时定时覆盖时，运行hbbv项目`tool/original_seven_continuity_audit.py --output-root <本机受控目录> --hours 24|72`，它合并raw与较旧小时摘要，分别报告窗口首尾不足、内部漏采、失败、服务PID变化及原七台/真实百台门槛。其`fullG09=BLOCK`刻意保留独立systemd停启日志和逐台OS/MCP长时证据要求；短窗口、六台在线或合成百台不能把总目标改判PASS。早期八条真样本只得到窗口未覆盖、6/7和10/100的BLOCK回执；参见上述监控生产回执。
 
-2026-11-06自动化的真实来源标记是`heartbeat`；旧审计器只认`scheduled_local`而误报零样本。使用私有main已修审计器时，应保留`manual`排除，且仅从来源全为heartbeat、无错误、原七台ID完整的小时汇总保守恢复较旧覆盖；混合来源/缺字段必须BLOCK。固定时刻审计得到24小时121条自动样本、最大内部漏采6,447秒；72小时另有62条旧小时投影、最大漏采10,034秒，两个窗口均不满足原七台/100真机或长稳门。旧小时的原七台人数是保守下界，PID跨已登记生产切换；不要把“样本存在”当“采样覆盖合格”。见[审计来源纠错及逐窗结果](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_CONTINUITY_AUDIT_HEARTBEAT_SOURCE_20261106.md)。
+2026-11-06审计归属事故：现有`vibekits`自动化实为PAUSED且只设每天09:00；接续聊天里人工调用脚本时沿用`--source heartbeat`，**标签不等于定时执行回执**。此前把这些样本称作“24小时121条/72小时另62条自动样本”已撤回。当前私有main审计器只把有明确调度来源的`scheduled_local`计入覆盖，排除`manual`及无调度回执的`heartbeat`，还核精确原七台ID；同一固定窗口24/72小时均`NO_SCHEDULED_SAMPLES/BLOCK`。恢复定时监控须先核当前暂停归属与用户既有授权，再由真实调度运行并读回每轮回执；不要把会话接续、健康快照或已配置任务冒充24/72小时稳定验收。见[事故纠错](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_CONTINUITY_AUDIT_HEARTBEAT_SOURCE_20261106.md)。
 
 ## 覆盖升级
 
