@@ -9,7 +9,7 @@
 - 普通业务房按当前同customer、批准成员、等级和原生证据决定互访。服务房普通设备互不可见/不可访，只有实际有权限的管理员按级别服务。用户注册普通会员，管理员由保留admin账号按客户/通用类型提拔；资源owner不是登录账号，也不是租户隔离依据。
 - 已有八台可信登记设备在本批受用户明确授权后迁入kemi；这不授予未知设备普通互通房资格。普通业务房入房仍走签名申请及获授权审批。生产自动服务分配已于2026-10-25启用，4台既有真实设备签名resolve并保持原token/epoch/owner；不能把这批回补冒称无人值守全新安装或重装找回已验收。
 
-2026-11-06 客户端主线 `62119bc8` 和跨层合同 `95ce9932` 补了受限重装恢复：只有 `PlatformStorageLayout` 在空应用支持目录建立并验证首装标记、全部集群键缺失时，保留原安装密钥的重装才恢复内置公开服务地址和 `kemi` 默认 customer。旧目录无标记、显式关闭、旧客户/地址配置继续保持原值；服务端还须用原安装和原生指纹核对当前 customer，保留已退出售后的 `opt_out`。设置合同10/10、存储到设置跨层1/1通过；101现有目录、最终签名包覆盖及真实重入未验。若旧目录已有用户文件却丢了配置，不伪造首装标记或直接替换身份，使用正常配置/受信恢复入口；无标记的自动发现仍未实现。见[客户端验收](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/SERVICE_AUTO_REINSTALL_MARKER_RECOVERY_20261106.md)和[101现场台账](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G06_LINUX101_SERVICE_RECOVERY_20261106.md)。
+2026-11-06 客户端主线 `62119bc8` 和跨层合同 `95ce9932` 补了有效首装标记的受限重装恢复。随后后端 `49496ab` 加入原身份+实时原生证明的业务只读 `inspect`，客户端 `e7cea25c` 将其接入无标记旧目录启动：仅原安装密钥保留、全部集群键缺失且服务端返回本机原 `joined` 分配时，才在设置串行队列中恢复内置 HTTPS/kemi；`opted_out`、未分配、显式关闭、旧客户配置、错误身份或返回设备凭据均保持关闭。不能伪造首装标记、复制身份或用会改变成员的 `resolve` 探测。隔离本地 TLS/原生租约启动11项、设置12项通过；**后端 inspect 尚未部署生产，101现有包/目录、最终签名覆盖及真实重入未验**。见[客户端验收](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/SERVICE_AUTO_REINSTALL_MARKER_RECOVERY_20261106.md)和[101现场台账](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G06_LINUX101_SERVICE_RECOVERY_20261106.md)。
 
 ## 已有设备看不到Kemi房间时
 
