@@ -168,6 +168,8 @@ room_connect的成功准备回执可以是tunnelPrepared=true、connected=false�
 
 完整房间目录返回`ROOM_MEMBER_SELECTED_SCOPE_UNAVAILABLE`时，先核本机发现入口状态与服务端对该目标的可见房间投影，不能用单工具短票成功推断全目录已可用。**仅当当前已装客户端目录真实包含**`vibekits.cluster.room_simulation_peers`时，可传目标原ID做只读检查：`discoveryAvailable=false`时空列表只是本机未就绪；为true时再看后台过滤结果。该源码工具不强制同步、不发票、不连接目标，旧包没有此接口。未知房间HTTP403在包含新端到端诊断的签名包中才会附六种固定`phase`；仍需同票服务端领取/完成和目标原生回执定位，不能单凭笼统拒绝码改白名单或权限。源码与未装机边界见[目标投影](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/G08_ROOM_PEER_PROJECTION_READONLY_20261107.md)和[失败阶段](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/G08_ROOM_DELEGATION_FAILURE_PHASE_20261107.md)。
 
+上层`simulator.call`会把目标固定HTTP403分类为`room_scope_refused`，新固定阶段保留在**同一原回包的`errorContext.cause`**，不在顶层`error`或普通Harness活动摘要。采集失败时解析这一字段并保留原requestId；旧包没有阶段时记为未知，不能从错误文案反推。VibeKits主线`984c0f9d`的完整房间入口负控已证明合法阶段穿过控制器且不退回手动白名单，仍不代替新签名包真机回执。
+
 先读目标真实目录再选toolId，不能把猜测名称的拒绝当权限不足。711→709实测中workspace.list_files不在目录，而vibekits.file_hash按其input参数读取获准文件，返回准确哈希，独立账本及时读到claimed/completed，最后closed=true。此例证明一个真实文件工具，不等于所有业务工具或撤销测试通过。
 
 simulator.call外层ok不替代内层成功。MCP结果可能在data.structuredContent里再包一层ok/data，也要检查isError；只沿当前工具约定解析，不把传输成功、隧道准备、claimed或completed分别冒充业务成功。短票据的独立账本应在本次调用结束后立即读取；超期被清除后不能补造旧证据。
