@@ -12,6 +12,8 @@
 
 在支持此协议的正式客户端上配置一个serverOrigin及业务customerId `kemi`、开启集群并读取本机原仿真ID。先读实时`GET /api/v1/service-info`；`automaticServiceAssignmentEnabled=true`时，客户端以当前原生身份完成`/api/v1/service-auto/challenge`→安装密钥签名→`prove`，服务器按既有身份或空余槽返回自己实际分配的newlink服务房。智能体只读`vibekits.cluster.rooms`核`supportRoom`、`serviceSlot`、自己的approved状态和新鲜心跳；不要导出私钥、自造证明或把所有设备写死到槽1。服务房不要求后台账号、管理员人工审批，也不赋予普通设备互访或业务任务执行权。
 
+重装或凭据恢复时，单独的`vibekits.cluster.status`可能尚未触发Agent加载，只是内存默认值；先核目标进程/原生ID，再经正常`cluster.rooms`入口加载后复读状态。若已有安装身份但集群开关与服务配置条目都缺失，现行客户端会安全地保持关闭，而不会把它当全新安装自动改绑默认客户。应核本人是否明确退出、服务端原分配与当前安装身份；不能凭同机名将旧roomId成员或旧设备号直接授予新原生ID。Linux101实测一例当前原生ID可注册但旧房间ID仍离线，正常配置/开启后因`SIMULATOR_CONSENT_UNAVAILABLE`未完成入房；IPC socket存在且监听不等于实际GUI→relay调用通过。按[该次回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G06_LINUX101_SERVICE_RECOVERY_20261106.md)先保留原事务、诊断原生阶段，不写SQL/白名单、不开新ID权限旁路，也不以设置成功或SSH可达宣称入房。
+
 用户已退出服务时尊重`opted_out`，只有本人明确主动恢复才走`resume`和当前revision；身份变更、撤销或`SERVICE_IDENTITY_RECOVERY_REQUIRED`须停在原身份恢复流程，不用另建新设备绕过。生产已有4台既有设备签名resolve，但全新安装首次入房、重装找回、退出恢复及满房真实设备仍是待验收项。下面的管理账号/申请/审批流程专用于**kemi业务房**或其他须人工审批的获授权房间。
 
 ## 只给智能体这个网址和后台密码，怎样把本机加入房间
