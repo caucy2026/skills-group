@@ -39,7 +39,8 @@
 |---|---|---|
 | macOS | https://kemi.newlinksz.com/kd/s/com.caucy.vibekits?os=macos | com.caucy.vibekits；核实际包架构、最低系统、Developer ID与公证。完整解压并按页面安装。 |
 | Windows | https://kemi.newlinksz.com/kd/s/com.caucy.vibekits?os=windows | com.caucy.vibekits；使用正式签名安装器，覆盖原路径，不直接替换运行中的EXE。 |
-| Linux | https://kemi.newlinksz.com/kd/s/com.caucy.vibekits?os=linux | Linux 1.9.0-dev.684 /2684: Ubuntu20.04 x86_64/amd64 DEB, published2026-10-16. This is not an ARM64 package; use the live store record for current metadata. |
+| Linux 双架构包 | https://kemi.newlinksz.com/kd/s/com.caucy.vibekits?os=linux | 商城app90；2026-11-06为1.9.0-dev.773/2773的tar.gz，内含amd64与arm64 DEB，安装前核内层目标架构。 |
+| Linux ARM64 直装 | https://kemi.newlinksz.com/kd/s/com.caucy.vibekits.arm64?os=linux | 商城app106；同版本ARM64 DEB，商城标识后缀`.arm64`，内包名仍`com.caucy.vibekits`、架构`arm64`。 |
 | Android PAD | https://kemi.newlinksz.com/kd/s/com.vibekits.vibekits?os=android | com.vibekits.vibekits；指KEMI Android PAD，不是Apple iPad。核商城platforms和目标机型；在PAD浏览器下载，设备主人完成安装及系统确认。 |
 
 使用商城当时实际可获取的版本。不要依据网站快照中的版本号从其他来源拼出下载URL。安装前核平台、大小、SHA-256和签名；后续在App“应用中心”检查商城更新。下载、上传、签名或安装命令返回成功都不是功能验收。
