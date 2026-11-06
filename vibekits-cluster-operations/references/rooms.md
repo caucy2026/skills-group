@@ -50,6 +50,8 @@
 
 售后房管理员正向例：原Mac155的kemi业务身份有当前Native账号会话、原房间服务链接与newlink一级客户管理员等级；在newlink通用服务1通过一次`room_connect→room_call(vibekits.system.info)→room_disconnect`实际读取普通Mac132，服务端同一请求委派/领取/完成各1，不增加旧白名单。普通Mac132同房目录只见155、445两名一级管理员，管理员155看全部16名成员；业务房目录仍8/8。跨客户售后权限按**设备业务customer的有效身份会话 + 售后房目标customer等级**验证，不能因newlink本身缺登录会话就判无权。见[当前原设备验收](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G08_SUPPORT_ADMIN_155_TO_132_REAL_TOOL_20261026.md)。单工具成功不等于任意工具、撤权旧票或所有成员都已验通。
 
+上段是**2026-10-26历史角色**。2026-11-06[重新实测](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G06_G07_CURRENT_ROOM_ROSTER_20261106.md)：Mac132已因当前账号有效newlink一级客户管理员绑定显示管理员、可见售后房16/16；普通Windows424仅见4名在线管理员、看不到自己及其他普通成员；424在kemi业务房可见8/8。后端只读确认132无房间显式管理员授级、旧设备等级0，不能沿用“132仍普通”的旧测试前提。此项只验目录；管理员132对目标的工具调用未在共享连接上抢占，使用旧155/529正向回执时注明设备和时点，不能替代当前132的真机正向。
+
 同一155→132售后房另用**新请求ID**真实验通有界`vibekits.system.resources(samples=1,intervalMs=250)`，目标内层CPU/内存/存储结构化数据成功，服务端同请求领取/完成各1、通道关闭、两机后续心跳和双房批准保持。见[第二项资源工具回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G08_SUPPORT_ADMIN_RESOURCES_155_TO_132_20261026.md)；不要复用已完成的`system.info`票据或把两项只读工具扩写成所有资源/签名工具已通过。
 
 短授权票据有独立保留期，调用后立即收集当前账本证据；已按保留策略清除的行不补造、不恢复成活票据。缺证据须明确列出，必要时仅对可重复只读检查取得新回执，不重做未知结果的业务操作。
