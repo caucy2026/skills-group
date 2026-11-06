@@ -26,6 +26,8 @@ macOS SSH 可连接但不能访问受保护文件时，在获授权设备打开�
 
 判断生产心跳是否已隔离时，只读核`systemctl show`中`--g09-proxy-mode`开关**存在性**和原服务PID的`hbbv-heartbeat-writer`线程，不输出完整启动命令或凭据。2026-11-06 19时读数两者均无，心跳仍走共享`Store.dispatch`锁；同期五台13–15次presence间隙与15条限频慢请求属于[第二组真实故障](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_FIVE_DEVICE_COMMON_GAP_20261106.md)。共享锁是待验证机制，不能据此直接改生产、称G09根因已定，或把恢复后的新鲜数连成24/72小时无缺口窗口。
 
+即便启用隔离代理入口，现有`HeartbeatBatchWriter._commit`仍取同一`Store.lock`；隔离回归使普通线程持锁时批写心跳等待，释放后才ACK，全套28项通过。代理只分开接入/批量提交，不保证业务长锁期间的presence连续性；上线前必须在同负载下同时看发起、等锁、提交、ACK和会话间隙，不能用代理开关或合成最终在线数代替真实稳定验收。
+
 hbbv当前完整后端门禁含Node WebCrypto测试，启动前须在本机规则的外盘独立TMPDIR/锁定Python环境中设置**实际可运行的Node22.19+** `HBBV_WEBCRYPTO_NODE`，先运行私有main的`hbbv/tool/run_full_contracts.py --expected-volume <本机构建卷> --check-only`；预检通过后同入口带独占`--log-file`才启动整套。缺输入立即拒绝，不能等跑十余分钟后把三项环境失败与其余通过拼成“全套PASS”。同源冻结提交`459825f`在先前1,626项3失败后，预检独立整轮1,626项0失败/3既有skip，日志SHA及本人生成物清理回执见[全套纠错](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_FULL_CONTRACT_NODE_INPUT_REPEAT_20261106.md)；此绿测不恢复暂停资格、不代表生产已部署或G09长稳通过。
 
 售后房管理员名单可能随账号绑定即时变化。真实退出账号后，普通成员445在通用服务1房看到0名管理员，而kemi业务房仍可见原8名成员；155的kemi绑定恢复后，445在售后房仅看到155这一名在线一级管理员，其他普通成员继续隐藏。必须以同一普通设备分别读`room_devices`、`cluster.rooms`，并用只读后台绑定状态核对前后，不把名单恢复等同实际委派仿真通过。见[售后房登录可见性续验](https://github.com/caucy2026/skills-group/blob/main/docs/acceptance/SUPPORT_ROOM_LOGIN_VISIBILITY_TRANSITION_20261025.md)。
