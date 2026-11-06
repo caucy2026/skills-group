@@ -24,6 +24,8 @@ macOS SSH 可连接但不能访问受保护文件时，在获授权设备打开�
 
 2026-11-07[本机分进程持久TLS补测](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_LOCAL_DISTRIBUTED_5000_10000_PACED_WARMUP_20261107.md)把**首次建连风暴**与**已经在线的严格心跳节拍**分开：原5,000同时建连有409次超时，不能拿它判稳态；仅分散预热后5,000合成设备两轮各3.735/3.719秒全ACK且新鲜池满额，但10,000合成设备两轮6.073/5.291秒仍严格FAIL，最后发包5.437/4.708秒。发压器新增参数只作用预热，正式两轮仍用3.7秒发起、≤4秒全ACK/在线门禁；不要把5,000本机PASS外推云端万人或真实设备，也不要把10,000整轮失败唯一归因服务端。按同源、同负载再分离发起队列与服务端提交，并保留本任务清理回执；生产未改。
 
+上述三轮原探针均开了服务端逐阶段profiling，不能直接当生产默认开销。之后相同本机10,000合成参数**关闭profiling**复测仍全ACK/新鲜池满额，但两轮5.972/5.628秒、最后发包5.249/4.726秒，严格4秒继续FAIL；单次profile开/关耗时差不构成可归因的性能收益或回退。隔离发压器已把模式写进回执，云端复验须固定该输入；源码与[负控回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_LOCAL_DISTRIBUTED_5000_10000_PACED_WARMUP_20261107.md)均不改生产服务。
+
 生产hbbv服务使用独立`LogNamespace=vibekits-cluster`；查服务warning必须指定`journalctl --namespace=vibekits-cluster -u vibekits-cluster.service`和窄时间窗，默认命名空间0行**不是**无warning证明。私有源码`1a8293c`仅给已有≥1秒、30秒限频的同步业务慢请求加固定数值`lockWaitMilliseconds`与`elapsedExcludingLockWaitMilliseconds`；后者含业务/SQLite/外部依赖，**不是持锁时长**，异步或未测锁路径缺字段也不是等待0。47项隔离合同通过，但生产未部署；旧日志只有总耗时和固定类别，不能因`personal_account`与五台间隙重叠就指认它是持锁者。先核实际运行版本，再把同时间窗的锁等待、写入队列和presence对齐，详见[候选与门禁](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_LOCK_WAIT_SPLIT_SOURCE_20261106.md)。
 
 判断生产心跳是否已隔离时，只读核`systemctl show`中`--g09-proxy-mode`开关**存在性**和原服务PID的`hbbv-heartbeat-writer`线程，不输出完整启动命令或凭据。2026-11-06 19时读数两者均无，心跳仍走共享`Store.dispatch`锁；同期五台13–15次presence间隙与15条限频慢请求属于[第二组真实故障](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_FIVE_DEVICE_COMMON_GAP_20261106.md)。共享锁是待验证机制，不能据此直接改生产、称G09根因已定，或把恢复后的新鲜数连成24/72小时无缺口窗口。
