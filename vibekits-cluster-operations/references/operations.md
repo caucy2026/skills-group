@@ -394,6 +394,8 @@ Phone↔Mac同账号只要求原Harness会话、消息和文件协同，不进�
 
 后续已装2854的Mac155→2852的Mac529真机取得`account_simulation_stream_unavailable`，证明目标原生仿真流仍挂起。经固定指纹原SSH只读核529诊断，策略`install`持续成功、随后`action=other`数毫秒失败；逐字节核现行生产hbbv事件流模块与私有main一致，服务确含`device.ready`。确切客户端根因是Mac `HarnessConsentIPC.accountAccess`旧前置白名单仅四项，在打开Native socket前拒绝`capabilities`及`resumeSimulation`等新动作；Rust Native实际支持12项。VibeKits main `9590a3ec`把Mac前置集合精确对齐12项并保留原Native鉴权，独立Swift编译、12动作与8非法输入负控通过，测试二进制已清。**现装2854与远端2852尚未含修复，功能仍BLOCK**；下一同签名候选先构建机真实启动，再远端覆盖、双向同账号工具和撤销/换号负控。Windows C++入口没有该四项白名单，不能用此Mac结论代替Windows真机验收。见同一[验收记录](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/SAME_ACCOUNT_ID_ENTRY_REPAIR_20261106.md)。
 
+最新实测已把Mac155升级到严格签名2855，原ID/启动通过；仍装2852的529→155反向同账号连接依然在MCP响应头前关闭。**旧Swift拦截已修，但全链路仍BLOCK**，不可把2855本机安装或房间成功计为同账号双向通过。当前安装包的原生RPC日志把多类动作合并成`other`，不能从成功次数推断`device.ready`/`resumeSimulation`已完成；VibeKits main `4b913752`另有仅限频记录固定失败阶段和白名单错误码的候选，2项定向测试通过，未装入2855。后端真实TLS夹具改用Host签名`/api/v2/account/devices`游标开SSE，ready/Phone拒绝合同通过，也不等于生产目标实收。下一同源签名包须先按固定阶段回执定位并修复，再以两台原ID做双向真实工具和撤销负控；禁止放开原生挂起或回退逐台白名单掩盖故障。
+
 Android PAD 同账号仿真另有[独立源码候选](https://github.com/caucy2026/vibekits/blob/codex/pad-account-simulator-20261028/docs/development/PAD_ACCOUNT_SIMULATOR_NATIVE_BRIDGE_20261028.md)：VibeKits分支`b979ddfcf0`与RustDesk原生分支`4556dcc4d`，专用MethodChannel/JNI把服务端签名票和确切端口送原生隧道，普通无票PAD隧道不继承同账号权限。原生30项小合同通过且已清生成目标；Android完整编译、签名覆盖、PAD↔Mac真实工具、撤票/续票及Phone拒绝矩阵尚未通过，两个分支均未合main。当前本会话资格暂停时只可源码修复与非交付验证，不能换设备或会话代编译发布。
 
 PAD候选后续`b881ea2a39`增加打包前动态JNI符号门禁：仓库当前随包的旧arm64 `librustdesk.so` 确实缺 `Java_ffi_FFI_harnessOpenAccountSimulationTunnel`，真实旧库负控返回 `PAD_ACCOUNT_SIMULATOR_NATIVE_SYMBOL_MISSING`。合格构建者须从匹配RustDesk分支构建新库并让Release前置检查通过，再验最终APK内符号、原签名身份和真机工具。人工两符号检查器正控只证明门禁解析，不代表新库或APK已合格；不得删除门禁或把普通 `openTunnel` 当替代。
