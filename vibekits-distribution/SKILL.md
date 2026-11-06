@@ -29,7 +29,9 @@ description: 维护和部署 VibeKits Mac/Windows/Linux双架构与ARM64/PAD下�
 
 保留五张宣传图自动循环、点击图片下一张、暂停/恢复、键盘操作、窄屏布局和每端二维码。隐藏页面停止轮播；新版不破坏已有文档深链接。
 
-改页面后用隔离浏览器实查320/390px与桌面：导航不竖排、锚点标题不被粘性页头遮住、无横向溢出、四端卡片与扫码弹窗可操作。目录尚在加载时打开二维码，再核目录返回后**已打开弹窗**的版本会更新；从四张真实弹窗截图用独立二维码识别器解码，与对应商城href逐字比对，再核商城页可达。仅看编码函数、SVG存在或链接文字不算扫码通过；浏览器图像解码也不等于实体手机扫码、完整包SHA或安装通过。2026-10-29[四端浏览器实测及移动端修复](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G10_DOWNLOAD_PORTAL_QR_CONTRACT_20261028.md)记录了Chrome隔离profile、BarcodeDetector的ImageBitmap路径及320/390/1440px回归。源码提交后仍须读线上静态SHA；未按受控`current`链接切换前，不称移动端问题已上线修复。
+改页面后用隔离浏览器实查320/390px与桌面：导航不竖排、锚点标题不被粘性页头遮住、无横向溢出、五张下载卡（含两个独立Linux包）与扫码弹窗可操作。目录尚在加载时打开二维码，再核目录返回后**已打开弹窗**的版本会更新；从每张真实弹窗截图用独立二维码识别器解码，与对应商城href逐字比对，再核商城页可达。仅看编码函数、SVG存在或链接文字不算扫码通过；浏览器图像解码也不等于实体手机扫码、完整包SHA或安装通过。2026-10-29[四端浏览器实测及移动端修复](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G10_DOWNLOAD_PORTAL_QR_CONTRACT_20261028.md)记录了当时四张卡的Chrome隔离profile、BarcodeDetector的ImageBitmap路径及320/390/1440px回归，不自动覆盖新增ARM64第五卡。源码提交后仍须读线上静态SHA；未按受控`current`链接切换前，不称移动端问题已上线修复。
+
+线上验收按四层分开：HTTP原始HTML、同源`downloads.json`、实际发布`site.js`字节和浏览器执行后的DOM/截图。原始HTML中的“正在核对版本”是初值；脚本对缺失目录行的卡片会改成“该商城条目待后台同步”。不能把初值或脚本意图写成已观察到的最终文案。若浏览器工具不可用，保留渲染项`未验`，仍可精确报告目录是否有该`(os,packageName)`、商城链接及静态字节。2026-11-07的[ARM64文案误判纠错](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/incidents/G10_ARM64_RENDERED_LABEL_OVERCLAIM_20261107.md)和[四行目录/五卡过渡证据](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G10_LINUX_ARM64_PORTAL_ADDITION_20261106.md)须一起读；缺正式ARM64目录行时，版本自动同步仍未完成。
 
 `handbook.json`、15篇分类文档、`agent.json`、`llms.txt`和完整指南要相互一致。检查相对文档链接、GitHub路径、平台限制、安装/自更新、仿真/PAD远程ADB、入房和签名场景。实时工具Schema、实际授权和设备事实优先，不能将入房写成任意执行许可。
 
