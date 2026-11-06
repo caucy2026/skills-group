@@ -9,6 +9,8 @@
 - 普通业务房按当前同customer、批准成员、等级和原生证据决定互访。服务房普通设备互不可见/不可访，只有实际有权限的管理员按级别服务。用户注册普通会员，管理员由保留admin账号按客户/通用类型提拔；资源owner不是登录账号，也不是租户隔离依据。
 - 已有八台可信登记设备在本批受用户明确授权后迁入kemi；这不授予未知设备普通互通房资格。普通业务房入房仍走签名申请及获授权审批。生产自动服务分配已于2026-10-25启用，4台既有真实设备签名resolve并保持原token/epoch/owner；不能把这批回补冒称无人值守全新安装或重装找回已验收。
 
+2026-11-06 客户端主线 `62119bc8` 和跨层合同 `95ce9932` 补了受限重装恢复：只有 `PlatformStorageLayout` 在空应用支持目录建立并验证首装标记、全部集群键缺失时，保留原安装密钥的重装才恢复内置公开服务地址和 `kemi` 默认 customer。旧目录无标记、显式关闭、旧客户/地址配置继续保持原值；服务端还须用原安装和原生指纹核对当前 customer，保留已退出售后的 `opt_out`。设置合同10/10、存储到设置跨层1/1通过；101现有目录、最终签名包覆盖及真实重入未验。若旧目录已有用户文件却丢了配置，不伪造首装标记或直接替换身份，使用正常配置/受信恢复入口；无标记的自动发现仍未实现。见[客户端验收](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/SERVICE_AUTO_REINSTALL_MARKER_RECOVERY_20261106.md)和[101现场台账](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G06_LINUX101_SERVICE_RECOVERY_20261106.md)。
+
 ## 已有设备看不到Kemi房间时
 
 先查实际后台房间customer与客户端持久customer。新版本保留旧配置，升级包版本本身不会把旧newlink配置改成kemi。不得只改房间显示文本或只写后台approved当作接入成功。
@@ -40,6 +42,8 @@
 同一控制器的房间签名请求按原SingleFlight串行。同请求BUSY先查原requestId是否签过票和原操作终态，不换ID盲重试。room_connect返回tunnelPrepared=true、connected=false可以是正常延迟握手；立即room_call同一票据工具，完成后只关闭自有room_disconnect，不清旧授权或同事原连接。
 
 2026-10-23本批两台Linux的房间调用曾返回ROOM_SIMULATION_NATIVE_POLICY_INACTIVE；该首败保留。2026-10-25已用原ID155→ARM64 Linux571在kemi业务房完成一次签名房间短票据`system.info`：room_connect为tunnelPrepared=true/connected=false，立即同票据room_call实际成功，room_disconnect关闭自有通道，服务端同委派ID的领取及完成均读回；目标当时modelReady=false，证明这项确定性只读资源不依赖模型。参见[真实验收](../../docs/acceptance/G04_G08_LINUX_ARM64_NO_MODEL_ROOM_20261025.md)。另一Linux、编译/签名工具、撤销矩阵及所有房间仍未因此通过。遇到原native错误时仍须查server/room/target、激活/过期、工具/限额和实际安装包，不能关闭安全检查或借普通白名单绕过。
+
+当前Linux101原生ID是 `7634801763`，旧房间成员 `5713793648` 仍为另一身份记录，不迁移旧批准。已装2774的本机仿真就绪，但房间同步在 `SIMULATOR_CONSENT_UNAVAILABLE` 停止；原生草稿 [PR #8](https://github.com/caucy2026/rust-desk/pull/8) 补 Linux 专用 consent IPC、房间验票、实际来源端口绑定、转发复核和断开回收。该PR仅经源码复核，尚无 ARM64 编译、B/C 隔离、用户审查及101真机验收，不能合主线或安装来掩盖当前失败；现装2774也高于商城ARM64 2773，不可降级。按[101台账](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G06_LINUX101_SERVICE_RECOVERY_20261106.md)核原进程和新ID，再走正式候选门禁。
 
 同日原七台Windows619（旧732客户端，modelReady=false）在同一业务房也按此顺序完成一次只读`system.info`，Windows进程回执、服务端同票据领取/完成与自有断开均真实读回；见[Windows619验收](../../docs/acceptance/G04_G08_WINDOWS619_NO_MODEL_ROOM_20261025.md)。这验证的是跨平台单工具与当前权限，不扩大到编译、签名、撤销或全部原七台升级。
 
