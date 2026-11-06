@@ -52,6 +52,8 @@
 
 上段是**2026-10-26历史角色**。2026-11-06[重新实测](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G06_G07_CURRENT_ROOM_ROSTER_20261106.md)：Mac132已因当前账号有效newlink一级客户管理员绑定显示管理员、可见售后房16/16；普通Windows424仅见4名在线管理员、看不到自己及其他普通成员；424在kemi业务房可见8/8。后端只读确认132无房间显式管理员授级、旧设备等级0，不能沿用“132仍普通”的旧测试前提。此项只验目录；管理员132对目标的工具调用未在共享连接上抢占，使用旧155/529正向回执时注明设备和时点，不能替代当前132的真机正向。
 
+**2026-11-07当前角色覆盖上述旧快照：**Windows424现在也是一级管理员，已不能用于普通成员目录验收；见[选点纠错](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G07_SUPPORT_ROSTER_WIN58_ROLE_CORRECTION_20261107.md)。Windows447是当前普通成员，经一张获批售后房短票真实调用本机`vibekits.cluster.room_devices`只见5个管理员ID，未见自己和其它普通设备；同请求服务端领取/完成各1、通道已关闭。[实机回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G07_WIN447_834_SUPPORT_ORDINARY_ROSTER_REAL_20261107.md)不证明普通成员之间的仿真拒绝、全部客户矩阵或新包。选择测试目标时先查实时等级/绑定/同意，不把旧截图中的角色当当次许可。
+
 同一155→132售后房另用**新请求ID**真实验通有界`vibekits.system.resources(samples=1,intervalMs=250)`，目标内层CPU/内存/存储结构化数据成功，服务端同请求领取/完成各1、通道关闭、两机后续心跳和双房批准保持。见[第二项资源工具回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G08_SUPPORT_ADMIN_RESOURCES_155_TO_132_20261026.md)；不要复用已完成的`system.info`票据或把两项只读工具扩写成所有资源/签名工具已通过。
 
 短授权票据有独立保留期，调用后立即收集当前账本证据；已按保留策略清除的行不补造、不恢复成活票据。缺证据须明确列出，必要时仅对可重复只读检查取得新回执，不重做未知结果的业务操作。

@@ -44,6 +44,8 @@ description: 操作和管理 VibeKits 集群：远程仿真、管理后台、客
 
 2026-11-06 当前包的[双房目录实测](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G06_G07_CURRENT_ROOM_ROSTER_20261106.md)：普通Windows424在newlink通用服务1只见4名管理员，Mac132因当前账号继承newlink一级客户管理员权限可见全16名；同一424在kemi业务房见全8名。10月旧“Mac132是普通成员、只见两名管理员”与“服务房只有155一名管理员”均为历史快照，不可当当前角色。目录投影不授予工具执行；管理员实际访问、普通→普通最终政策拒绝、2–10级、撤权和万人分页另验。
 
+2026-11-07 当前角色又变：[Windows424现为一级管理员](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G07_SUPPORT_ROSTER_WIN58_ROLE_CORRECTION_20261107.md)，不能再当普通成员。用户此前提供的Windows447当前是普通成员，真实房间工具从447视角只返回5名管理员，精确短票领取/完成各1且已断开；见[普通视角实证](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G07_WIN447_834_SUPPORT_ORDINARY_ROSTER_REAL_20261107.md)。这仅证明一台旧834的目录隔离，普通→普通仿真拒绝及最终包矩阵仍缺。每次测试前重读实时角色和原生同意，历史“普通设备”标签不能直接重用。
+
 每次交付记录：时间、服务 UUID、房间 ID、原设备 ID/安装指纹摘要、运行版本/路径、请求/修订/事务 ID、真实结果及证据。网页可打开、邀请提交、工具目录存在、构建成功均不能单独称完成。此技能创建和发布不等于七台升级及长期稳定性已经通过。
 
 管理工具目录缺失、注册恢复或历史任务副作用审核时，读取[管理MCP注册恢复与终态审核](references/management-registration-recovery.md)。保留原房间限制和私有配置，不用SQL改写业务状态。
