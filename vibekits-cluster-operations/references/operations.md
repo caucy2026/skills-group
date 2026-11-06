@@ -62,6 +62,8 @@ hbbv当前完整后端门禁含Node WebCrypto测试，启动前须在本机规�
 
 2026-11-06审计归属事故：现有`vibekits`自动化实为PAUSED且只设每天09:00；接续聊天里人工调用脚本时沿用`--source heartbeat`，**标签不等于定时执行回执**。此前把这些样本称作“24小时121条/72小时另62条自动样本”已撤回。当前私有main审计器只把有明确调度来源的`scheduled_local`计入覆盖，排除`manual`及无调度回执的`heartbeat`，还核精确原七台ID；同一固定窗口24/72小时均`NO_SCHEDULED_SAMPLES/BLOCK`。恢复定时监控须先核当前暂停归属与用户既有授权，再由真实调度运行并读回每轮回执；不要把会话接续、健康快照或已配置任务冒充24/72小时稳定验收。见[事故纠错](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_CONTINUITY_AUDIT_HEARTBEAT_SOURCE_20261106.md)。
 
+2026-11-06后用户已明确要求关闭本聊天的定时巡检，现只允许按工作需要运行人工只读采样并标`--source manual`；**不得依据上方历史监控恢复说明自行重建自动化或LaunchAgent**。长期验收仍需未来得到真实调度授权和实际运行回执，人工样本、房间在线灯与万人合成结果均不抵扣。五台共同心跳长隙的生产日志须先核`LogNamespace`，再按正确命名空间取有界warning；旧生产慢请求全类别共用30秒限频，非心跳warning不能证明心跳未慢。新源码把心跳与其他业务分成两个固定限频桶，尚未部署生产，见[长隙与取证边界](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G09_FIVE_DEVICE_COMMON_GAP_20261107.md)。
+
 ## 覆盖升级
 
 目标机升级前先冻结原App签名身份和完整指定要求，再在目标本机留私有用户数据副本。Mac旧端可能没有可用Python3，优先用系统`ditto`复制、Ruby标准库逐项按`lstat`比对文件类型/普通文件SHA-256/符号链接目标；原始`diff -qr`会对失效的`node_modules`链接报`No such file`，零差异行不能当作备份PASS。私有manifest至少记录文件数、字节数、链接数、差异数和权限；先读回manifest与原PID，正式覆盖前若用户数据继续变化须重新核对或刷新。备份留在目标私有目录，不上传Git/云端；Keychain/TCC不靠文件复制替代升级后真实权限验收。2026-10-25 Mac445实证为11715文件、986链接、0差异，见[VibeKits七台基线](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/SEVEN_ORIGINAL_LIVE_BASELINE_AFTER_132_RECOVERY_20261025.md)。
@@ -163,6 +165,8 @@ Windows命令保护要求上传脚本时，停止内联执行并使用受信的�
 ## 房间准备态、MCP封装与真实文件工具
 
 room_connect的成功准备回执可以是tunnelPrepared=true、connected=false、executionVerified=false：尚未调用工具时，这不是失联。按回执限定的工具执行一次room_call，再核实际结果与断开；不要因connected尚为false重建票据、开启旧名单或重放操作。控制器若在调用前自行断言退出，先核调用是否发生和票据期限；过期后关闭自己的通道，记录设施错误，新只读测试使用新的请求身份。
+
+完整房间目录返回`ROOM_MEMBER_SELECTED_SCOPE_UNAVAILABLE`时，先核本机发现入口状态与服务端对该目标的可见房间投影，不能用单工具短票成功推断全目录已可用。**仅当当前已装客户端目录真实包含**`vibekits.cluster.room_simulation_peers`时，可传目标原ID做只读检查：`discoveryAvailable=false`时空列表只是本机未就绪；为true时再看后台过滤结果。该源码工具不强制同步、不发票、不连接目标，旧包没有此接口。未知房间HTTP403在包含新端到端诊断的签名包中才会附六种固定`phase`；仍需同票服务端领取/完成和目标原生回执定位，不能单凭笼统拒绝码改白名单或权限。源码与未装机边界见[目标投影](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/G08_ROOM_PEER_PROJECTION_READONLY_20261107.md)和[失败阶段](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/G08_ROOM_DELEGATION_FAILURE_PHASE_20261107.md)。
 
 先读目标真实目录再选toolId，不能把猜测名称的拒绝当权限不足。711→709实测中workspace.list_files不在目录，而vibekits.file_hash按其input参数读取获准文件，返回准确哈希，独立账本及时读到claimed/completed，最后closed=true。此例证明一个真实文件工具，不等于所有业务工具或撤销测试通过。
 

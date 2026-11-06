@@ -11,6 +11,8 @@
 
 2026-11-06 客户端主线 `62119bc8` 和跨层合同 `95ce9932` 补了有效首装标记的受限重装恢复。随后后端 `49496ab` 加入原身份+实时原生证明的业务只读 `inspect`，客户端 `e7cea25c` 将其接入无标记旧目录启动：仅原安装密钥保留、全部集群键缺失且服务端返回本机原 `joined` 分配时，才在设置串行队列中恢复内置 HTTPS/kemi；`opted_out`、未分配、显式关闭、旧客户配置、错误身份或返回设备凭据均保持关闭。不能伪造首装标记、复制身份或用会改变成员的 `resolve` 探测。隔离本地 TLS/原生租约启动11项、设置12项通过；**后端 inspect 尚未部署生产，101现有包/目录、最终签名覆盖及真实重入未验**。见[客户端验收](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/SERVICE_AUTO_REINSTALL_MARKER_RECOVERY_20261106.md)和[101现场台账](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G06_LINUX101_SERVICE_RECOVERY_20261106.md)。
 
+2026-11-07 后端发布候选已扩为[13文件组合计划](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G05_G06_G09_G10_COMBINED_RELEASE_PLAN_20261107.json)：门户静态7文件已上线，后台6文件仍待切；其中新增慢心跳与业务分桶的运行模块。当前源码独立全量1,632项0失败/3既有跳过，现网待切6个旧SHA已逐一读回匹配；这不是生产部署。合格执行者须在同一身份/旧数据下重测容量和锁、只在本地创建并核验一致性数据库快照、保留最多3份，再切后台验`inspect`、客户/房间/旧端及五行动态目录，最后清云端本任务暂存。用户已关闭定时巡检，不得为验收自行重建。最新实况优先读[项目交接](https://github.com/caucy2026/priv/blob/main/hbbv/docs/PROJECT_HANDOFF_VIBEKITS_CLUSTER_UPGRADE_ACCEPTANCE_20261011.md)。
+
 ## 已有设备看不到Kemi房间时
 
 先查实际后台房间customer与客户端持久customer。新版本保留旧配置，升级包版本本身不会把旧newlink配置改成kemi。不得只改房间显示文本或只写后台approved当作接入成功。
