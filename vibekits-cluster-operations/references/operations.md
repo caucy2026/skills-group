@@ -254,6 +254,8 @@ room_simulation_delegations原生票据的created/expires/claimed/completed为�
 
 当前仿真SSH控制器拒绝空命令、NUL及长度超过8192的命令，Base64会继续放大长度。此类格式拒绝没有启动远端操作；长源码沿已验证的文件传输入口执行，不改成更大的内联命令。Windows上传工具的默认临时位置可能是SSH用户目录；有D盘约束时用已登记且核原指纹的同一SFTP载体直接传入独立D盘目录，验完整SHA后再执行。不要调用旧传输脚本的main，它可能操作另一台设备。长度调整不是绕过UnauthorizedAccess或其他执行策略拒绝的许可。
 
+Windows58本轮验证了一个易错路径：其OpenSSH SFTP把相对`D:/KEMI-Test/inbox`解析成`/C:/Users/kemi-test.../D:/...`，只有绝对`/D:/KEMI-Test/inbox`才真正落D盘。先核目标原ID、固定ED25519指纹、D盘余量和目标路径不存在；用16字节自建文件直传并两端SHA读回，删除该件后再传正式源。私有Git仓从目标无凭据HTTPS`ls-remote`被拒时不复制Mac凭据或改安全设置；可把确定提交的完整Git归档经同一SFTP送D，核ZIP SHA/CRC/安全路径，解入独立工作区并逐文件验哈希。2026-11-06的Mac2855同源Windows58输入19,716文件/692,478,117字节全量通过、仅两处版本覆写，详见[精确回执](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/WINDOWS58_2855_SOURCE_PREP_20261106.md)。这只是源码准备；本会话当次预构建资格检查为`QUALIFICATION_EXECUTOR_SUSPENDED`，没有编译/签名/安装，不能用已验D盘源码绕过资格和最终包门禁；后续main新增SDK改动还须重新冻结比较。
+
 对大文件载荷的只读核验逐个保存目标端检查点，输出只返回计数、身份和哈希。控制端等待必须覆盖原目标预算和收尾；超时先核同一原进程及回执，不能用静默或不存在的本地结果当零文件。已确认原核验退出后可按更小只读单元继续，写入/删除仍按原intent与精确对象对账。容量达到只是该时点事实；其他构建继续写入后，必须重新读可用字节，不复用旧targetReached作为准入。
 
 ## 会话维护集合与成品证据边界
