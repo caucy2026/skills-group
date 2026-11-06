@@ -52,7 +52,7 @@ Phone 是同账号电脑的操作界面，设备类型为 `phone`：不需要仿
 
 ## 先拿到正确的正式包
 
-从网站的平台卡片进入 KEMI 商城。页面显示商城实际版本、整数版本码、大小和 SHA-256；“上次核验”或“同步失败”不等于最新。Mac、Windows、Linux 的产品包名是 com.caucy.vibekits；Android PAD 是 com.vibekits.vibekits。PAD 指 KEMI Android PAD，不是 Apple iPad。
+从网站的平台卡片进入 KEMI 商城。页面显示商城实际版本、整数版本码、大小和 SHA-256；“上次核验”或“同步失败”不等于最新。Mac、Windows 与 Linux 双架构归档的商城条目标识是 com.caucy.vibekits；Linux ARM64 直装包单列为商城标识 com.caucy.vibekits.arm64；Android PAD 是 com.vibekits.vibekits。商城标识不一定等于安装包内部包名，PAD 指 KEMI Android PAD，不是 Apple iPad。
 
 - 核平台、CPU 架构、最低系统、包名、精确字节、哈希和发布签名；没有正式 Linux 包时不使用其他平台文件代替。
 - 新版能力以实际商城包与工具目录为准。文档包含后续集群功能，不能据此认定商城旧包已经支持。
@@ -62,7 +62,7 @@ Phone 是同账号电脑的操作界面，设备类型为 `phone`：不需要仿
 
 ## 各端安装
 
-Linux已于2026-10-16核实正式上架：1.9.0-dev.684（版本码2684），Ubuntu20.04 x86_64/amd64的DEB。下载时仍以商城实时记录为准；这份包不适用于ARM64。先核`dpkg --print-architecture`为`amd64`，按包说明安装并核原设备ID、配置和Key保持。
+2026-11-06 官方商城有两个独立 Linux 条目：`com.caucy.vibekits` 为 1.9.0-dev.773/2773 的双架构 tar.gz，内含 amd64 与 arm64 DEB；`com.caucy.vibekits.arm64` 为同版本的 ARM64/aarch64 直装 DEB。ARM64正式DEB的控制信息实读为`Architecture: arm64`、内部`Package: com.caucy.vibekits`、`Version: 1.9.0~dev.773+2773`；商城后缀`.arm64`只区分下载条目，并未改变本机DEB身份。网站分别提供商城入口和二维码。安装前先核 `dpkg --print-architecture`，只选匹配架构及发行版要求的正式包；双架构归档还要核内层 DEB，不能把外层 tar.gz 当 DEB 安装。版本以当时商城实时记录为准，覆盖后核原设备 ID、配置和 Key 保持。
 
 - Mac：完整解压签名公证 ZIP，按商城说明安装。不能把 App 内的新旧文件合并复制。打开实际安装路径，核“关于”的版本。屏幕录制、辅助功能、文件访问分别按实际需要授权。
 - Windows：运行正式签名安装器，核发布者和原安装目录。普通已授权 UAC 确认可按任务处理；未知发布者、新权限、密码或令牌 PIN 不自行绕过。完整安装后核实际 EXE 路径与版本，不单换 EXE 或 DLL。
