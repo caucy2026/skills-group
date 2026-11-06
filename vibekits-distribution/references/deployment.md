@@ -15,6 +15,8 @@
 
 后端路由或目录读取器改变时，按hbbv服务器部署技能执行完整回归、原身份/数据库备份、活动租约核对和一次正常切换；不要把静态文件更新当Python模块重载。
 
+Linux独立ARM64卡首次上线要**先切完整五卡静态门户，再切返回五行的hbbv后端**。旧`site.js`只按`os=linux`找一张卡，若先切后端，ARM64行会覆盖原双架构卡的链接；新静态页配旧四行目录时，ARM64卡明确显示“待后台同步”，固定商城二维码仍可用。回退先还原旧后端，再还原旧门户链接。冻结的11文件差量、原服务身份和最终1,630项门禁见[合并发布计划](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G05_G10_COMBINED_RELEASE_PLAN_20261106.json)；执行者仍须当次核全服务manifest、3GB预算、仅本地一致性数据库备份及发布资格，不能照搬旧PID或把计划当已上线。
+
 以后创建新的hbbv后端release时，保留`web/vibekits -> /opt/vibekits-distribution/current`这个受管理链接，再核全部公开资源；普通copytree默认解引用可能把门户复制回后端，造成后续版本与目录脱节。链接目标只由已授权部署者设置，不从HTTP参数选择路径。
 
 ## Linux正式包快照（截至2026-11-06）
