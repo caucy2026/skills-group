@@ -49,4 +49,6 @@
 
 2026-10-26 又以两台**普通**旧版Windows（619/build732为控制端、424/build789为目标）对同一对设备做房间策略对照：在newlink通用服务房仅申请一次`system.info`即被`CUSTOMER_SIMULATION_ACCOUNT_BINDING_REQUIRED`拒绝，服务端该requestId委派数0；换成双方均approved的kemi业务房后，新requestId返回短票据，直接同票据`room_call`实际命中424，服务端领取/完成各1，最后关闭自有通道。见[真实正负矩阵](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G06_G08_OLD_WINDOWS_BUSINESS_SUPPORT_MATRIX_20261026.md)。跨房测试必须固定显式roomId、控制端/目标原ID及唯一只读工具；负控拒绝后不换ID盲试，正向准备阶段`connected=false`不替代实际调用。该单对矩阵仍不代表降级/退房/管理员撤权或全部客户、工具、设备通过。
 
+2026-11-07 Mac155→Windows58原ID424在kemi业务房又完成一次当前包短票`vibekits.system.info`：`room_connect`仅准备、`room_call`实际返回目标主机/PID，服务端同委派领取/完成各1，`room_disconnect`关闭。目标2847原生仿真开关/MCP/SSH均就绪，独立保存的`/Applications/KEMI已有身份控制端.app`可打开办公ID238638760的真实桌面，不必切断普通Office实例的另一台Windows窗口。**但**默认`simulator.connect`优先走同账号且目标原生返回`account_simulation_stream_unavailable`；显式roomId完整目录返回`ROOM_MEMBER_SELECTED_SCOPE_UNAVAILABLE`，同房Mac445完整目录正控通过。两端同意/成员有效不等于58完整路径可用；须分别查目标账号事件流与58的房间peer发现，不能用单工具结果、旧白名单或改节点掩盖失败。[精确真机与领取回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G08_MAC155_WINDOWS58_ROOM_SHORT_TICKET_20261107.md)。
+
 入房和实时心跳已验证，最新同源签名包、实际互通修复、账号延续、任务闭环及长期/规模仍以完整G01–G10台账为准。
