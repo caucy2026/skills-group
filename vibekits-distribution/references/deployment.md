@@ -9,7 +9,7 @@
 1. 用已保存、获授权的VibeKits SSH/SFTP服务器profile核对主机指纹、当前工作目录、PID、真实链接目标和部署归属。新环境先发现，不能复制旧凭据。
 2. 冻结整个`web/vibekits/`文件集合和逐文件SHA，核旧线上集合与预期基线一致。只上传无秘密静态文件与清单，拒绝绝对路径、`..`、外部链接和未知文件。
 3. 上传唯一新release，校验每个文件、权限和目录完整性后，原子切换`current`；保留原目标可回退。首次把旧目录改成链接时使用已验证的Linux原子目录/链接交换，先记录意图与旧集合，不能先删旧目录造成空窗。
-4. 静态变化不重启服务。核原PID不变、管理根页面仍可获取、公开资源SHA一致、动态四平台目录有效。失败恢复原链接目标；结果未知先读同一事务回执，不重复切换。
+4. 静态变化不重启服务。核原PID不变、管理根页面仍可获取、公开资源SHA一致、动态目录有效。含Linux独立ARM64记录的候选应显示四种OS的五张卡，五个二维码分别对应各自固定商城页；失败恢复原链接目标，结果未知先读同一事务回执，不重复切换。
 
 公网逐文件验收按后端精确路由映射：源码`index.html`对应公开`/vibekits/`，**不是**`/vibekits/index.html`（当前后端白名单未开放该直链，直接请求返回401）；源码`downloads.json`是回退快照，公开同路径由实时商城目录生成，须按版本/平台/包名/SHA合同单独比较，不能要求与快照字节相等。其余静态文件按公开URL逐件比SHA。2026-10-29实际基线为28项静态中25项与待发布主线相同，差异仅`docs/installation.md`、`site.js`、`style.css`；该数字是切换前快照，后续需重新读取，不可当固定发布清单。
 
@@ -17,11 +17,13 @@
 
 以后创建新的hbbv后端release时，保留`web/vibekits -> /opt/vibekits-distribution/current`这个受管理链接，再核全部公开资源；普通copytree默认解引用可能把门户复制回后端，造成后续版本与目录脱节。链接目标只由已授权部署者设置，不从HTTP参数选择路径。
 
-## 当前Linux正式包快照
+## Linux正式包快照（截至2026-11-06）
 
-Linux 1.9.0-dev.684 / 2684，amd64 DEB，278567024字节，SHA-256 `b8e0ed0739c2e5ee62ab81345522d8b8578d81b7f48f1803cd0c13ec6cc954d2`。面向Ubuntu20.04 x86_64；不是ARM64包。此为日期快照，后续仍读实时商城目录。
+官方app90双架构tar.gz为1.9.0-dev.773/2773、548181962字节，内含amd64/arm64 DEB；app106独立ARM64直装DEB为同版本、167302684字节、SHA-256 `5fe2cfd5d030398c70951164e57114ebab9d6d5c46a100b0ab46fa76c2c239dc`，本轮已流式核完整字节与DEB控制信息`Architecture: arm64`。旧684/2684 amd64 DEB只是历史快照，不再写作当前入口。每次发布仍须重新读商城记录，当前门户候选尚未部署生产。
 
-稳定入口：https://kemi.newlinksz.com/kd/s/com.caucy.vibekits?os=linux
+双架构稳定入口：https://kemi.newlinksz.com/kd/s/com.caucy.vibekits?os=linux
+
+ARM64直装稳定入口：https://kemi.newlinksz.com/kd/s/com.caucy.vibekits.arm64?os=linux
 
 ## 注册与十级管理文档维护（2026-10-20）
 
