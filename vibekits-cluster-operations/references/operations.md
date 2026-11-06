@@ -371,6 +371,8 @@ ROOM_SIMULATION_CONSENT_REVOKED同时可能表示active=false、到期、成员r
 
 含VibeKits main `20aa9f10`或更新源码的客户端，`vibekits.cluster.capabilities.read`额外给出`memberSimulationLocalConsents`，每个已批准房间只有本地ACK修订号、到期时间和状态。`ack_renewal_due`/`ack_expired`提示需核真实续期；`authorizationVerified=false`固定表示这不是服务端或原生授权证明。旧签名包没有该字段，不能凭缺字段断定已过期；新源码尚须签名实机验收，不能以当前工具字段替代真实房间工具调用。
 
+含后续main `cdd9cbfb`的客户端还会在折叠房间入口对本机ACK已过期或成员版本变化显示单行提醒；无提醒不证明服务端和原生授权有效。此界面源码当前仅通过面板测试，仍须最终签名包截图、原ID及真实工具调用验收。
+
 房间 `room_call` 返回403时，调用器在原回执内只保留固定 `code/errorType`、requestId、目标/工具、时间和回包哈希；不要输出短票、正文或原生错误内容。服务端按同一委派只读核 `claimed/completed/expires`：领取0说明目标工具未执行，但不能仅凭此断定是共享桌面占用或票过期。`room_connect` 的 `tunnelPrepared=true/connected=false` 是准备态，不是工具成功。当前客户端源码将原生 `consent_pending` 映射为 `ROOM_SIMULATION_NATIVE_IPC_BUSY`，只把白名单内的 `room_source_mismatch`、`room_policy_revoked`、`remote_disabled` 分别映射为固定源端口不匹配、政策失效、本机开关关闭拒绝码；未知原生信息仍为泛化拒绝。**先核目标实际安装版本是否包含这些诊断，再依据直接错误和原票审计处理**；旧包连续返回泛化403时不靠新requestId盲重试，也不切普通仿真冒充房间成功。Windows58 847 的三张155→58只读票均403、领取/完成0，第三张在自动scope错误清空后仍失败；这排除了该错误持续存在作为充分解释，根因和最终签名包真实工具仍待验。证据见[现场记录](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G08_WIN58_ROOM_RESOURCE_SHARED_OVERLAP_20261106.md)。
 
 产品主线`22afb091`已移除房间 `room_connect` 前的无数据TCP就绪探针：原生端每接受一条本地socket就建立一条远端房间连接，旧探针会使同一短票先经历探针、再经历真实工具两条连接。现在只确认本地监听准备，**第一条真实 `room_call` 才触发原生建链与目标鉴权**；不要为了“再验一次已连接”手动探测本地端口。主线`b87c70a1`以真实本地socket计数证明准备态接受0条连接，房间控制器7项通过；正式签名包及Windows58真实403尚未复验，不能把源码修复称为生产成功。其他普通仿真连接不受该房间路径约束。见同一[现场证据](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G08_WIN58_ROOM_RESOURCE_SHARED_OVERLAP_20261106.md)。
