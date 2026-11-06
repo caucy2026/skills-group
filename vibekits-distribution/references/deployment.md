@@ -15,13 +15,13 @@
 
 后端路由或目录读取器改变时，按hbbv服务器部署技能执行完整回归、原身份/数据库备份、活动租约核对和一次正常切换；不要把静态文件更新当Python模块重载。
 
-Linux独立ARM64卡首次上线要**先切完整五卡静态门户，再切返回五行的hbbv后端**。旧`site.js`只按`os=linux`找一张卡，若先切后端，ARM64行会覆盖原双架构卡的链接；新静态页配旧四行目录时，ARM64卡明确显示“待后台同步”，固定商城二维码仍可用。回退先还原旧后端，再还原旧门户链接。冻结的11文件差量、原服务身份和最终1,630项门禁见[合并发布计划](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G05_G10_COMBINED_RELEASE_PLAN_20261106.json)；执行者仍须当次核全服务manifest、3GB预算、仅本地一致性数据库备份及发布资格，不能照搬旧PID或把计划当已上线。
+Linux独立ARM64五卡静态门户已于2026-11-06按原子链接上线，release为`20261106-g10-arm64-personal-e25346f`；29文件、线上28资源和三视口15次二维码解码已验，原hbbv PID不变。旧后台仍只返回四行，ARM64卡按设计显示“待后台同步”，固定商城二维码可用。原[11文件计划](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G05_G10_COMBINED_RELEASE_PLAN_20261106.json)已停用，后续只按[12文件后台剩余计划](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G05_G06_G10_COMBINED_RELEASE_PLAN_20261106.json)执行；后台失败时先回退后台、保留已上线的兼容五卡门户，不重复切静态链接。后台执行者仍须当次核全服务manifest、3GB预算、只落本地的一致性数据库备份及资格，源码1,631项绿测不等于五行动态目录已上线。[发布与清场回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G05_G06_G10_COMBINED_RELEASE_DELTA_20261106.md)。
 
 以后创建新的hbbv后端release时，保留`web/vibekits -> /opt/vibekits-distribution/current`这个受管理链接，再核全部公开资源；普通copytree默认解引用可能把门户复制回后端，造成后续版本与目录脱节。链接目标只由已授权部署者设置，不从HTTP参数选择路径。
 
 ## Linux正式包快照（截至2026-11-06）
 
-官方app90双架构tar.gz为1.9.0-dev.773/2773、548181962字节，内含amd64/arm64 DEB；app106独立ARM64直装DEB为同版本、167302684字节、SHA-256 `5fe2cfd5d030398c70951164e57114ebab9d6d5c46a100b0ab46fa76c2c239dc`，本轮已流式核完整字节与DEB控制信息`Architecture: arm64`。旧684/2684 amd64 DEB只是历史快照，不再写作当前入口。每次发布仍须重新读商城记录，当前门户候选尚未部署生产。
+官方app90双架构tar.gz为1.9.0-dev.773/2773、548181962字节，内含amd64/arm64 DEB；app106独立ARM64直装DEB为同版本、167302684字节、SHA-256 `5fe2cfd5d030398c70951164e57114ebab9d6d5c46a100b0ab46fa76c2c239dc`，本轮已流式核完整字节与DEB控制信息`Architecture: arm64`。旧684/2684 amd64 DEB只是历史快照，不再写作当前入口。每次发布仍须重新读商城记录；当前静态门户已上线，后台动态五行尚未上线。
 
 双架构稳定入口：https://kemi.newlinksz.com/kd/s/com.caucy.vibekits?os=linux
 

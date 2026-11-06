@@ -20,7 +20,7 @@ description: 维护和部署 VibeKits Mac/Windows/Linux双架构与ARM64/PAD下�
 ## 更新下载记录
 
 1. 读取实时 `/vibekits/downloads.json`，分别查询官方商城`/kd-api/api/store/apps?os={macos,windows,linux,android}`，以`(os,package_name)`而非单独`os`匹配唯一正式记录。Mac/Windows及Linux双架构归档的商城标识为`com.caucy.vibekits`，Linux ARM64直装另为`com.caucy.vibekits.arm64`，Android PAD 为`com.vibekits.vibekits`；同一Linux OS现有两个正式条目。无`os`的默认列表可能遗漏桌面条目；不能据默认列表缺失判断桌面版下架。见[ARM64独立条目实证](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G10_LINUX_ARM64_PORTAL_ADDITION_20261106.md)。
-2. 下载入口使用稳定商城分享页：`https://kemi.newlinksz.com/kd/s/{package}?os={macos|windows|linux|android}`。二维码编码各卡对应的同一入口，不固化每版 CDN 地址。新增ARM64候选的目标门户按四种OS、五张下载卡分别提供扫码入口；生产是否已切换须实时核验，ARM64专用条目不可复用双架构归档二维码。
+2. 下载入口使用稳定商城分享页：`https://kemi.newlinksz.com/kd/s/{package}?os={macos|windows|linux|android}`。二维码编码各卡对应的同一入口，不固化每版 CDN 地址。2026-11-06生产门户已按四种OS、五张下载卡上线，ARM64专用条目不复用双架构归档二维码；以后仍须实时核`current`和商城版本。
 3. 核版本名、整数版本码、实际架构、最低系统、字节数、SHA-256和可信 HTTPS CDN。测试候选不冒充商城发布。Linux商城条目标识`.arm64`不等于DEB内部包名：截至2026-11-06正式直装包内为`Package: com.caucy.vibekits`、`Architecture: arm64`；安装时按实际控制信息核对，ARM64包未实际发布时明确缺项。
 4. 动态目录按访问刷新，成功缓存60秒，失败显示上次核验及时间，不启动持续后台轮询。用现有 `tool/refresh_public_download_catalog.py` 更新随源码的静态快照；不能只改网页文字或写死最新版本。
 5. 核公开商城详情、CDN可获取和准确大小。完整下载hash证据来自同一正式包；HEAD只证明可获取/大小，不冒称完整校验或安装通过。
