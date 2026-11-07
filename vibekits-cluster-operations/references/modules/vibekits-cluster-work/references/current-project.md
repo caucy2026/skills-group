@@ -1,1 +1,1 @@
-当前项目导航见 [部署入口](../../../environment.md)；实时状态读取项目验收台账，不从公开技能快照恢复在途事务。
+当前项目导航见 [部署入口](../../../environment.md)；完整G01–G10及2026-11-07各项证据/缺口见[私有主线当前接续索引](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G01_G10_LIVE_STATUS_20261107.md)。实时状态仍须从当次设备、服务与在途事务读回，不从公开技能快照恢复签名、部署或审批。

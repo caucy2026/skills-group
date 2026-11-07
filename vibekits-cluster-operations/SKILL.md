@@ -8,6 +8,7 @@ description: 操作和管理 VibeKits 集群：远程仿真、管理后台、客
 本技能是完整接手入口。先读取当前环境 AGENTS.md 和 LOCAL-ENVIRONMENT-RULES.md，核验用户授权、当前设备/服务和在途事务。技能内容不授予新账号、新设备或发布权限；已有同范围授权直接执行，不重复确认。不要把旧快照当实时状态。
 
 接续原七台 G01–G10 整体验收时，再读[当前完整目标与最新追加台账](https://github.com/caucy2026/priv/blob/main/hbbv/docs/PROJECT_HANDOFF_VIBEKITS_CLUSTER_UPGRADE_ACCEPTANCE_20261011.md)的**末尾最新回执**，按每项真实证据与未完成门禁继续；上方历史瞬时PID/版本不是现状，局部通过不缩小全七台、签名覆盖、撤销及100台真实扩展目标。
+快速定位2026-11-07各项真实通过范围、明确BLOCK和下一动作时读[当前G01–G10接续索引](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G01_G10_LIVE_STATUS_20261107.md)，随后仍要重读当次服务、设备、商城、资格与在途事务，不把索引当实时授权。
 
 
 首次安装、同站后台地址、四端商城入口和完整从零接入流程，先读 [从零到集群协作](references/getting-started.md)。公开网站：https://kemi-chat.newlinksz.com:21122/vibekits/ 。Linux未有公开正式包时明确待上架，不混用平台。
