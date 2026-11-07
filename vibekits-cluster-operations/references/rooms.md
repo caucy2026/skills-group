@@ -54,6 +54,8 @@
 
 **2026-11-07当前角色覆盖上述旧快照：**Windows424现在也是一级管理员，已不能用于普通成员目录验收；见[选点纠错](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G07_SUPPORT_ROSTER_WIN58_ROLE_CORRECTION_20261107.md)。Windows447是当前普通成员，经一张获批售后房短票真实调用本机`vibekits.cluster.room_devices`只见5个管理员ID，未见自己和其它普通设备；同请求服务端领取/完成各1、通道已关闭。[实机回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G07_WIN447_834_SUPPORT_ORDINARY_ROSTER_REAL_20261107.md)不证明普通成员之间的仿真拒绝、全部客户矩阵或新包。选择测试目标时先查实时等级/绑定/同意，不把旧截图中的角色当当次许可。
 
+同一当前角色的[售后正向工具](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G07_WIN447_834_SUPPORT_ORDINARY_ROSTER_REAL_20261107.md)另证Mac155一级管理员→普通Windows447的`system.info`短票真实返回目标主机/PID，后台领取/完成各1且断开，没有新增白名单。配合447普通视角只见管理员，形成一台旧834上的不对称可见与维护通道正反例，**不授予任意工具**。另一个[客户房间发现负例](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G06_WIN447_834_CUSTOMER_ROOM_DISCOVERY_20261107.md)显示447可发现kemi客户房间、仅加入自己的newlink售后房；它对可见但未加入的kemi房请求`room_devices`得到目标内层错误、设备列表为空，生产同票领取/完成各1。工具当前Schema已核`roomId`有效，现网成员记录确无该设备；原错误码未保存，不能把源码`MEMBERSHIP_REQUIRED`当直接回包。普通→普通售后互访及跨客户全部接口仍需另选获授权设备实测，不能碰用户已指示暂不操作的目标来凑矩阵。
+
 同一155→132售后房另用**新请求ID**真实验通有界`vibekits.system.resources(samples=1,intervalMs=250)`，目标内层CPU/内存/存储结构化数据成功，服务端同请求领取/完成各1、通道关闭、两机后续心跳和双房批准保持。见[第二项资源工具回执](https://github.com/caucy2026/priv/blob/main/hbbv/docs/acceptance/G08_SUPPORT_ADMIN_RESOURCES_155_TO_132_20261026.md)；不要复用已完成的`system.info`票据或把两项只读工具扩写成所有资源/签名工具已通过。
 
 短授权票据有独立保留期，调用后立即收集当前账本证据；已按保留策略清除的行不补造、不恢复成活票据。缺证据须明确列出，必要时仅对可重复只读检查取得新回执，不重做未知结果的业务操作。
