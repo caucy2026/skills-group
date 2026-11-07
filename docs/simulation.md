@@ -50,6 +50,16 @@ ruby "$SKILL_ROOT/scripts/invoke.rb" vibekits.simulator.catalog '{"routingId":"<
 
 详见[房间与十级管理](rooms.md)及[分级全局技能](https://github.com/caucy2026/skills-group/blob/main/vibekits-cluster-operations/references/account-device-levels.md)。原安装身份、目标同意、票据/连接代次、工具权限和本机 OS 权限仍保留。管理员身份不等于可以执行任意业务。
 
+## 同一账号的桌面设备
+
+在两台获授权的 Mac/Windows 桌面客户端分别完成同一个**真实账号**登录后，从「我的会话 → 我的设备」选择当前在线的目标，或用目标界面显示的原仿真 ID 发起连接；设备目录中的其他在线电脑可切换，离线设备不能凭历史列表取得访问。支持该功能的客户端会用当前签名 Host 账号目录识别同账号目标，申请绑定**控制端原生身份、目标原生身份、账号绑定、目标端口和短时有效期**的票据，再由目标本机检查仿真开关、原生准入、工具和系统权限。同一账号的有效桌面设备因此无需再走逐台手工白名单；**仅输入、伪装或声称相同账号名称不能取得票据**，换号、注销、离线、票据撤销或目标拒绝都会使准入失效。
+
+Harness 当前 Schema 提供显式诊断入口 `vibekits.simulator.account_connect {"routingId":"<目标原ID>"}`；通用桌面 ID 入口在已签同账号目录命中时优先同一路线。连接返回后仍须核 `accessMode=same_account`、目标原 ID、真实工具目录，再实际调用一项获授权只读工具；票据准备、目录存在或 `connected=true` 单独都不等于业务工具完成。同账号路线失败时保留原错误码和同一请求的目标原生/后台回执，**不能静默降级到房间或旧白名单并把成功冒充同账号验收**。非同账号目标继续按上文获批准房间或原目标同意流程；同账号可免逐台白名单不解除本机禁止访问目录、操作系统授权、签名任务或其他明确安全限制。
+
+Phone 的设计目标是作为同账号电脑的协同操作界面：选择本账号在线电脑、继续原会话并传递消息/文件；这些业务结果仍须逐项真实验收。Phone 自身不提供被控仿真宿主，也不因登录账号加入房间。当前 Android/PAD 不作为上述桌面同账号仿真发起端；Linux 是否具备这条原生路线以**所装版本当前 catalog 和真机测试**为准，不能按 Mac/Windows 推断。跨设备会话与文件同步也须分别验真结果，不以账号列表可见代替完成。
+
+**交付状态：本节是已实现源码的使用合同，仍未完成最终统一签名包双机验收。** 已装旧版目标曾返回`account_simulation_stream_unavailable`，Mac GUI旧动作白名单缺陷已有源码修复，目标仍须用同源合格签名包覆盖后双向实调、撤销/伪装负控和原ID/权限延续；见[同账号验收记录](https://github.com/caucy2026/vibekits/blob/main/docs/acceptance/SAME_ACCOUNT_ID_ENTRY_REPAIR_20261106.md)。使用时先核当前正式包与目录，不能把这段说明当所有已安装设备已可用的保证。
+
 ## 分流与收尾
 
 consent_pending 保留原申请；remote_disabled 核原开关；identity_mismatch/指纹变化停止修改并核实身份。断联先查本机桥和原事务，再用登记的同机桌面或可信入口恢复，不重放未知安装。完成后只断开本次不再使用的 simulator.disconnect 连接，交付真实平台/版本、调用与未验项。
